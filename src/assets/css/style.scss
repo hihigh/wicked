@@ -1,6 +1,18 @@
-@import "common";
+//@import "common";
+
+
+@import "base.css";
+@import "normalize.css";
+
+$text-title-color: #ff3399;
+
 
 li {
-  //margin-top: 100px;
+  color:$text-title-color;
 
 }
+
+.router-link-active {
+  background-color: red;
+}
+

@@ -1,33 +1,58 @@
 
 <template>
     <div class="wrapper">
-        <ul class="list-wrapper">
-            <comp-content v-for="list in lists" :key="list.description" :list="list"></comp-content>
-        </ul>
+
+        <!--<router-link to="/">project</router-link>-->
+        <!--<router-link to="/about">about</router-link>-->
+
+        <!--<ul>-->
+            <!--<li class='category-list' v-for='content in contentsData'>-->
+                <!--<router-link :to="`/${content.name}`">{{content.title}}</router-link>-->
+            <!--</li>-->
+        <!--</ul>-->
+
+
+        <router-view :contents-data='this.contentsData'></router-view>
+
+        <!--<comp_frame :contents-data='this.contentsData'></comp_frame>-->
+        <!--<comp_list :contents-data='this.contentsData'></comp_list>-->
+
     </div>
 
 </template>
 
 <script>
-    import data from '../data.json';
-    import compContent from './comp-content';
+
+    import comp_frame from './comp-frame';
+    import comp_list from './comp-list-contents';
+
 
     export default {
         name: "app",
 
-        data() {
-            return {
-                lists: []
-            }
-        },
-        created() {
-            this.lists = data;
-        },
         components: {
-            compContent
+            comp_frame,
+            comp_list
+        },
+
+        created() {
+
+        },
+
+        props: {
+            contentsData: {
+                type: Array,
+                default: function() {return [];}
+            }
         }
     }
 </script>
 
 
-<style lang="scss" src="../css/style.scss"></style>
+<style>
+    body {
+    }
+    .category-list {
+        /*margin: 10px 0!important;*/
+    }
+</style>

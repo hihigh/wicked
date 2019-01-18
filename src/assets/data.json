@@ -1,23 +1,38 @@
 [
   {
-    "title": "Lorem Ipsum0",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "idx": 0,
+    "name": "content-0",
+    "title": "line",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "bgimage": "../images/thumbnail-1200.jpg"
   },
   {
-    "title": "Lorem Ipsum1",
-    "description": "Nulla sed sem et diam iaculis semper iaculis ac massa."
+    "idx": 1,
+    "name": "content-1",
+    "title": "Window",
+    "description": "Nulla sed sem et diam iaculis semper iaculis ac massa.",
+    "bgimage": "../images/thumbnail-1200_12.jpg"
   },
   {
-    "title": "Lorem Ipsum",
-    "description": "Mauris nec felis vitae augue eleifend blandit a nec leo."
+    "idx": 2,
+    "name": "content-2",
+    "title": "Color",
+    "description": "Mauris nec felis vitae augue eleifend blandit a nec leo.",
+    "bgimage": "../images/thumbnail-1200_21.jpg"
   },
   {
-    "title": "Lorem Ipsum",
-    "description": "Donec gravida enim quis orci molestie, quis eleifend orci mollis."
+    "idx": 3,
+    "name": "content-3",
+    "title": "Rain",
+    "description": "Donec gravida enim quis orci molestie, llis.",
+    "bgimage": "../images/thumbnail-1200_27.jpg"
   },
   {
-    "title": "Lorem Ipsum",
-    "description": "Donec cursus orci vel erat commodo finibus."
+    "idx": 4,
+    "name": "content-4",
+    "title": "Snow",
+    "description": "Donec cursus orci vel erat commodo finibus.",
+    "bgimage": "../images/thumbnail-1200_28.jpg"
   }
 
 ]

@@ -3,10 +3,13 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = (env, options) => {
     const config = {
         entry: {
-            app: ['./src/assets/js/main.js']
+            app: ['./src/assets/js/index.js']
         },
         output: {
             filename: 'js/[name].bundle.js',
@@ -43,7 +46,7 @@ module.exports = (env, options) => {
                 },
                 {
                     test: /\.s[a|c]ss$/,
-                    loader: 'style!css!sass'
+                    loader: 'style-loader!css-loader!sass-loader'
                 },
                 {
                     test: /\.js$/,
@@ -77,7 +80,18 @@ module.exports = (env, options) => {
                 template: path.join(__dirname, './src/index.html'),
                 inject: true,
                 filename: path.join(__dirname, './dist/index.html')
-            })
+            }),
+
+            new CopyWebpackPlugin([
+                {
+                    from: path.join(__dirname, './src/assets/images'),
+                    to: path.join(__dirname, './dist/images')
+                },
+            ])
+            // CSS file을 dist폴더로 추출한다.
+            // new MiniCssExtractPlugin({
+            //     filename: `../css/${cssFilename}`,
+            // })
         ]
     };
 

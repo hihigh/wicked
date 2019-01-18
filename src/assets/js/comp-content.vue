@@ -7,10 +7,15 @@
             <!--<p>{{data.description}}</p>-->
             <!--<router-link :to="`/${data.name}`"><button>view detail> {{data.title}}</button></router-link>-->
         </div>
-        <transition name="fade"
+        <transition @before-enter="beforeEnter"
+                    @enter="enter"
+                    @after-enter="afterEnter"
 
-        >
-            <comp-content-detail v-show="isContent" :data="data" :bgimg="bgimg" :index="index"></comp-content-detail>
+                    @before-Leave="beforeLeave"
+                    @leave="leave"
+                    @after-leave="afterLeave"
+                    :css="false">
+            <comp-content-detail :data="data" :bgimg="bgimg" :index="index"></comp-content-detail>
         </transition>
     </li>
 </template>
@@ -153,7 +158,7 @@
 
         .content-detail-wrapper {
             z-index: 1;
-            position: relative;
+            //position: relative;
             opacity: 1;
             /*margin: 50vh auto 0%;*/
 
@@ -166,7 +171,18 @@
 
     .content-detail-wrapper {
         transition: all 3s;
+        opacity: 0;
         /*<!--margin: -50vh auto 0%;-->*/
+
+
+
+
+
+        white-space: normal;
+        text-align: left;
+        line-height: 1.5rem;
+        font-size: 0.8rem;
+
 
         .content-detail {
             width: calc(100% - 60px);
@@ -174,14 +190,6 @@
 
         }
 
-        /*background-color: silver;*/
-        white-space: normal;
-        text-align: left;
-        line-height: 1.5rem;
-        font-size: 0.8rem;
-
-
-        /*width: 100%;*/
         img {
             width: 100%;
         }
@@ -210,12 +218,7 @@
         position: relative;
         margin: 25vh 30px;
 
-        transition: all 0.5s
-
-        /*top:50%;
-        transform: translate3d(0,-50%,0);*/
-
-
+        transition: all 0.5s;
     }
 
 

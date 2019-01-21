@@ -14,4 +14,6 @@ import Vue from 'vue';
 
 export const EventBus = new Vue();
 EventBus.SHOW_CONTENT = 'showContent';
+EventBus.SHOW_CONTENT_COMPLETE = 'showContentComplete';
 EventBus.SHOW_LIST = 'showList';
+EventBus.SHOW_LIST_COMPLETE = 'showListComplete';

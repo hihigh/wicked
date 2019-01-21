@@ -103,6 +103,7 @@ module.exports = (env, options) => {
         config.devtool = 'inline-source-map';
 
         config.devServer = {
+            host: '0.0.0.0',
             hot: true,
             port: 8000,
             contentBase: path.resolve(__dirname, 'dist'),

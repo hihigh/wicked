@@ -1,11 +1,22 @@
 <template>
     <li class="list-content">
 
-        <div class="inner-wrapper" :style="{ 'background-image': 'url(' + bgimg + ')' }" @click.stop.prevent="onClickContent">
+        <div class="inner-wrapper"
+             @click.stop.prevent="onClickContent">
+            <!--  :style="{ 'background-image': 'url(' + bgimg + ')' }"  -->
             <!--<router-link to="/">project</router-link>-->
-            <h3>{{data.title}}</h3>
             <!--<p>{{data.description}}</p>-->
             <!--<router-link :to="`/${data.name}`"><button>view detail> {{data.title}}</button></router-link>-->
+            <div class="bg-image">
+                <div class="img-area" :style="{ 'background-image': 'url(' + bgimg + ')' }"></div>
+                <div class="dimmed"></div>
+            </div>
+            <!--  :style="{ 'background-image': 'url(' + bgimg + ')' }" -->
+            <h3 class="content-title">{{data.title}}</h3>
+            <transition name="fade">
+                <p class="content-subtitle" v-show="isContent" >{{data.subtitle}}</p>
+            </transition>
+
         </div>
         <transition @before-enter="beforeEnter"
                     @enter="enter"
@@ -14,8 +25,8 @@
                     @before-Leave="beforeLeave"
                     @leave="leave"
                     @after-leave="afterLeave"
-                    :css="false">
-            <comp-content-detail :data="data" :bgimg="bgimg" :index="index"></comp-content-detail>
+                    name="fade">
+            <comp-content-detail v-show="isContent" :data="data" :bgimg="bgimg" :index="index"></comp-content-detail>
         </transition>
     </li>
 </template>
@@ -35,8 +46,17 @@
         created() {
 
             EventBus.$on(EventBus.SHOW_CONTENT, this.changeContentMode);
+            EventBus.$on(EventBus.SHOW_CONTENT_COMPLETE, this.changeContentModeComplete);
             EventBus.$on(EventBus.SHOW_LIST, this.changeListMode);
+            EventBus.$on(EventBus.SHOW_LIST_COMPLETE, this.changeListModeComplete);
 
+
+
+
+        },
+
+        mounted(){
+            this.kv = this.$el.querySelector(".inner-wrapper");
         },
 
         data() {
@@ -73,57 +93,80 @@
                 // console.log("change list : ", this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = false;
-                    this.$el.classList.remove("view-content")
+                    // this.$el.classList.remove("view-content")
 
                 } else {
-                    this.$el.style.display = ""
+
                 }
+            },
+            changeContentModeComplete(e){
+
             },
 
             changeContentMode(showindex){
                 // console.log("change content : ", this.$el, this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = true;
-                    this.$el.classList.add("view-content")
+                    // this.$el.classList.add("view-content")
                 } else {
                     this.$el.style.display = "none"
                 }
 
             },
 
+            changeListModeComplete(e){
+                this.$el.style.display = ""
+            },
+
 
             // --------
-            // 진입
+            // show content
             // --------
 
             beforeEnter: function (el) {
                 console.log("beforenter")
             },
-            // done 콜백은 CSS와 함께 사용할 때 선택 사항입니다.
+
             enter: function (el, done) {
                 console.log("enter : ")
-                done()
-                this.$el.classList.add("view-content")
+                el.addEventListener("webkitTransitionEnd", done, {once:true});
+                //done()
+                // this.$el.classList.add("view-content")
+
+                this.kv.classList.add("mode-content");
+                this.kv.classList.add("mode-content-fixed");
+
+
+
+                console.log(this.kv )
             },
             afterEnter: function (el) {
+                // el.removeEventListener("webkitTransitionEnd");
                 console.log("afterEnter : ")
+                EventBus.$emit(EventBus.SHOW_CONTENT_COMPLETE, this.index);
+
+
             },
 
             // --------
-            // 진출
+            // show list
             // --------
 
             beforeLeave: function (el) {
                 console.log("beforeLeave")
             },
-            // done 콜백은 CSS와 함께 사용할 때 선택 사항입니다.
+
             leave: function (el, done) {
                 console.log("leave")
-                done()
+                el.addEventListener("webkitTransitionEnd", done, {once:true});
+                this.kv.classList.remove("mode-content");
+                // velocity(document.body, { duration: 1000, offset: 100 })
             },
             afterLeave: function (el) {
-                console.log("afterLeave")
-                this.$el.classList.remove("view-content")
+                console.log("afterLeave", el)
+                // this.$el.classList.remove("view-content")
+                EventBus.$emit(EventBus.SHOW_LIST_COMPLETE, this.index);
+                this.kv.classList.remove("mode-content-fixed");
             }
         }
     }
@@ -131,62 +174,137 @@
 
 <style lang="scss">
 
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity 2s;
+    .fade-enter-active{
+        transition: opacity 0.7s, transform 0.7s cubic-bezier(.37, 0, .34, 1);
+    }
+
+    .fade-leave-active {
+        transition: opacity 0.2s, transform 0.3s cubic-bezier(.37, 0, .34, 1);
     }
     .fade-enter, .fade-leave-to {
-        transition: opacity 2s;
         opacity: 0;
+        transform: translate3d(0,200px,0);
     }
 
 
 
+    .list-content {
+        width: 100vw;
+        /*height: 100vh;*/
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
 
-    .view-content {
         .inner-wrapper {
-            position: fixed;
-            height: calc(100vh - 50px);
-            margin: 50px 0px 5vh ;
-            width: 100%;
-            /*opacity: 0.2;*/
 
-            h3 {
-                transform: translate3d(-50%,-250%,0);
-                font-size: 5rem;
+            &.mode-content {
+                /*opacity: 0.5;*/
+
+                .bg-image {
+                    height: 100vh;
+                    margin: 0px 0px 0vh ;
+                    width: 100%;
+                    transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
+
+                    .dimmed {
+                        opacity: 0.8;
+                    }
+
+                }
+                .content-title {
+                    top: 30%;
+                }
+                .content-subtitle  {
+                    transition: transform 0.4s, opacity 0.2s 0.1s;
+                }
             }
-        }
 
-        .content-detail-wrapper {
-            z-index: 1;
-            //position: relative;
-            opacity: 1;
-            /*margin: 50vh auto 0%;*/
-
-            .content-detail {
+            &.mode-content-fixed {
+                .bg-image {
+                    position: fixed;
+                }
 
 
             }
+
+
+            display: block;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            top:0;
+
+
+            .bg-image {
+                position: absolute;
+                top: 50%;
+                left:50%;
+
+                background-color: #cbd5de;
+
+                width: calc(100% - 60px);
+                height: 50vh;
+                transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
+                transform: translate3d(-50%,-50%,0);
+
+                .img-area {
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                .dimmed {
+                    width: 100%;
+                    height: 100%;
+                    background-color: black;
+                    position: absolute;
+                    top: 0;
+                    opacity: 0.6;
+                    transition: opacity 0.5s;
+                }
+
+            }
+
+            .content-title {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%,-50%,0);
+                font-weight: lighter;
+                font-size: 3rem;
+                transition: all 0.5s;
+                color: white;
+            }
+
+            .content-subtitle {
+                position: absolute;
+                width: 100%;
+                top: 37%;
+                /*left: 50%;*/
+                /*font-weight: lighter;*/
+                font-size: 1rem;
+                transition: transform 0.5s, opacity 0.1s;
+            }
+
         }
     }
+
+
 
     .content-detail-wrapper {
-        transition: all 3s;
-        opacity: 0;
-        /*<!--margin: -50vh auto 0%;-->*/
-
-
-
-
 
         white-space: normal;
         text-align: left;
         line-height: 1.5rem;
         font-size: 0.8rem;
-
+        z-index: 1;
+        position: relative;
+        /*background-color: #f9fafd;*/
 
         .content-detail {
             width: calc(100% - 60px);
-            margin: 0vh auto 0%;
+            margin: -40vh auto 0%;
 
         }
 
@@ -199,39 +317,10 @@
 
 
 
-    .list-content {
-        color: white;
-        width: 100vw;
-        /*height: 100vh;*/
-        display: inline-block;
-        text-align: center;
-        vertical-align: top;
-    }
-
-    .inner-wrapper {
-        width: calc(100% - 60px);
-        height: 50vh;
-        background-size: cover;
-        background-position: center;
-
-        display: block;
-        position: relative;
-        margin: 25vh 30px;
-
-        transition: all 0.5s;
-    }
 
 
 
-    h3 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%,-50%,0);
-        font-weight: lighter;
-        font-size: 3rem;
-        transition: all 0.5s;
-    }
+
 
 
 </style>

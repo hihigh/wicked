@@ -1,22 +1,12 @@
 <template>
     <div class="content-detail-wrapper">
         <div class="content-detail" @click.stop.prevent="onClick_gotoList">
-            <p>{{data.description}}</p>
-            <img src="../images/thumbnail-1200_21.jpg" ></img>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <!--<img :src=bgimg @click.stop.prevent="onClick_gotoList"></img>-->
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <img :src=bgimg ></img>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
-            <p>{{data.description}}</p>
+            <p v-html="data.description"></p>
+            <div class="image-area" :style="{ 'background-image': 'url(' + '../images/image.png' + ')' }">
+                <!--<img src="../images/image.png" ></img>-->
+            </div>
+
+            <p v-html="data.content"></p>
         </div>
 
     </div>
@@ -24,6 +14,8 @@
 
 <script>
     import { EventBus } from './EventBus';
+    import velocity from 'velocity-animate'
+
 
     export default {
         name: "comp-content-detail",
@@ -49,13 +41,51 @@
             },
 
             onClick_gotoList(){
-                EventBus.$emit(EventBus.SHOW_LIST, this.index);
+
+                scrollToTop(300);
+
+                var _this = this;
+                EventBus.$emit(EventBus.SHOW_LIST, _this.index);
+
+                function scrollToTop(scrollDuration) {
+                    var cosParameter = window.scrollY / 2,
+                        scrollCount = 0,
+                        oldTimestamp = performance.now();
+                    function step (newTimestamp) {
+                        scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+                        if (scrollCount >= Math.PI) window.scrollTo(0, 0);
+                        if (window.scrollY === 0) {
+                            return;
+                        }
+                        window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
+                        oldTimestamp = newTimestamp;
+                        window.requestAnimationFrame(step);
+                    }
+                    window.requestAnimationFrame(step);
+                }
+
+                function endEvent(){
+
+                }
+
             }
         }
     }
 </script>
 
 <style scoped  lang="scss">
+    p {
+        margin: 20px 0;
+    }
+
+    .image-area {
+        height: 15rem;
+        /*padding: 4rem 6rem;*/
+        background-color: #f3f5f5;
+        background-size: 5rem;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
 
 

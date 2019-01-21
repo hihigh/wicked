@@ -51,6 +51,7 @@
 
 <style>
     body {
+        /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
     }
     .category-list {
         /*margin: 10px 0!important;*/

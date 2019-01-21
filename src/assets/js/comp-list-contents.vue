@@ -1,6 +1,6 @@
 <template>
     <div class="list-contents-wrapper">
-        <comp-content v-for="(content, index) in contentsData" :key="content.description" :data="content" :bgimg="content.bgimage" :index="index"></comp-content>
+        <comp-content v-for="(content, index) in contentsData" :key="index" :data="content" :bgimg="content.bgimage" :index="index"></comp-content>
     </div>
 </template>
 
@@ -39,7 +39,9 @@
         created() {
             this.dragState = {};
             EventBus.$on(EventBus.SHOW_CONTENT, this.changeContentMode);
+            EventBus.$on(EventBus.SHOW_CONTENT_COMPLETE, this.changeContentModeComplete);
             EventBus.$on(EventBus.SHOW_LIST, this.changeListMode);
+            EventBus.$on(EventBus.SHOW_LIST_COMPLETE, this.changeListModeComplete);
 
         },
 
@@ -57,7 +59,15 @@
 
             },
 
+            changeContentModeComplete(e){
+
+            },
+
             changeListMode(e){
+
+            },
+
+            changeListModeComplete(e){
                 let element = this.$el;
                 element.addEventListener('touchstart', this.dragStartEvent);
                 element.addEventListener('touchmove', this.dragMoveEvent);

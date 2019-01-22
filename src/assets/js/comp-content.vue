@@ -207,17 +207,17 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 667px;
+                    height: 100vh;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
 
                     .img-area {
-                        background-size: cover;
+                        background-size: 15rem;
                     }
 
                     .dimmed {
-                        opacity: 0.8;
+                        opacity: 0.4;
                     }
 
                 }
@@ -241,21 +241,25 @@
             display: block;
             position: relative;
             width: 100vw;
-            /*height: 100vh;*/
+            height: 100vh;
             top:0;
 
 
             .bg-image {
-                position: absolute;
-                top: 50%;
+                /*position: absolute;*/
+                /*top: 50%;
                 left:50%;
+                transform: translate3d(-50%,-50%,0);
+                width: calc(100% - 60px);
+                height: 50vh;*/
+
+                width: 100%;
+                height: 100%;
 
                 background-color: #cbd5de;
 
-                width: calc(100% - 60px);
-                height: 375px;
+
                 transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
-                transform: translate3d(-50%,-50%,0);
 
                 .img-area {
                     width: 100%;
@@ -263,8 +267,8 @@
                     /*background-size: cover;*/
                     /*background-position: center;*/
 
-                    background-size: cover;
-                    background-position: center;
+                    background-size: 8rem;
+                    background-position: center center;
                     background-repeat: no-repeat;
                     background-color: #f3f5f5;
                     transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
@@ -276,7 +280,7 @@
                     background-color: black;
                     position: absolute;
                     top: 0;
-                    opacity: 0.6;
+                    opacity: 0.2;
                     transition: opacity 0.5s;
                 }
 

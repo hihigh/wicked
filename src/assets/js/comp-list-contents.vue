@@ -37,6 +37,7 @@
         },
 
         created() {
+            console.log("comp-list.vue -- created")
             this.dragState = {};
             EventBus.$on(EventBus.SHOW_CONTENT, this.changeContentMode);
             EventBus.$on(EventBus.SHOW_CONTENT_COMPLETE, this.changeContentModeComplete);

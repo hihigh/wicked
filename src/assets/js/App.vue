@@ -12,8 +12,8 @@
         <!--</ul>-->
 
 
-        <router-view :contents-data='this.contentsData'></router-view>
-
+        <!--<router-view :contents-data='this.contentsData'></router-view>-->
+        <comp-list :contents-data='this.contentsData'></comp-list>
         <!--<comp_frame :contents-data='this.contentsData'></comp_frame>-->
         <!--<comp_list :contents-data='this.contentsData'></comp_list>-->
 
@@ -31,12 +31,11 @@
         name: "app",
 
         components: {
-            comp_frame,
-            comp_list
+            'comp-list': comp_list
         },
 
         created() {
-
+            console.log("app.vue -- created")
         },
 
         props: {

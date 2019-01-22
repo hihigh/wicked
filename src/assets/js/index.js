@@ -19,7 +19,8 @@ const initVue = function(){
         template: '<App :contents-data="this.contentsData"/>',
 
         created() {
-            this.contentsData = content_data;
+            this.contentsData = content_data
+            console.log("index.js -- created")
         }
         // render: h => h(App)
     })

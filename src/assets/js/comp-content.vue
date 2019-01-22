@@ -241,7 +241,7 @@
             display: block;
             position: relative;
             width: 100vw;
-            height: 100vh;
+            /*height: 100vh;*/
             top:0;
 
 
@@ -253,7 +253,7 @@
                 background-color: #cbd5de;
 
                 width: calc(100% - 60px);
-                height: 50vh;
+                height: 375px;
                 transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
                 transform: translate3d(-50%,-50%,0);
 

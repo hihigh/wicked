@@ -58,6 +58,8 @@
 
 
 
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
 
         },
 
@@ -200,6 +202,9 @@
         display: inline-block;
         text-align: center;
         vertical-align: top;
+
+        height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
 
         .inner-wrapper {
 

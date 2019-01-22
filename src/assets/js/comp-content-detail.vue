@@ -9,9 +9,6 @@
             <p v-html="data.content"></p>
             <p v-html="data.content"></p>
             <p v-html="data.content"></p>
-            <p v-html="data.content"></p>
-            <p v-html="data.content"></p>
-            <p v-html="data.content"></p>
         </div>
 
     </div>

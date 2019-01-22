@@ -12,7 +12,7 @@ module.exports = (env, options) => {
             app: ['./src/assets/js/index.js']
         },
         output: {
-            filename: 'js/[name].bundle.js',
+            filename: 'js/[name].bundle.js?[hash]',
             // publicPath: '/dist/',
             path: path.resolve(__dirname, 'dist')
         },

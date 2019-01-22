@@ -207,7 +207,7 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 100vh;
+                    height: 300px;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
@@ -253,7 +253,7 @@
                 background-color: #cbd5de;
 
                 width: calc(100% - 60px);
-                height: 50vh;
+                height: 50%;
                 transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
                 transform: translate3d(-50%,-50%,0);
 

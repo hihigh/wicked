@@ -4,16 +4,14 @@
 
         <!--<router-link to="/">project</router-link>-->
         <!--<router-link to="/about">about</router-link>-->
-
-
         <!--<router-view :contents-data='this.contentsData'></router-view>-->
-        <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
 
-        <div class="overflow-wrapper">
+
+        <comp-list :contents-data='this.contentsData'></comp-list>
+
+        <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
-        </div>
-        <!--<comp_frame :contents-data='this.contentsData'></comp_frame>-->
-        <!--<comp_list :contents-data='this.contentsData'></comp_list>-->
+        </div>-->
 
     </div>
 
@@ -49,11 +47,11 @@
 
 
 <style>
-    body {
-        /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
+    /*body {
+        !*background-image: linear-gradient(to top right, #005a96, #07a5e0);*!
     }
     .category-list {
-        /*margin: 10px 0!important;*/
+        !*margin: 10px 0!important;*!
     }
 
     .wrapper {
@@ -62,5 +60,5 @@
 
     .overflow-wrapper {
         overflow: visible;
-    }
+    }*/
 </style>

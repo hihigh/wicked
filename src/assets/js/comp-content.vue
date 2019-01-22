@@ -207,7 +207,7 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 100vh;
+                    height: 100%;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
@@ -241,7 +241,7 @@
             display: block;
             position: relative;
             width: 100vw;
-            height: 100vh;
+            height: 100%;
             top:0;
 
 

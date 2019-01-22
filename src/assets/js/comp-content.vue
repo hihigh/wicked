@@ -207,13 +207,15 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 300px;
+                    top:0;
+                    transform: translate3d(-50%,0%,0);
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
 
                     .img-area {
-                        background-size: 15rem;
+                        height: 300px;
+                        background-size: cover;
                     }
 
                     .dimmed {
@@ -263,8 +265,8 @@
                     /*background-size: cover;*/
                     /*background-position: center;*/
 
-                    background-size: 8rem;
-                    background-position: center;
+                    background-size: cover;
+                    background-position: center center;
                     background-repeat: no-repeat;
                     background-color: #f3f5f5;
                     transition: all 0.5s cubic-bezier(.59, 0, .31, 1);

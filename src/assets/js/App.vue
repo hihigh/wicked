@@ -9,7 +9,9 @@
         <!--<router-view :contents-data='this.contentsData'></router-view>-->
         <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
 
+        <div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
+        </div>
         <!--<comp_frame :contents-data='this.contentsData'></comp_frame>-->
         <!--<comp_list :contents-data='this.contentsData'></comp_list>-->
 
@@ -52,5 +54,13 @@
     }
     .category-list {
         /*margin: 10px 0!important;*/
+    }
+
+    .wrapper {
+        height: 667px;
+    }
+
+    .overflow-wrapper {
+        overflow: visible;
     }
 </style>

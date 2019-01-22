@@ -73,7 +73,7 @@
     }
 
     .cover_item{
-        height: 375px;
+        height: 667px;
         position: relative;
         max-height: none!important;
     }
@@ -85,7 +85,8 @@
     }
 
     .wrap_body{
-        height: 1200px;
+        padding: 30px;
+        /*height: 1200px;*/
     }
 
 </style>

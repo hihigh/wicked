@@ -207,15 +207,13 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    top:0;
-                    transform: translate3d(-50%,0%,0);
+                    height: 100vh;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
 
                     .img-area {
-                        height: 300px;
-                        background-size: cover;
+                        background-size: 15rem;
                     }
 
                     .dimmed {
@@ -255,7 +253,7 @@
                 background-color: #cbd5de;
 
                 width: calc(100% - 60px);
-                height: 50%;
+                height: 50vh;
                 transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
                 transform: translate3d(-50%,-50%,0);
 
@@ -265,8 +263,8 @@
                     /*background-size: cover;*/
                     /*background-position: center;*/
 
-                    background-size: cover;
-                    background-position: center center;
+                    background-size: 8rem;
+                    background-position: center;
                     background-repeat: no-repeat;
                     background-color: #f3f5f5;
                     transition: all 0.5s cubic-bezier(.59, 0, .31, 1);

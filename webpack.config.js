@@ -13,6 +13,7 @@ module.exports = (env, options) => {
         },
         output: {
             filename: 'js/[name].bundle.js',
+            // publicPath: '/dist/',
             path: path.resolve(__dirname, 'dist')
         },
         optimization: {
@@ -61,7 +62,8 @@ module.exports = (env, options) => {
                     test: /\.(png|jpg|gif|svg)$/,
                     loader: 'file-loader',
                     options: {
-                        name: 'img/[name].[ext]?[hash]'
+                        publicPath: './dist/images/',
+                        name: '[name].[ext]?[hash]'
                     }
                 }
             ]

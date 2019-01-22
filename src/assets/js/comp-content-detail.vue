@@ -2,7 +2,7 @@
     <div class="content-detail-wrapper">
         <div class="content-detail" @click.stop.prevent="onClick_gotoList">
             <p v-html="data.description"></p>
-            <div class="image-area" :style="{ 'background-image': 'url(' + '../images/image.png' + ')' }">
+            <div class="image-area" :style="{ 'background-image': 'url(' + 'images/image.png' + ')' }">
                 <!--<img src="../images/image.png" ></img>-->
             </div>
 

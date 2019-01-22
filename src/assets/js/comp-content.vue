@@ -17,6 +17,10 @@
                 <p class="content-subtitle" v-show="isContent" >{{data.subtitle}}</p>
             </transition>
 
+
+            <!--<img :src="@/assets/images/image.png" alt="">-->
+            <!--<img src="@/images/image.png" alt="">-->
+
         </div>
         <transition @before-enter="beforeEnter"
                     @enter="enter"
@@ -44,6 +48,8 @@
         },
 
         created() {
+
+            console.log("================", this.bgimg)
 
             EventBus.$on(EventBus.SHOW_CONTENT, this.changeContentMode);
             EventBus.$on(EventBus.SHOW_CONTENT_COMPLETE, this.changeContentModeComplete);

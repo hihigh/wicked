@@ -218,7 +218,9 @@
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
 
                     .img-area {
-                        background-size: 15rem;
+                        background-size: 30rem;
+                        width: 100%;
+                        height: 100%;
                     }
 
                     .dimmed {
@@ -272,10 +274,10 @@
                     /*background-size: cover;*/
                     /*background-position: center;*/
 
-                    background-size: 8rem;
+                    background-size: 20rem;
                     background-position: center center;
                     background-repeat: no-repeat;
-                    background-color: #f3f5f5;
+                    background-color: #000000;
                     transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
                 }
 

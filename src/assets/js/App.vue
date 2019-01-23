@@ -7,11 +7,11 @@
         <!--<router-view :contents-data='this.contentsData'></router-view>-->
 
 
-        <comp-list :contents-data='this.contentsData'></comp-list>
+        <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
 
-        <!--<div class="overflow-wrapper">
+        <div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
-        </div>-->
+        </div>
 
     </div>
 
@@ -55,10 +55,10 @@
     }
 
     .wrapper {
-        height: 667px;
+        /*height: 667px;*/
     }
 
     .overflow-wrapper {
-        overflow: visible;
+        /*overflow: visible;*/
     }
 </style>

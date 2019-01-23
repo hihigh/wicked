@@ -1,23 +1,10 @@
 <template>
-    <div class="wrap_body_frame">
-
-        <div class="wrap_view_article_body">
-            <div class="wrap_cover" style="opacity: 1;">
-                <div class="cover_item">
-                    <div class="cover_image" :style="{ 'background-image': 'url(./images/image.png)' }"></div>
-                </div>
-            </div>
-            <div class=" wrap_body">
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
-            </div>
-        </div>
-
+    <div class="module">
+        <div class="module__item">20%</div>
+        <div class="module__item">40%</div>
+        <div class="module__item">60%</div>
+        <div class="module__item">80%</div>
+        <div class="module__item">100%</div>
     </div>
 </template>
 
@@ -29,6 +16,13 @@
 
         components: {
             'comp-content-detail': comp_content_detail
+        },
+
+        created() {
+
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+
         },
 
         props: {
@@ -62,31 +56,32 @@
 
 
 <style scope lang="scss">
-.wrap_body_frame {
-    margin-top: 375px;
-}
-    .wrap_cover {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: -1;
+    body {
+        background-color: #333;
     }
 
-    .cover_item{
-        height: 667px;
-        position: relative;
-        max-height: none!important;
+    .module {
+        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
+        margin: 0 auto;
+        max-width: 30%;
     }
 
-    .cover_image {
-        background-size: cover;
-        background-position: 50% 50%;
-        height: 100%;
+    .module__item {
+        align-items: center;
+        display: flex;
+        height: 20%;
+        justify-content: center;
     }
 
-    .wrap_body{
-        padding: 30px;
-        /*height: 1200px;*/
+    .module__item:nth-child(odd) {
+        background-color: #fff;
+        color: #F73859;
+    }
+
+    .module__item:nth-child(even) {
+        background-color: #F73859;
+        color: #F1D08A;
     }
 
 </style>

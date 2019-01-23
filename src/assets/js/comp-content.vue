@@ -273,7 +273,7 @@
 
             &.mode-content-fixed {
                 .bg-image {
-                    /*position: fixed;*/
+                    position: fixed;
                 }
 
 

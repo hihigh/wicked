@@ -39,7 +39,6 @@
 
     import { EventBus } from './EventBus';
     import comp_content_detail from './comp-content-detail';
-    import _ from 'lodash'
 
     export default {
         name: "Content",
@@ -59,19 +58,6 @@
 
 
 
-            this.stageVh = 0;
-            this.checkVh();
-
-            window.addEventListener('resize', _.debounce(function(){
-
-            }, 300) )
-
-            /*() => {
-                // We execute the same script as before
-                vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-                // alert(vh);
-            });*/
 
         },
 
@@ -110,34 +96,23 @@
             },
 
             changeListMode(showindex){
-
-
                 // console.log("change list : ", this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = false;
-                    this.checkVh();
-                    // document.documentElement.style.setProperty('--vh', `${this.startVh}px`);
                     // this.$el.classList.remove("view-content")
 
                 } else {
 
                 }
             },
+            changeContentModeComplete(e){
 
-            changeListModeComplete(e){
-                this.$el.style.display = ""
             },
 
-
-
             changeContentMode(showindex){
-
-
                 // console.log("change content : ", this.$el, this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = true;
-                    // let vh = window.innerHeight * 0.01;
-                    // document.documentElement.style.setProperty('--vh', `${vh}px`);
                     // this.$el.classList.add("view-content")
                 } else {
                     this.$el.style.display = "none"
@@ -145,18 +120,10 @@
 
             },
 
-            changeContentModeComplete(e){
-
+            changeListModeComplete(e){
+                this.$el.style.display = ""
             },
 
-
-            checkVh(){
-
-                this.stageVh = Math.max(window.innerHeight * 0.01, this.stageVh);
-                console.log(window.innerHeight * 0.01, this.stageVh)
-                document.documentElement.style.setProperty('--vh', `${this.stageVh}px`);
-
-            },
 
             // --------
             // show content
@@ -228,18 +195,11 @@
 
 
     .list-content {
-        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 100);
-        margin: 0 auto;
-        max-width: 100%;
-
+        width: 100vw;
         /*height: 100vh;*/
         display: inline-block;
         text-align: center;
         vertical-align: top;
-
-        transition: all 0.3s;
-
 
         .inner-wrapper {
 
@@ -247,19 +207,17 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 1000px;
+                    height: 100vh;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
 
                     .img-area {
-                        background-size: 30rem;
-                        width: 100%;
-                        height: 100%;
+                        background-size: 15rem;
                     }
 
                     .dimmed {
-                        opacity: 0.4;
+                        opacity: 0.8;
                     }
 
                 }
@@ -283,31 +241,21 @@
             display: block;
             position: relative;
             width: 100vw;
-            height: 100%;
+            height: 100vh;
             top:0;
-            /*background-color: #F73859;*/
+
 
             .bg-image {
-                /*display: none;*/
-                /*position: absolute;*/
-                /*top: 50%;
-                left:50%;
-                transform: translate3d(-50%,-50%,0);
-                width: calc(100% - 60px);
-                height: 50vh;*/
-
-                width: 100%;
-                height: 100%;
-
                 position: absolute;
-                top: 0%;
-                left:0%;
-                /*transform: translate3d(-50%,-50%,0);*/
+                top: 50%;
+                left:50%;
 
                 background-color: #cbd5de;
 
-
+                width: calc(100% - 60px);
+                height: 50vh;
                 transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
+                transform: translate3d(-50%,-50%,0);
 
                 .img-area {
                     width: 100%;
@@ -315,10 +263,10 @@
                     /*background-size: cover;*/
                     /*background-position: center;*/
 
-                    background-size: 20rem;
-                    background-position: center center;
+                    background-size: 8rem;
+                    background-position: center;
                     background-repeat: no-repeat;
-                    background-color: #000000;
+                    background-color: #f3f5f5;
                     transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
                 }
 
@@ -328,7 +276,7 @@
                     background-color: black;
                     position: absolute;
                     top: 0;
-                    opacity: 0.2;
+                    opacity: 0.6;
                     transition: opacity 0.5s;
                 }
 
@@ -369,7 +317,7 @@
         z-index: 1;
         position: relative;
         /*background-color: #f9fafd;*/
-        transition: all 0.3s;
+
         .content-detail {
             width: calc(100% - 60px);
             margin: -40vh auto 0%;

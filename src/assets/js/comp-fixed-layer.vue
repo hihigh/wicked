@@ -21,6 +21,13 @@
             let vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
 
+            window.addEventListener('resize', () => {
+                // We execute the same script as before
+                vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+                alert(vh);
+            });
+
         },
 
         props: {
@@ -66,10 +73,10 @@
     }
 
     .module__item {
-        /*align-items: center;*/
-        /*display: flex;*/
+        align-items: center;
+        display: flex;
         height: 100%;
-        /*justify-content: center;*/
+        justify-content: center;
     }
 
     .module__item:nth-child(odd) {

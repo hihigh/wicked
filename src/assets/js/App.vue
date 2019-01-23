@@ -7,11 +7,11 @@
         <!--<router-view :contents-data='this.contentsData'></router-view>-->
 
 
-        <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
+        <comp-list :contents-data='this.contentsData'></comp-list>
 
-        <div class="overflow-wrapper">
+        <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
-        </div>
+        </div>-->
 
     </div>
 
@@ -49,8 +49,8 @@
 <style>
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
-        overflow: hidden;
-        overflow-y: scroll;
+        /*overflow: hidden;*/
+        overflow-x: hidden;
     }
     .category-list {
         /*margin: 10px 0!important;*/

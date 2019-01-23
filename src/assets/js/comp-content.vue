@@ -204,7 +204,7 @@
 
         /*height: 100vh;*/
         display: inline-block;
-        /*text-align: center;*/
+        text-align: center;
         vertical-align: top;
 
 
@@ -252,10 +252,10 @@
             width: 100vw;
             height: 100%;
             top:0;
-            background-color: #F73859;
+            /*background-color: #F73859;*/
 
             .bg-image {
-                display: none;
+                /*display: none;*/
                 /*position: absolute;*/
                 /*top: 50%;
                 left:50%;
@@ -263,8 +263,13 @@
                 width: calc(100% - 60px);
                 height: 50vh;*/
 
-                width: 100%;
-                height: 100%;
+                width: 80%;
+                height: 60%;
+
+                position: absolute;
+                top: 50%;
+                left:50%;
+                transform: translate3d(-50%,-50%,0);
 
                 background-color: #cbd5de;
 

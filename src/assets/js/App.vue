@@ -58,6 +58,7 @@
         /*height: 667px;*/
         /*overflow-x: hidden;*/
         overflow: hidden;
+        overflow-y: scroll;
     }
 
     .overflow-wrapper {

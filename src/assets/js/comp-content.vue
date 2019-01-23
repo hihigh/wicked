@@ -59,11 +59,8 @@
 
 
 
-
-
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-            this.startVh = vh;
+            this.stageVh = 0;
+            this.checkVh();
 
             window.addEventListener('resize', _.debounce(function(){
 
@@ -118,7 +115,8 @@
                 // console.log("change list : ", this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = false;
-                    document.documentElement.style.setProperty('--vh', `${this.startVh}px`);
+                    this.checkVh();
+                    // document.documentElement.style.setProperty('--vh', `${this.startVh}px`);
                     // this.$el.classList.remove("view-content")
 
                 } else {
@@ -151,6 +149,14 @@
 
             },
 
+
+            checkVh(){
+
+                this.stageVh = Math.max(window.innerHeight * 0.01, this.stageVh);
+                console.log(window.innerHeight * 0.01, this.stageVh)
+                document.documentElement.style.setProperty('--vh', `${this.stageVh}px`);
+
+            },
 
             // --------
             // show content

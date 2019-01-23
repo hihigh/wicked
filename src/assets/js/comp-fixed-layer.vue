@@ -66,10 +66,10 @@
     }
 
     .module__item {
-        align-items: center;
-        display: flex;
+        /*align-items: center;*/
+        /*display: flex;*/
         height: 100%;
-        justify-content: center;
+        /*justify-content: center;*/
     }
 
     .module__item:nth-child(odd) {

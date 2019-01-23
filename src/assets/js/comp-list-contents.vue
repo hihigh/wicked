@@ -228,6 +228,6 @@
 <style scoped>
     .list-contents-wrapper {
         white-space: nowrap;
-        overflow-x: hidden;
+        /*overflow-x: hidden;*/
     }
 </style>

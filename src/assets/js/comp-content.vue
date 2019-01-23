@@ -65,8 +65,7 @@
 
 
             window.addEventListener('resize', _.debounce(function(){
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
+
             }, 300) )
 
             /*() => {
@@ -113,6 +112,9 @@
             },
 
             changeListMode(showindex){
+
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
                 // console.log("change list : ", this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = false;
@@ -127,6 +129,9 @@
             },
 
             changeContentMode(showindex){
+
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
                 // console.log("change content : ", this.$el, this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = true;

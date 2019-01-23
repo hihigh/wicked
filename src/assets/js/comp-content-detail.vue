@@ -7,8 +7,11 @@
             </div>
 
             <p v-html="data.content"></p>
-            <p v-html="data.content"></p>
-            <p v-html="data.content"></p>
+            <p v-html="data.description"></p>
+            <div class="image-area" :style="{ 'background-image': 'url(' + 'images/image.png' + ')' }">
+                <!--<img src="../images/image.png" ></img>-->
+            </div>
+            <p v-html="data.description"></p>
         </div>
 
     </div>
@@ -87,6 +90,8 @@
         background-size: 5rem;
         background-position: center;
         background-repeat: no-repeat;
+
+        margin: 20px 0;
     }
 
 

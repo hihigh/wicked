@@ -115,7 +115,7 @@
                 // console.log("change list : ", this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = false;
-                    this.checkVh();
+                    // this.checkVh();
                     // document.documentElement.style.setProperty('--vh', `${this.startVh}px`);
                     // this.$el.classList.remove("view-content")
 
@@ -273,7 +273,7 @@
 
             &.mode-content-fixed {
                 .bg-image {
-                    position: fixed;
+                    /*position: fixed;*/
                 }
 
 

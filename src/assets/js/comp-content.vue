@@ -214,6 +214,8 @@
         text-align: center;
         vertical-align: top;
 
+        transition: all 1s;
+
 
         .inner-wrapper {
 
@@ -221,7 +223,7 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 100vh;
+                    height: 100%;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
@@ -343,7 +345,7 @@
         z-index: 1;
         position: relative;
         /*background-color: #f9fafd;*/
-
+        transition: all 0.5s;
         .content-detail {
             width: calc(100% - 60px);
             margin: -40vh auto 0%;

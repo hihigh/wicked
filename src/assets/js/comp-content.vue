@@ -204,11 +204,9 @@
 
         /*height: 100vh;*/
         display: inline-block;
-        text-align: center;
+        /*text-align: center;*/
         vertical-align: top;
 
-        height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 100);
 
         .inner-wrapper {
 
@@ -252,9 +250,9 @@
             display: block;
             position: relative;
             width: 100vw;
-            height: 100vh;
+            height: 100%;
             top:0;
-
+            background-color: #F73859;
 
             .bg-image {
                 display: none;
@@ -306,7 +304,7 @@
                 font-weight: lighter;
                 font-size: 3rem;
                 transition: all 0.5s;
-                color: white;
+                color: blue;
             }
 
             .content-subtitle {

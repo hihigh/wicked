@@ -1,10 +1,8 @@
 <template>
     <div class="module">
-        <div class="module__item">20%</div>
-        <div class="module__item">40%</div>
-        <div class="module__item">60%</div>
-        <div class="module__item">80%</div>
-        <div class="module__item">100%</div>
+        <div class="module__item">
+            <div>100%</div>
+        </div>
     </div>
 </template>
 
@@ -64,13 +62,13 @@
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
         height: calc(var(--vh, 1vh) * 100);
         margin: 0 auto;
-        max-width: 30%;
+        max-width: 100%;
     }
 
     .module__item {
         align-items: center;
         display: flex;
-        height: 20%;
+        height: 100%;
         justify-content: center;
     }
 

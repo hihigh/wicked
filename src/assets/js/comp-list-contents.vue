@@ -49,12 +49,25 @@
 
         methods: {
 
-            changeContentMode(e){
+            addEvent(){
+                let element = this.$el;
+                element.addEventListener('touchstart', this.dragStartEvent);
+                element.addEventListener('touchmove', this.dragMoveEvent);
+                element.addEventListener('touchend', this.dragEndEvent);
+            },
+
+            removeEvent(){
                 let element = this.$el;
                 element.removeEventListener('touchstart', this.dragStartEvent);
                 element.removeEventListener('touchmove', this.dragMoveEvent);
                 element.removeEventListener('touchend', this.dragEndEvent);
+            },
 
+            changeContentMode(e){
+
+                this.removeEvent();
+
+                let element = this.$el;
                 element.style.webkitTransition = '';
                 element.style.webkitTransform = '';
 
@@ -69,10 +82,9 @@
             },
 
             changeListModeComplete(e){
+                this.addEvent();
+
                 let element = this.$el;
-                element.addEventListener('touchstart', this.dragStartEvent);
-                element.addEventListener('touchmove', this.dragMoveEvent);
-                element.addEventListener('touchend', this.dragEndEvent);
 
                 var dragState = this.dragState;
                 var tgX = -dragState.pageWidth * this.index;
@@ -216,11 +228,7 @@
         },
 
         mounted() {
-            let element = this.$el;
-
-            element.addEventListener('touchstart', this.dragStartEvent);
-            element.addEventListener('touchmove', this.dragMoveEvent);
-            element.addEventListener('touchend', this.dragEndEvent);
+            this.addEvent();
         }
     }
 </script>
@@ -228,6 +236,7 @@
 <style scoped>
     .list-contents-wrapper {
         white-space: nowrap;
+
         /*overflow-x: hidden;*/
     }
 </style>

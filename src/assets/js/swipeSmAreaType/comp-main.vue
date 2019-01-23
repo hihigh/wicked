@@ -3,6 +3,9 @@
         <div class="title">Lorem Ipsum</div>
         <div class="swipe-wrapper">
             <div class="swipe-content-wrapper" @click.stop.prevent="onClickContent">
+                <div class="content-inner-wrapper">
+                    <div class="content-img" style='background-image: url("images/sampleimg.png")'></div>
+                </div>
 
             </div>
         </div>
@@ -52,9 +55,9 @@
                 var tgEle = e.target
                 tgEle.classList.add("expand-complete")
                 tgEle.style = "";
-                /*tgEle.style.top = "0px";
-                tgEle.style.transform = "translate3d(0,0,0)";
-                tgEle.style.position = "fixed";*/
+
+                // this.$el.querySelector(".contents-wrapper").style.display = "none"
+
 
             },
 
@@ -80,6 +83,7 @@
 </script>
 
 <style scoped lang="scss">
+    $swipe-height: 300px;
 
     .main-wrapper {
         color: black;
@@ -95,20 +99,24 @@
 
 
         .swipe-wrapper {
-            height: 300px;
+            height: $swipe-height;
             background-color: #a0a5a8;
 
 
             .swipe-content-wrapper {
                 width: 100%;
-                height: 200px;
+                height: $swipe-height;
                 background-color: aquamarine;
                 position: relative;
                 top: 0;
 
                 &.expand {
-                    transition: height 0.5s, transform 0.5s;
-                    height: 400px;
+                    transition: height 0.4s cubic-bezier(.59, 0, .31, 1), transform 0.4s cubic-bezier(.59, 0, .31, 1);
+                    height: $swipe-height * 1.5;
+
+                    .content-inner-wrapper {
+                        padding: 0px;
+                    }
                 }
 
                 &.expand-complete {
@@ -117,6 +125,24 @@
                     top: 0;
                     transform: translate3d(0,0,0);
                 }
+
+
+                .content-inner-wrapper {
+                    pointer-events: none;
+                    width: 100%;
+                    height: 100%;
+                    padding: 20px;
+                    box-sizing: border-box;
+                    transition: all 0.6s;
+                    .content-img {
+                        margin: 0 auto;
+                        width: 100%;
+                        height: 100%;
+                        background-size: 15rem;
+                        background-position: 50% 50%;
+                    }
+                }
+
 
             }
         }

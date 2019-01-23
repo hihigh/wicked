@@ -197,7 +197,11 @@
 
 
     .list-content {
-        width: 100vw;
+        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
+        margin: 0 auto;
+        max-width: 100%;
+
         /*height: 100vh;*/
         display: inline-block;
         text-align: center;
@@ -253,6 +257,7 @@
 
 
             .bg-image {
+                display: none;
                 /*position: absolute;*/
                 /*top: 50%;
                 left:50%;

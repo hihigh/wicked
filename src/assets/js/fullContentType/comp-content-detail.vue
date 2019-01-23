@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import { EventBus } from './EventBus';
+    import { EventBus } from '../EventBus';
     import velocity from 'velocity-animate'
 
 

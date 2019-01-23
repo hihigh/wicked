@@ -37,7 +37,7 @@
 
 <script>
 
-    import { EventBus } from './EventBus';
+    import { EventBus } from '../EventBus';
     import comp_content_detail from './comp-content-detail';
     import _ from 'lodash'
 

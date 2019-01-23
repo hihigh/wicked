@@ -7,7 +7,9 @@
         <!--<router-view :contents-data='this.contentsData'></router-view>-->
 
 
-        <comp-list :contents-data='this.contentsData'></comp-list>
+        <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
+
+        <comp-main :contents-data='this.contentsData'></comp-main>
 
         <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
@@ -19,9 +21,13 @@
 
 <script>
 
-    import comp_frame from './comp-frame';
-    import comp_list from './comp-list-contents';
+    //full content type
+    import comp_list from './fullContentType/comp-list-contents';
+
+    //test
     import comp_fixed from './comp-fixed-layer';
+
+    import comp_main from './swipeSmAreaType/comp-main';
 
 
     export default {
@@ -29,7 +35,8 @@
 
         components: {
             'comp-list': comp_list,
-            'comp-fixed': comp_fixed
+            'comp-fixed': comp_fixed,
+            'comp-main': comp_main
         },
 
         created() {
@@ -50,7 +57,7 @@
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
         /*overflow: hidden;*/
-        background-color: red;
+        background-color: silver;
 
     }
     .category-list {

@@ -7,7 +7,7 @@
 
 <script>
 
-    import comp_list from './comp-list-contents';
+    import comp_list from './fullContentType/comp-list-contents';
 
     export default {
         name: "Main",

@@ -49,6 +49,8 @@
 <style>
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
+        overflow: hidden;
+        overflow-y: scroll;
     }
     .category-list {
         /*margin: 10px 0!important;*/
@@ -57,8 +59,7 @@
     .wrapper {
         /*height: 667px;*/
         /*overflow-x: hidden;*/
-        overflow: hidden;
-        overflow-y: scroll;
+
     }
 
     .overflow-wrapper {

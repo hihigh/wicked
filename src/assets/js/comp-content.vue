@@ -60,9 +60,10 @@
 
 
 
+
             let vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
-
+            this.startVh = vh;
 
             window.addEventListener('resize', _.debounce(function(){
 
@@ -113,8 +114,7 @@
 
             changeListMode(showindex){
 
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
+                document.documentElement.style.setProperty('--vh', `${this.startVh}px`);
                 // console.log("change list : ", this.index, showindex)
                 if(this.index == showindex){
                     this.isContent = false;

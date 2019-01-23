@@ -316,7 +316,7 @@
                 font-weight: lighter;
                 font-size: 3rem;
                 transition: all 0.5s;
-                color: blue;
+                color: white;
             }
 
             .content-subtitle {

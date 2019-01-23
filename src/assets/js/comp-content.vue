@@ -65,8 +65,7 @@
 
 
             window.addEventListener('resize', _.debounce(function(){
-                vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
+
             }, 300) )
 
             /*() => {

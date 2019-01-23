@@ -285,13 +285,13 @@
                 width: calc(100% - 60px);
                 height: 50vh;*/
 
-                width: 80%;
-                height: 60%;
+                width: 100%;
+                height: 100%;
 
                 position: absolute;
-                top: 50%;
-                left:50%;
-                transform: translate3d(-50%,-50%,0);
+                top: 0%;
+                left:0%;
+                /*transform: translate3d(-50%,-50%,0);*/
 
                 background-color: #cbd5de;
 

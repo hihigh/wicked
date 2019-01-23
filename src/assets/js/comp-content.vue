@@ -39,6 +39,7 @@
 
     import { EventBus } from './EventBus';
     import comp_content_detail from './comp-content-detail';
+    import _ from 'lodash'
 
     export default {
         name: "Content",
@@ -58,15 +59,22 @@
 
 
 
+
             let vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-            window.addEventListener('resize', () => {
+
+            window.addEventListener('resize', _.debounce(function(){
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }, 300) )
+
+            /*() => {
                 // We execute the same script as before
                 vh = window.innerHeight * 0.01;
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 // alert(vh);
-            });
+            });*/
 
         },
 
@@ -214,7 +222,7 @@
         text-align: center;
         vertical-align: top;
 
-        transition: all 1s;
+        transition: all 0.3s;
 
 
         .inner-wrapper {
@@ -345,7 +353,7 @@
         z-index: 1;
         position: relative;
         /*background-color: #f9fafd;*/
-        transition: all 0.5s;
+        transition: all 0.3s;
         .content-detail {
             width: calc(100% - 60px);
             margin: -40vh auto 0%;

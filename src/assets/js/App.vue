@@ -50,13 +50,14 @@
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
         /*overflow: hidden;*/
-        overflow-x: hidden;
+
     }
     .category-list {
         /*margin: 10px 0!important;*/
     }
 
     .wrapper {
+        overflow-x: hidden;
         /*height: 667px;*/
         /*overflow-x: hidden;*/
 

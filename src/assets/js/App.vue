@@ -57,7 +57,7 @@
     }
 
     .wrapper {
-        overflow-x: hidden;
+        /*overflow-x: hidden;*/
         /*height: 667px;*/
         /*overflow-x: hidden;*/
 

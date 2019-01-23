@@ -236,7 +236,7 @@
                 /*opacity: 0.5;*/
 
                 .bg-image {
-                    height: 100%;
+                    height: 675px;
                     margin: 0px 0px 0vh ;
                     width: 100%;
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);

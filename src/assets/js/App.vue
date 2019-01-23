@@ -50,7 +50,7 @@
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
         /*overflow: hidden;*/
-        background-color: silver;
+        background-color: red;
 
     }
     .category-list {

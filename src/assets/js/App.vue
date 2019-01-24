@@ -7,8 +7,10 @@
         <!--<router-view :contents-data='this.contentsData'></router-view>-->
 
 
+        <!-- full swipe card type-->
         <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
 
+        <!-- middle content type -->
         <comp-main :contents-data='this.contentsData'></comp-main>
 
         <!--<div class="overflow-wrapper">

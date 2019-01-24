@@ -1,6 +1,6 @@
 <template>
     <div class="main-wrapper">
-        <div class="title">Lorem Ipsum</div>
+        <h2 class="title">Lorem Ipsum</h2>
         <div class="swipe-wrapper">
 
 
@@ -11,12 +11,14 @@
             </div>
 
             <div class="swipe-content-detail">
-                <img src="images/thumbnail-1200_12.jpg" alt="">
+                <h3>content title</h3>
+                <p>like Aldus PageMaker including versions</p>
+                <img src="images/thumbnail-1200_21.jpg" alt="">
                 <p>
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
 
-                <img src="images/thumbnail-1200_21.jpg" alt="">
+                <img src="images/thumbnail-1200_27.jpg" alt="">
                 <p>
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
@@ -26,6 +28,7 @@
         </div>
 
         <div class="contents-wrapper">
+
             <img src="images/sampleimg.png" alt="">
             <p>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -162,6 +165,10 @@
                     }
                 }
 
+                .swipe-content-detail {
+                    display: block;
+                }
+
             }
 
             &.mode-detail-end {
@@ -216,13 +223,26 @@
 
             .swipe-content-detail {
                 display: none;
+                box-sizing: border-box;
+                padding: 2rem 2rem 2rem;
                 width: 100%;
-                background-color: aquamarine;
+                background-color: white;
                 position: relative;
+                color: black;
+                margin-top: $swipe-height;
+
                 /*top: 0;*/
 
+                h3 {
+                    font-size: 2rem;
+                    margin-bottom: 20px;
+                }
+                p {
+                    color: #888888;
+                }
                 img {
                     width: 100%;
+                    margin: 20px 0;
                 }
 
             }

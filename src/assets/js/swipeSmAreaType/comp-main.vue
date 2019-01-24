@@ -10,7 +10,8 @@
                 </div>
             </div>
 
-            <div class="swipe-content-detail">
+            <transition name="fade">
+            <div class="swipe-content-detail" v-show="isDetailMode">
                 <h3>content title</h3>
                 <p>like Aldus PageMaker including versions</p>
                 <img src="images/thumbnail-1200_21.jpg" alt="">
@@ -23,6 +24,7 @@
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
             </div>
+            </transition>
 
 
         </div>
@@ -47,13 +49,18 @@
     export default {
         name: "comp-main",
 
+        data() {
+            return {
+                isDetailMode: false
+            };
+        },
+
         mounted(){
             this.swipe_wrapper = this.$el.querySelector(".swipe-wrapper");
             this.swipe_wrapper_content = this.$el.querySelector(".swipe-content-wrapper");
 
             this.transing = false;
-            this.isDetailMode = false;
-            this.save
+            // this.isDetailMode = false;
         },
 
         methods: {
@@ -90,6 +97,12 @@
 
                 this.isDetailMode = true;
 
+
+                // let content = this.$el.querySelector(".contents-wrapper");
+                // content.style.display = "none"
+
+                this.moveScroll(0);
+
             },
 
             gotoListMode(){
@@ -99,6 +112,8 @@
                 this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoListModeComplete, {once:true});
                 this.swipe_wrapper_content.classList.add("reset-position");
 
+                // let content = this.$el.querySelector(".contents-wrapper");
+                // content.style.display = "block"
                 // hide detail content
                 // show main content
                 // move before scrollTop
@@ -136,6 +151,20 @@
 <style scoped lang="scss">
     $swipe-height: 300px;
 
+    .fade-enter-active{
+        transition: opacity 0.7s, transform 0.7s cubic-bezier(.37, 0, .34, 1);
+    }
+
+    .fade-leave-active {
+        transition: opacity 0.2s, transform 0.3s cubic-bezier(.37, 0, .34, 1);
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+        transform: translate3d(0,200px,0);
+    }
+
+
+
     .main-wrapper {
         background-color: black;
         color: white;
@@ -158,16 +187,14 @@
                 .swipe-content-wrapper {
                     position: absolute;
                     transition: height 0.4s cubic-bezier(.59, 0, .31, 1), transform 0.4s cubic-bezier(.59, 0, .31, 1);
-                    height: $swipe-height * 2;
+                    height: 100vh;
 
                     .content-inner-wrapper {
                         padding: 0px;
                     }
                 }
 
-                .swipe-content-detail {
-                    display: block;
-                }
+
 
             }
 
@@ -222,7 +249,9 @@
             }
 
             .swipe-content-detail {
-                display: none;
+                /*display: none;*/
+                /*opacity: 0;*/
+
                 box-sizing: border-box;
                 padding: 2rem 2rem 2rem;
                 width: 100%;

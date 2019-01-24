@@ -1,6 +1,12 @@
 
 <template>
     <div class="wrapper">
+        <div class="frame-wrapper">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+            </ul>
+        </div>
 
         <!--<router-link to="/">project</router-link>-->
         <!--<router-link to="/about">about</router-link>-->
@@ -35,6 +41,12 @@
     export default {
         name: "app",
 
+        data() {
+            return {
+                ui_index: 0
+            };
+        },
+
         components: {
             'comp-list': comp_list,
             'comp-fixed': comp_fixed,
@@ -55,7 +67,7 @@
 </script>
 
 
-<style>
+<style scope lang="scss">
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
         /*overflow: hidden;*/
@@ -65,18 +77,24 @@
         font-weight: 100;
 
     }
-    .category-list {
-        /*margin: 10px 0!important;*/
-    }
 
-    .wrapper {
-        /*overflow-x: hidden;*/
-        /*height: 667px;*/
-        /*overflow-x: hidden;*/
+    .frame-wrapper {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        right: 0;
 
-    }
+        ul {
+            padding: 10px;
 
-    .overflow-wrapper {
-        /*overflow: visible;*/
+            li {
+                display: inline-block;
+                margin: 5px 5px 0 5px;
+                padding: 5px 10px;
+                background-color: red;
+            }
+        }
+
+
     }
 </style>

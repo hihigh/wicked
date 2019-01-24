@@ -22,26 +22,29 @@
 
             <transition name="fade">
                 <div class="swipe-content-detail" v-show="isDetailContentShow">
-                    <div class="detail-bg"></div>
-                    <div class="detail-wrap">
-                        <h3>content title</h3>
-                        <p>like Aldus PageMaker including versions</p>
-                        <img src="images/thumbnail-1200_21.jpg" alt="">
-                        <p>
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It
-                            has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
+                    <div class="swipe-content-detail-inner-wrapper">
+                        <div class="detail-bg"></div>
+                        <div class="detail-wrap">
+                            <h3>content title</h3>
+                            <p>like Aldus PageMaker including versions</p>
+                            <img src="images/thumbnail-1200_21.jpg" alt="">
+                            <p>
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                unknown printer took a galley of type and scrambled it to make a type specimen book.<br>It
+                                has survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged. <br><br>It was popularised in the 1960s with the release of
+                                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
 
-                        <img src="images/thumbnail-1200_27.jpg" alt="">
-                        <p>
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </p>
+                            <img src="images/thumbnail-1200_27.jpg" alt="">
+                            <p>
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                        </div>
                     </div>
+
 
                 </div>
             </transition>
@@ -129,14 +132,32 @@
                 this.swipe_wrapper_content.style = "";
 
                 this.isDetailMode = true;
-                this.isDetailContentShow = true;
 
+                this.showDetailContent();
+
+            },
+
+
+            showDetailContent(){
+                this.isDetailContentShow = true;
 
                 let content = this.$el.querySelector(".contents-wrapper");
                 content.style.display = "none";
 
+
+                // let detail_content = this.$el.querySelector(".swipe-content-detail");
+                // detail_content.classList.add("offset-margin");
             },
 
+            hideDetailContent(){
+                this.isDetailContentShow = false;
+
+                let content = this.$el.querySelector(".contents-wrapper");
+                content.style.display = "block"
+
+                // let detail_content = this.$el.querySelector(".swipe-content-detail");
+                // detail_content.classList.remove("offset-margin");
+            },
 
 
 
@@ -146,9 +167,7 @@
                 this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoListModeComplete, {once: true});
                 this.swipe_wrapper_content.classList.add("reset-position");
 
-                this.isDetailContentShow = false;
-                let content = this.$el.querySelector(".contents-wrapper");
-                content.style.display = "block"
+                this.hideDetailContent();
 
             },
 
@@ -256,10 +275,7 @@
                     }
                 }
 
-                .swipe-content-detail {
-                    /*margin-top: calc(var(--offsetTop) * -1 + 70vh);*/
 
-                }
             }
 
 
@@ -292,18 +308,25 @@
             }
 
             .swipe-content-detail {
-                /*display: none;*/
-                /*opacity: 0;*/
 
-                box-sizing: border-box;
-                padding: 2rem 2rem 2rem;
+                .swipe-content-detail-inner-wrapper {
+                    box-sizing: border-box;
+                    padding: 2rem 2rem 2rem;
+                    display: block;
+                    position: relative;
+                    padding-top: calc(var(--offsetTop) * -1 + 70vh);
+                }
+
+
                 width: 100%;
 
                 position: relative;
                 color: black;
-                //margin-top: $swipe-height;
 
-                /*top: 0;*/
+                &.offset-margin {
+                    margin-top: calc(var(--offsetTop) * -1 + 70vh);
+                }
+
 
                 h3 {
                     font-size: 2rem;
@@ -324,7 +347,7 @@
                     width: 100%;
                     height: 100%;
                     background-color: white;
-                    top: 0;
+                    top: calc(var(--offsetTop) * -1 + 70vh - 2rem);
                     left: 0;
                     opacity: 0.95;
 

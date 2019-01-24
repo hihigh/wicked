@@ -4,10 +4,10 @@
         <div class="about-lab">
             <h1 class="logo">
                 <span class="blind">df lab</span>
-                <img src="images/df_lab_logo_fit_w.svg" alt="DF Logo" class="img-logo js-animated-opacity init">
+                <img src="images/df_lab_logo_fit_w.svg" alt="DF Logo" class="img-logo">
             </h1>
             <p class="dec-lab">
-                <span class="js-animated-txt" style="visibility: visible;">Creative freedom, a sense of responsibility and passionate energies are the driving force behind our creation of innovative experiences. Our success has been recognized by numerous international accolades as well as strong relationship with international clients. We build the future of digital creativity.</span>
+                <span style="visibility: visible;">Creative freedom, a sense of responsibility and passionate energies are the driving force behind our creation of innovative experiences. Our success has been recognized by numerous international accolades as well as strong relationship with international clients. We build the future of digital creativity.</span>
             </p>
         </div>
 
@@ -21,7 +21,7 @@
             </div>
 
             <transition name="fade">
-                <div class="swipe-content-detail" v-show="isDetailContentShow">
+                <div class="swipe-content-detail" v-show="isDetailContentShow" @click.stop.prevent="onClickContent">
                     <div class="swipe-content-detail-inner-wrapper">
                         <div class="detail-bg"></div>
                         <div class="detail-wrap">
@@ -310,14 +310,12 @@
             .swipe-content-detail {
 
                 .swipe-content-detail-inner-wrapper {
+                    position: relative;
                     box-sizing: border-box;
                     padding: 2rem 2rem 2rem;
-                    display: block;
-                    position: relative;
-                    /*padding-top: calc(var(--offsetTop) * -1 + 70vh);*/
                 }
 
-
+                padding-top: calc(var(--offsetTop) * -1 + 70vh);
                 width: 100%;
 
                 position: relative;

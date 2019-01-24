@@ -94,7 +94,7 @@
                 // this.swipe_wrapper.classList.remove("mode-detail-end");
 
                 this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoListModeComplete, {once:true});
-                this.swipe_wrapper_content.classList.add("sm");
+                this.swipe_wrapper_content.classList.add("reset-position");
 
                 // hide detail content
                 // show main content
@@ -103,7 +103,7 @@
             },
 
             gotoListModeComplete(e){
-                this.swipe_wrapper_content.classList.remove("sm");
+                this.swipe_wrapper_content.classList.remove("reset-position");
                 this.swipe_wrapper.classList.remove("mode-detail");
                 this.swipe_wrapper.classList.remove("mode-detail-end");
                 this.isDetailMode = false;
@@ -171,12 +171,19 @@
                     top: 0;
                     transform: translate3d(0,0,0);
 
-                    &.sm {
-                        padding: 20px;
-                        box-sizing: border-box;
+
+
+                    &.reset-position {
                         height: $swipe-height;
                         top: 142px;
                         transition: all 0.4s;
+
+                        .content-inner-wrapper {
+                            transition: padding 0.8s;
+                            padding: 20px;
+                        }
+
+
                     }
                 }
             }

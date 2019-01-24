@@ -354,7 +354,7 @@
 
 
         .about-lab {
-            padding: 4rem 2rem 2rem;
+            padding: 2rem 2rem 2rem;
             box-sizing: border-box;
 
             .logo {

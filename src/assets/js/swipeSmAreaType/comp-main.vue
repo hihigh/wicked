@@ -314,7 +314,7 @@
                     padding: 2rem 2rem 2rem;
                     display: block;
                     position: relative;
-                    padding-top: calc(var(--offsetTop) * -1 + 70vh);
+                    /*padding-top: calc(var(--offsetTop) * -1 + 70vh);*/
                 }
 
 
@@ -347,7 +347,7 @@
                     width: 100%;
                     height: 100%;
                     background-color: white;
-                    top: calc(var(--offsetTop) * -1 + 70vh - 2rem);
+                    top: 0;//calc(var(--offsetTop) * -1 + 70vh - 2rem);
                     left: 0;
                     opacity: 0.95;
 

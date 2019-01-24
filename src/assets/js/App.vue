@@ -58,6 +58,9 @@
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
         /*overflow: hidden;*/
         background-color: silver;
+        font-size: 0.75rem;
+        line-height: 1.375rem;
+        font-weight: 100;
 
     }
     .category-list {

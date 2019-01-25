@@ -170,7 +170,7 @@
 
 
             gotoListMode() {
-                console.log(this.beforeScTop, this.saveDetailOffsetTop)
+                console.log(this.beforeScTop, this.saveDetailOffsetTop);
                 this.mx_scrollTo(this.saveDetailOffsetTop-this.beforeScTop, 300);
 
                 this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoListModeComplete, {once: true});
@@ -218,6 +218,7 @@
 
             checkSwipeOffsetTop() {
                 // console.log(document.documentElement.style.getProperty('--offsetTop') )
+                this.saveDetailOffsetTop = this.swipe_wrapper_content.offsetTop;
                 document.documentElement.style.setProperty('--offsetTop', `${this.swipe_wrapper_content.offsetTop}px`);
             },
 
@@ -228,7 +229,7 @@
                 // 275 - sc
                 this.beforeScTop = this.swipe_wrapper_content.offsetTop-window.scrollY;
                 document.documentElement.style.setProperty('--beforeScrollTop', `${this.beforeScTop}px`);
-                console.log(this.beforeScTop)
+                console.log("this.beforeScTop : ", this.beforeScTop)
             }
         }
     }

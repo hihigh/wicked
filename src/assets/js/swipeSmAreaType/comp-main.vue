@@ -74,8 +74,14 @@
 </template>
 
 <script>
+
+    import mixin from "../common/common_mixin.vue"
+
+
     export default {
         name: "comp-main",
+
+        mixins: [mixin],
 
         data() {
             return {
@@ -87,11 +93,15 @@
         mounted() {
             this.swipe_wrapper = this.$el.querySelector(".swipe-wrapper");
             this.swipe_wrapper_content = this.$el.querySelector(".swipe-content-wrapper");
+            this.saveDetailOffsetTop = this.swipe_wrapper_content.offsetTop;
 
-            this.transing = false;
+            // this.transing = false;
             // this.isDetailMode = false;
 
             this.checkSwipeOffsetTop();
+
+
+
         },
 
         methods: {
@@ -99,14 +109,12 @@
 
                 if (!this.isDetailMode) {
 
+                    this.checkBeforeScrollTop();
                     this.gotoDetailMode();
                 } else {
                     this.gotoListMode();
                 }
 
-                // this.moveScroll(300);
-
-                console.log(this.swipe_wrapper_content.offsetTop);
             },
 
 
@@ -126,7 +134,7 @@
             },
 
             gotoDetailModeComplete(e) {
-                this.moveScroll(0);
+                this.mx_scrollTo(0, 0);
 
                 this.swipe_wrapper.classList.add("mode-detail-end");
                 this.swipe_wrapper_content.style = "";
@@ -153,7 +161,7 @@
                 this.isDetailContentShow = false;
 
                 let content = this.$el.querySelector(".contents-wrapper");
-                content.style.display = "block"
+                content.style.display = "block";
 
                 // let detail_content = this.$el.querySelector(".swipe-content-detail");
                 // detail_content.classList.remove("offset-margin");
@@ -162,7 +170,8 @@
 
 
             gotoListMode() {
-                this.moveScroll(300);
+                console.log(this.beforeScTop, this.saveDetailOffsetTop)
+                this.mx_scrollTo(this.saveDetailOffsetTop-this.beforeScTop, 300);
 
                 this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoListModeComplete, {once: true});
                 this.swipe_wrapper_content.classList.add("reset-position");
@@ -179,31 +188,47 @@
             },
 
 
+            scrollTo(to, duration) {
+                const
+                    element = document.scrollingElement || document.documentElement,
+                    start = element.scrollTop,
+                    change = to - start,
+                    startDate = +new Date(),
 
-
-
-            moveScroll(scrollDuration) {
-                var cosParameter = window.scrollY / 2,
-                    scrollCount = 0,
-                    oldTimestamp = performance.now();
-
-                function step(newTimestamp) {
-                    scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
-                    if (scrollCount >= Math.PI) window.scrollTo(0, 0);
-                    if (window.scrollY === 0) {
-                        return;
-                    }
-                    window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
-                    oldTimestamp = newTimestamp;
-                    window.requestAnimationFrame(step);
-                }
-
-                window.requestAnimationFrame(step);
+                    // t = current time,  b = start value, c = change in value, d = duration
+                    easeInOutQuad = function(t, b, c, d) {
+                        t /= d/2;
+                        if (t < 1) return c/2*t*t + b;
+                        t--;
+                        return -c/2 * (t*(t-2) - 1) + b;
+                    },
+                    animateScroll = function() {
+                        const currentDate = +new Date();
+                        const currentTime = currentDate - startDate;
+                        element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
+                        if(currentTime < duration) {
+                            requestAnimationFrame(animateScroll);
+                        }
+                        else {
+                            element.scrollTop = to;
+                        }
+                    };
+                animateScroll();
             },
 
             checkSwipeOffsetTop() {
                 // console.log(document.documentElement.style.getProperty('--offsetTop') )
                 document.documentElement.style.setProperty('--offsetTop', `${this.swipe_wrapper_content.offsetTop}px`);
+            },
+
+            checkBeforeScrollTop() {
+                // sc - 0 : top : 275
+                // sc - 275 : top - 0
+                // sc - 300 : top - -25
+                // 275 - sc
+                this.beforeScTop = this.swipe_wrapper_content.offsetTop-window.scrollY;
+                document.documentElement.style.setProperty('--beforeScrollTop', `${this.beforeScTop}px`);
+                console.log(this.beforeScTop)
             }
         }
     }
@@ -263,7 +288,7 @@
 
                     &.reset-position {
                         height: $swipe-height;
-                        top: var(--offsetTop);
+                        top: var(--beforeScrollTop);//var(--offsetTop);
                         transition: all 0.4s;
 
                         .content-inner-wrapper {

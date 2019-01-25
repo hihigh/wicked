@@ -3,8 +3,9 @@
     <div class="wrapper">
         <div class="frame-wrapper">
             <ul>
-                <li>1</li>
-                <li>2</li>
+                <li v-for="(i, index) in ui_arr" v-on:click="onClickli(index)">
+                    {{ i }}
+                </li>
             </ul>
         </div>
 
@@ -14,10 +15,10 @@
 
 
         <!-- full swipe card type-->
-        <!--<comp-list :contents-data='this.contentsData'></comp-list>-->
+        <comp-list v-show="ui_index == 0" :contents-data='this.contentsData'></comp-list>
 
         <!-- middle content type -->
-        <comp-main :contents-data='this.contentsData'></comp-main>
+        <comp-main v-show="ui_index == 1" :contents-data='this.contentsData'></comp-main>
 
         <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
@@ -43,7 +44,8 @@
 
         data() {
             return {
-                ui_index: 0
+                ui_index: 1,
+                ui_arr: ["A", "B"]
             };
         },
 
@@ -62,6 +64,13 @@
                 type: Array,
                 default: function() {return [];}
             }
+        },
+
+        methods: {
+            onClickli(index) {
+                this.ui_index = index;
+                console.log("dd", index)
+            }
         }
     }
 </script>
@@ -71,7 +80,7 @@
     body {
         /*background-image: linear-gradient(to top right, #005a96, #07a5e0);*/
         /*overflow: hidden;*/
-        background-color: silver;
+        background-color: #555555;
         font-size: 0.75rem;
         line-height: 1.375rem;
         font-weight: 100;
@@ -90,8 +99,9 @@
             li {
                 display: inline-block;
                 margin: 5px 5px 0 5px;
-                padding: 5px 10px;
-                background-color: red;
+                padding: 5px 13px 7px;
+                background-color: #ff3399;
+                font-weight: bold;
             }
         }
 

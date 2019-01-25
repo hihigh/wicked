@@ -1,7 +1,7 @@
 <template>
     <div class="main-wrapper">
 
-        <div class="about-lab">
+        <div class="about-lab" :class=' isDetailMode ? "detail-mode" : "" '>
             <h1 class="logo">
                 <span class="blind">df lab</span>
                 <img src="images/df_lab_logo_fit_w.svg" alt="DF Logo" class="img-logo">
@@ -410,6 +410,14 @@
                 .img-logo {
                     width: 104px;
                 }
+            }
+        }
+
+
+        &.mode-detail {
+            .about-lab {
+                transform: scale(0.9);
+                transform-origin: 50% 100%;
             }
         }
     }

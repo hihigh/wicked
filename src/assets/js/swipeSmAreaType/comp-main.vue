@@ -1,7 +1,7 @@
 <template>
     <div class="main-wrapper">
 
-        <div class="about-lab" :class=' isDetailMode ? "detail-mode" : "" '>
+        <div class="about-lab">
             <h1 class="logo">
                 <span class="blind">df lab</span>
                 <img src="images/df_lab_logo_fit_w.svg" alt="DF Logo" class="img-logo">
@@ -12,17 +12,17 @@
         </div>
 
 
-        <div class="swipe-wrapper">
-            <div class="swipe-content-wrapper" @click.stop.prevent="onClickContent">
-                <div class="content-inner-wrapper">
+        <div class="expand-content-wrapper">
+            <div class="expand-content" @click.stop.prevent="onClickExpandContent">
+                <div class="expand-content-inner-wrapper">
                     <div class="content-img" style='background-image: url("images/thumbnail-1200_21.jpg")'></div>
 
                 </div>
             </div>
 
             <transition name="fade">
-                <div class="swipe-content-detail" v-show="isDetailContentShow" @click.stop.prevent="onClickContent">
-                    <div class="swipe-content-detail-inner-wrapper">
+                <div class="expand-content-detail" v-show="isExpandContentDetailShow" @click.stop.prevent="onClickExpandContent">
+                    <div class="expand-content-detail-inner-wrapper">
                         <div class="detail-bg"></div>
                         <div class="detail-wrap">
                             <h3>content title</h3>
@@ -48,11 +48,11 @@
 
                 </div>
             </transition>
-
-
         </div>
 
-        <div class="contents-wrapper">
+
+
+        <div class="etc-contents-wrapper">
 
             <img src="images/img_01.png" alt="">
             <p>
@@ -85,141 +85,108 @@
 
         data() {
             return {
-                isDetailMode: false,
-                isDetailContentShow: false
+                isExpandMode: false,
+                isExpandContentDetailShow: false
             };
         },
 
         mounted() {
-            this.swipe_wrapper = this.$el.querySelector(".swipe-wrapper");
-            this.swipe_wrapper_content = this.$el.querySelector(".swipe-content-wrapper");
-            this.saveDetailOffsetTop = this.swipe_wrapper_content.offsetTop;
+            this.expand_wrapper = this.$el.querySelector(".expand-content-wrapper");
+            this.expand_content = this.$el.querySelector(".expand-content");
 
-            // this.transing = false;
-            // this.isDetailMode = false;
-
-            this.checkSwipeOffsetTop();
-
-
+            this.checkBeforeScrollTop();
+            this.checkExpandContentOffsetTop();
 
         },
 
         methods: {
-            onClickContent(e) {
+            onClickExpandContent(e) {
 
-                if (!this.isDetailMode) {
+                if (!this.isExpandMode) {
 
                     this.checkBeforeScrollTop();
-                    this.gotoDetailMode();
+                    this.gotoExpandMode();
                 } else {
-                    this.gotoListMode();
+                    this.gotoMainMode();
                 }
 
             },
 
 
-            // go to detail mode
-            gotoDetailMode() {
-                this.checkSwipeOffsetTop();
-
-                let tgY = this.swipe_wrapper_content.offsetTop;
-
-                this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoDetailModeComplete, {once: true});
-                this.swipe_wrapper.classList.add("mode-detail");
-
-                this.swipe_wrapper_content.style.top = tgY + "px";
-                this.swipe_wrapper_content.style.transform = "translate3d(0," + (window.scrollY - tgY) + "px,0)";
 
 
+            // go to expand mode
+            gotoExpandMode() {
+                this.checkExpandContentOffsetTop();
+
+                let tgY = this.expand_content.offsetTop;
+
+                this.expand_content.addEventListener("webkitTransitionEnd", this.gotoExpandModeComplete, {once: true});
+                this.expand_wrapper.classList.add("mode-expand");
+
+                this.expand_content.style.top = tgY + "px";
+                this.expand_content.style.transform = "translate3d(0," + (window.scrollY - tgY) + "px,0)";
             },
 
-            gotoDetailModeComplete(e) {
+            gotoExpandModeComplete(e) {
                 this.mx_scrollTo(0, 0);
 
-                this.swipe_wrapper.classList.add("mode-detail-end");
-                this.swipe_wrapper_content.style = "";
+                this.expand_wrapper.classList.add("mode-expand-end");
+                this.expand_content.style = "";
 
-                this.isDetailMode = true;
+                this.isExpandMode = true;
 
-                this.showDetailContent();
+                this.showExpandDetailContent();
 
             },
 
 
-            showDetailContent(){
-                this.isDetailContentShow = true;
+            showExpandDetailContent(){
+                this.isExpandContentDetailShow = true;
 
-                let content = this.$el.querySelector(".contents-wrapper");
+                let content = this.$el.querySelector(".etc-contents-wrapper");
                 content.style.display = "none";
-
-
-                // let detail_content = this.$el.querySelector(".swipe-content-detail");
-                // detail_content.classList.add("offset-margin");
             },
 
-            hideDetailContent(){
-                this.isDetailContentShow = false;
+            hideExpandDetailContent(){
+                this.isExpandContentDetailShow = false;
 
-                let content = this.$el.querySelector(".contents-wrapper");
+                let content = this.$el.querySelector(".etc-contents-wrapper");
                 content.style.display = "block";
-
-                // let detail_content = this.$el.querySelector(".swipe-content-detail");
-                // detail_content.classList.remove("offset-margin");
             },
 
 
 
-            gotoListMode() {
-                console.log(this.beforeScTop, this.saveDetailOffsetTop);
-                this.mx_scrollTo(this.saveDetailOffsetTop-this.beforeScTop, 300);
 
-                this.swipe_wrapper_content.addEventListener("webkitTransitionEnd", this.gotoListModeComplete, {once: true});
-                this.swipe_wrapper_content.classList.add("reset-position");
 
-                this.hideDetailContent();
+            //go to main mode (main)
+            gotoMainMode() {
+                this.mx_scrollTo(this.expandContentOffsetTop-this.saveScrollPosition, 300);
+
+                this.expand_content.addEventListener("webkitTransitionEnd", this.gotoMainModeComplete, {once: true});
+                this.expand_content.classList.add("reset-position");
+
+                this.hideExpandDetailContent();
 
             },
 
-            gotoListModeComplete(e) {
-                this.swipe_wrapper_content.classList.remove("reset-position");
-                this.swipe_wrapper.classList.remove("mode-detail");
-                this.swipe_wrapper.classList.remove("mode-detail-end");
-                this.isDetailMode = false;
+            gotoMainModeComplete(e) {
+                this.expand_content.classList.remove("reset-position");
+                this.expand_wrapper.classList.remove("mode-expand");
+                this.expand_wrapper.classList.remove("mode-expand-end");
+                this.isExpandMode = false;
             },
 
 
-            scrollTo(to, duration) {
-                const
-                    element = document.scrollingElement || document.documentElement,
-                    start = element.scrollTop,
-                    change = to - start,
-                    startDate = +new Date(),
 
-                    // t = current time,  b = start value, c = change in value, d = duration
-                    easeInOutQuad = function(t, b, c, d) {
-                        t /= d/2;
-                        if (t < 1) return c/2*t*t + b;
-                        t--;
-                        return -c/2 * (t*(t-2) - 1) + b;
-                    },
-                    animateScroll = function() {
-                        const currentDate = +new Date();
-                        const currentTime = currentDate - startDate;
-                        element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
-                        if(currentTime < duration) {
-                            requestAnimationFrame(animateScroll);
-                        }
-                        else {
-                            element.scrollTop = to;
-                        }
-                    };
-                animateScroll();
-            },
 
-            checkSwipeOffsetTop() {
+
+
+            //set data
+            checkExpandContentOffsetTop() {
                 // console.log(document.documentElement.style.getProperty('--offsetTop') )
-                this.saveDetailOffsetTop = this.swipe_wrapper_content.offsetTop;
-                document.documentElement.style.setProperty('--offsetTop', `${this.swipe_wrapper_content.offsetTop}px`);
+                this.expandContentOffsetTop = this.expand_content.offsetTop;
+                document.documentElement.style.setProperty('--offsetTop', `${this.expand_content.offsetTop}px`);
             },
 
             checkBeforeScrollTop() {
@@ -227,9 +194,9 @@
                 // sc - 275 : top - 0
                 // sc - 300 : top - -25
                 // 275 - sc
-                this.beforeScTop = this.swipe_wrapper_content.offsetTop-window.scrollY;
-                document.documentElement.style.setProperty('--beforeScrollTop', `${this.beforeScTop}px`);
-                console.log("this.beforeScTop : ", this.beforeScTop)
+                this.saveScrollPosition = this.expand_content.offsetTop-window.scrollY;
+                document.documentElement.style.setProperty('--beforeScrollTop', `${this.saveScrollPosition}px`);
+                console.log("this.saveScrollPosition : ", this.saveScrollPosition)
             }
         }
     }
@@ -265,23 +232,23 @@
         }
 
 
-        .swipe-wrapper {
+        .expand-content-wrapper {
             height: $swipe-height;
 
-            &.mode-detail {
-                .swipe-content-wrapper {
+            &.mode-expand {
+                .expand-content {
                     position: absolute;
                     transition: height 0.4s cubic-bezier(.59, 0, .31, 1), transform 0.4s cubic-bezier(.59, 0, .31, 1);
                     height: 100vh;
 
-                    .content-inner-wrapper {
+                    .expand-content-inner-wrapper {
                         padding: 0px;
                     }
                 }
             }
 
-            &.mode-detail-end {
-                .swipe-content-wrapper {
+            &.mode-expand-end {
+                .expand-content {
                     position: fixed;
                     transition: all 0s;
                     top: 0;
@@ -292,7 +259,7 @@
                         top: var(--beforeScrollTop);//var(--offsetTop);
                         transition: all 0.4s;
 
-                        .content-inner-wrapper {
+                        .expand-content-inner-wrapper {
                             /*transition: padding 0.8s;*/
                             padding: 20px;
                         }
@@ -305,14 +272,14 @@
             }
 
 
-            .swipe-content-wrapper {
+            .expand-content {
                 width: 100%;
                 height: $swipe-height;
                 background-color: #222222;
                 position: relative;
                 top: 0;
 
-                .content-inner-wrapper {
+                .expand-content-inner-wrapper {
                     width: 100%;
                     height: 100%;
                     padding: 20px;
@@ -333,9 +300,9 @@
 
             }
 
-            .swipe-content-detail {
+            .expand-content-detail {
 
-                .swipe-content-detail-inner-wrapper {
+                .expand-content-detail-inner-wrapper {
                     position: relative;
                     box-sizing: border-box;
                     padding: 2rem 2rem 2rem;
@@ -385,7 +352,7 @@
         }
 
 
-        .contents-wrapper {
+        .etc-contents-wrapper {
             padding: 4rem 2rem 2rem;
 
 
@@ -414,10 +381,15 @@
         }
 
 
-        &.mode-detail {
+        &.mode-expand {
             .about-lab {
                 transform: scale(0.9);
                 transform-origin: 50% 100%;
+            }
+
+            .etc-contents-wrapper {
+                transform: scale(0.9);
+                transform-origin: 50% 0%;
             }
         }
     }

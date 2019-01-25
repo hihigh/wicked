@@ -253,13 +253,13 @@
                     transition: all 0.8s cubic-bezier(.59, 0, .31, 1);
 
                     .img-area {
-                        background-size: 30rem;
+                        background-size: 50rem;
                         width: 100%;
                         height: 100%;
                     }
 
                     .dimmed {
-                        opacity: 0.4;
+                        opacity: 0.7;
                     }
 
                 }

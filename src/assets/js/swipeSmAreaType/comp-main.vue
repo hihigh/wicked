@@ -15,7 +15,7 @@
         <div class="expand-content-wrapper">
             <div class="expand-content" @click.stop.prevent="onClickExpandContent">
                 <div class="expand-content-inner-wrapper">
-                    <div class="content-img" style='background-image: url("images/thumbnail-1200_21.jpg")'></div>
+                    <div class="content-img" style='background-image: url("images/thumbnail-1200_27.jpg")'></div>
 
                 </div>
             </div>
@@ -43,7 +43,7 @@
                                 unknown printer took a galley of type and scrambled it to make a type specimen book.
                             </p>
                         </div>
-                    </div>
+                  Å  </div>
 
 
                 </div>
@@ -54,7 +54,7 @@
 
         <div class="etc-contents-wrapper">
 
-            <img src="images/img_01.png" alt="">
+            <div class="etc-contents-img" style='background-image: url("images/noimg.png")'></div>
             <p>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                 took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
@@ -63,11 +63,6 @@
                 more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
             </p>
 
-            <img src="images/img_02.png" alt="">
-            <p>
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                took a galley of type and scrambled it to make a type specimen book.
-            </p>
         </div>
 
     </div>
@@ -123,6 +118,7 @@
 
                 this.expand_content.addEventListener("webkitTransitionEnd", this.gotoExpandModeComplete, {once: true});
                 this.expand_wrapper.classList.add("mode-expand");
+                this.$el.classList.add("mode-expand");
 
                 this.expand_content.style.top = tgY + "px";
                 this.expand_content.style.transform = "translate3d(0," + (window.scrollY - tgY) + "px,0)";
@@ -165,6 +161,7 @@
 
                 this.expand_content.addEventListener("webkitTransitionEnd", this.gotoMainModeComplete, {once: true});
                 this.expand_content.classList.add("reset-position");
+                this.$el.classList.remove("mode-expand");
 
                 this.hideExpandDetailContent();
 
@@ -173,6 +170,7 @@
             gotoMainModeComplete(e) {
                 this.expand_content.classList.remove("reset-position");
                 this.expand_wrapper.classList.remove("mode-expand");
+
                 this.expand_wrapper.classList.remove("mode-expand-end");
                 this.isExpandMode = false;
             },
@@ -261,7 +259,7 @@
 
                         .expand-content-inner-wrapper {
                             /*transition: padding 0.8s;*/
-                            padding: 20px;
+                            /*padding: 20px;*/
                         }
 
 
@@ -278,11 +276,12 @@
                 background-color: #222222;
                 position: relative;
                 top: 0;
+                z-index: 1;
 
                 .expand-content-inner-wrapper {
                     width: 100%;
                     height: 100%;
-                    padding: 20px;
+                    /*padding: 20px;*/
                     box-sizing: border-box;
                     transition: padding 0.8s;
 
@@ -306,10 +305,12 @@
                     position: relative;
                     box-sizing: border-box;
                     padding: 2rem 2rem 2rem;
+
                 }
 
                 padding-top: calc(var(--offsetTop) * -1 + 70vh);
                 width: 100%;
+                z-index: 1;
 
                 position: relative;
                 color: black;
@@ -352,9 +353,35 @@
         }
 
 
+
+
+
+        .about-lab {
+            padding: 2rem 2rem 2rem;
+            box-sizing: border-box;
+            transition: all 0.5s;
+            .logo {
+                margin: 2rem 0;
+
+                .img-logo {
+                    width: 104px;
+                }
+            }
+        }
+
+
         .etc-contents-wrapper {
             padding: 4rem 2rem 2rem;
+            transition: all 0.5s;
 
+            .etc-contents-img {
+
+                background-size: cover;
+                background-position: 50% 50%;
+                width: 100%;
+                height: 200px;
+
+            }
 
             p {
                 margin: 20px 0;
@@ -367,29 +394,17 @@
         }
 
 
-        .about-lab {
-            padding: 2rem 2rem 2rem;
-            box-sizing: border-box;
-
-            .logo {
-                margin: 2rem 0;
-
-                .img-logo {
-                    width: 104px;
-                }
-            }
-        }
-
-
         &.mode-expand {
             .about-lab {
                 transform: scale(0.9);
                 transform-origin: 50% 100%;
+                opacity: 0;
             }
 
             .etc-contents-wrapper {
                 transform: scale(0.9);
                 transform-origin: 50% 0%;
+                opacity: 0;
             }
         }
     }

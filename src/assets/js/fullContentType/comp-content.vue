@@ -61,9 +61,10 @@
 
             this.stageVh = 0;
             this.checkVh();
+            var _this = this;
 
             window.addEventListener('resize', _.debounce(function(){
-                this.checkVh()
+                _this.checkVh()
             }, 300) )
 
             /*() => {

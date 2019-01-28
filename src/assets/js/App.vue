@@ -3,7 +3,7 @@
     <div class="wrapper">
         <div class="frame-wrapper">
             <ul>
-                <li v-for="(i, index) in ui_arr" v-on:click="onClickli(index)">
+                <li v-for="(i, index) in ui_arr" v-on:click="onClickli(index)" :class='ui_index==index ? "active" : ""'>
                     {{ i }}
                 </li>
             </ul>
@@ -20,6 +20,9 @@
         <!-- middle content type -->
         <comp-main v-show="ui_index == 1" :contents-data='this.contentsData'></comp-main>
 
+        <!-- middle content type -->
+        <comp-main-swty v-show="ui_index == 2" :contents-data='this.contentsData'></comp-main-swty>
+
         <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
         </div>-->
@@ -33,10 +36,18 @@
     //full content type
     import comp_list from './fullContentType/comp-list-contents';
 
+    //full middle contents
+    import comp_main from './middelAreaType/comp-main';
+
+    //full swipe type
+    import comp_main_swty from './middleSwipeType/comp-main_swipeTy';
+
+
+
     //test
     import comp_fixed from './comp-fixed-layer';
 
-    import comp_main from './swipeSmAreaType/comp-main';
+
 
 
     export default {
@@ -44,15 +55,16 @@
 
         data() {
             return {
-                ui_index: 1,
-                ui_arr: ["A", "B"]
+                ui_index: 2,
+                ui_arr: ["A", "B", "C"]
             };
         },
 
         components: {
             'comp-list': comp_list,
             'comp-fixed': comp_fixed,
-            'comp-main': comp_main
+            'comp-main': comp_main,
+            'comp-main-swty': comp_main_swty
         },
 
         created() {
@@ -100,8 +112,16 @@
                 display: inline-block;
                 margin: 5px 5px 0 5px;
                 padding: 5px 13px 7px;
-                background-color: #ff3399;
+
+                background-color: #dddddd;
+                color: silver;
+
                 font-weight: bold;
+
+                &.active {
+                    background-color: #ff3399;
+                    color: white;
+                }
             }
         }
 

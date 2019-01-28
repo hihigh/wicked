@@ -223,7 +223,8 @@
     }
     .fade-enter, .fade-leave-to {
         opacity: 0;
-        transform: translate3d(0,200px,0);
+        transform: translate3d(0,200px,0) scale(1.2);
+        transform-origin: 50% 0;
     }
 
 
@@ -316,7 +317,7 @@
                     /*background-size: cover;*/
                     /*background-position: center;*/
 
-                    background-size: 20rem;
+                    background-size: 80rem;
                     background-position: center center;
                     background-repeat: no-repeat;
                     background-color: #000000;

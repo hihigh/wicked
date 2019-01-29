@@ -41,13 +41,13 @@
                             <h3>Design</h3>
                         </div>
                     </div>
-
-
                 </div>
+                <!-- fixed -->
+
             </div>
 
-            <transition name="fade">
-                <div class="expand-content-detail" v-show="isExpandContentDetailShow" @click.stop.prevent="onClickExpandContent">
+            <!--<transition name="fade">    v-show="isExpandContentDetailShow"-->
+                <div class="expand-content-detail"  @click.stop.prevent="onClickExpandContent">
                     <div class="expand-content-detail-inner-wrapper">
                         <div class="detail-bg"></div>
                         <div class="detail-wrap">
@@ -73,7 +73,7 @@
 
 
                 </div>
-            </transition>
+            <!--</transition>-->
         </div>
 
 
@@ -96,7 +96,8 @@
 
 <script>
 
-    import mixin from "../common/common_mixin.vue"
+    import mixin from "../common/common_mixin.vue";
+    // import velocity from Velocity;
 
 
     export default {
@@ -125,7 +126,7 @@
 
                 if (!this.isExpandMode) {
 
-                    this.checkBeforeScrollTop();
+                    // this.checkBeforeScrollTop();
                     this.gotoExpandMode();
                 } else {
                     this.gotoMainMode();
@@ -138,9 +139,59 @@
 
             // go to expand mode
             gotoExpandMode() {
+
+                var ele = this.$el.querySelector(".expand-content-bgimg");
+                var tgY = this.expand_content.offsetTop;
+                var main = this.$el;
+
+                ele.style.top = tgY-window.scrollY + "px";
+
+                console.log(tgY-window.scrollY)
+                main.classList.add("mode-expand");
+
+                var el = this.$el.querySelector(".expand-content-bgimg");
+                var el_img = this.$el.querySelector(".expand-content-bgimg .content-img");
+                var about = this.$el.querySelector(".about-lab");
+
+                var time = 800;
+                Velocity(
+                    el,
+                    { left:0, translateY: -(tgY-window.scrollY)+'px' },
+                    { easing: 'easeOutExpo', duration: time, complete: function(){
+                        console.log("complete", this.style)
+                    } }
+                );
+
+                Velocity(
+                    el_img,
+                    { width:100+'%', borderRadius: 0 },
+                    { easing: 'easeOutExpo', duration: time, complete: function(){
+                            console.log("complete", this.style)
+                        } }
+                );
+
+                Velocity(
+                    about,
+                    { marginTop:-184+'px'},
+                    { easing: 'easeOutExpo', duration: time, complete: this.gotoExpandModeComplete }
+                );
+
+
+
+
+                // this.$el.classList.add("mode-expand");
+                this.isExpandMode = true;
+
+
+
+
+                return;//
+
                 this.checkExpandContentOffsetTop();
 
-                let tgY = this.expand_content.offsetTop;
+
+
+                // let tgY = this.expand_content.offsetTop;
 
                 this.expand_content.addEventListener("webkitTransitionEnd", this.gotoExpandModeComplete, {once: true});
                 this.expand_wrapper.classList.add("mode-expand");
@@ -151,19 +202,27 @@
             },
 
             gotoExpandModeComplete(e) {
+
+                console.log("dddd")
+
+
                 this.mx_scrollTo(0, 0);
 
                 this.expand_wrapper.classList.add("mode-expand-end");
                 this.expand_content.style = "";
 
-                this.isExpandMode = true;
 
-                this.showExpandDetailContent();
+
+                // this.showExpandDetailContent();
 
             },
 
 
             showExpandDetailContent(){
+
+
+
+
                 this.isExpandContentDetailShow = true;
 
                 let content = this.$el.querySelector(".etc-contents-wrapper");
@@ -183,6 +242,11 @@
 
             //go to main mode (main)
             gotoMainMode() {
+                this.$el.classList.remove("mode-expand");
+                this.isExpandMode = false;
+                return;//
+
+
                 this.mx_scrollTo(this.expandContentOffsetTop-this.saveScrollPosition, 300);
 
                 this.expand_content.addEventListener("webkitTransitionEnd", this.gotoMainModeComplete, {once: true});
@@ -250,6 +314,8 @@
         background-color: white;
         color: black;
 
+        overflow: hidden;
+
 
         .title {
             width: 100%;
@@ -270,9 +336,9 @@
                 position: relative;
                 top: 0;
                 z-index: 1;
-                overflow-y: hidden;
+                /*overflow-y: hidden;
                 overflow-x: scroll;
-                -webkit-overflow-scrolling: touch;
+                -webkit-overflow-scrolling: touch;*/
 
                 .expand-content-inner-wrapper {
                     white-space: nowrap;
@@ -283,15 +349,16 @@
                     .expand-content-bgimg {
                         position: absolute;
                         width: 100%;
-                        height: 100%;
+                        height: $swipe-height;
 
                         left: 2rem;
-                        transition: left 0.5s;
+                        /*transition: all 0.5s cubic-bezier(.03, .49, .28, .98);*/
 
 
                         .content-img {
                             display: inline-block;
-                            transition: all 0.5s cubic-bezier(.03, .49, .28, .98);
+                            /*transition: all 0.5s;*/
+
                             /*margin: 0 auto;*/
                             width: $swipe-width;
                             margin: 0 5% 0 0%;
@@ -344,54 +411,11 @@
             }
 
 
-            &.mode-expand {
-                .expand-content {
-                    position: absolute;
-                    transition: height 0.4s cubic-bezier(.59, 0, .31, 1), transform 0.4s cubic-bezier(.59, 0, .31, 1);
-                    height: 50vh;
 
-                    .expand-content-inner-wrapper {
-                        padding: 0px;
-
-                        .expand-content-bgimg {
-                            left: 0;
-
-                            .content-img {
-                                width: 100%;
-                                border-radius: 0px;
-                            }
-                        }
-                    }
-                }
-            }
-
-            &.mode-expand-end {
-                .expand-content {
-                    position: fixed;
-                    transition: all 0s;
-                    top: 0;
-                    transform: translate3d(0, 0, 0);
-
-                    &.reset-position {
-                        height: $swipe-height;
-                        top: var(--beforeScrollTop);
-                        transition: all 0.4s;
-
-                        .expand-content-inner-wrapper {
-
-                            /*transition: padding 0.8s;*/
-                            /*padding: 20px;*/
-                        }
-
-
-                    }
-                }
-
-
-            }
 
 
             .expand-content-detail {
+                display: none;
 
                 .expand-content-detail-inner-wrapper {
                     position: relative;
@@ -400,12 +424,13 @@
 
                 }
 
-                padding-top: calc(var(--offsetTop) * -1 + 70vh);
+                /*padding-top: calc(var(--offsetTop) * -1 + 70vh);*/
                 width: 100%;
                 z-index: 1;
 
                 position: relative;
                 color: black;
+
 
                 &.offset-margin {
                     margin-top: calc(var(--offsetTop) * -1 + 70vh);
@@ -451,7 +476,7 @@
         .about-lab {
             padding: 2rem 2rem 2rem;
             box-sizing: border-box;
-            transition: all 0.3s;
+            /*transition: all 0.3s;*/
             .logo {
                 margin: 2rem 0;
 
@@ -463,8 +488,9 @@
 
 
         .etc-contents-wrapper {
-            padding: 4rem 2rem 2rem;
+            padding: 2rem 2rem 2rem;
             transition: all 0.3s;
+            /*transform: translate3d(200px,0,0);*/
 
             .etc-contents-img {
 
@@ -488,17 +514,64 @@
 
         &.mode-expand {
             .about-lab {
-                transform: translate3d(0,-150px,0);
+                /*transform: translate3d(0,-150px,0);
                 transform-origin: 50% 200%;
 
-                opacity: 0;
+                opacity: 0;*/
             }
 
             .etc-contents-wrapper {
-                transform: translate3d(0,150px,0);
+                transform: translate3d(0,50vh,0);
                 transform-origin: 50% -100%;
                 opacity: 0;
             }
+
+
+
+            .expand-content {
+
+
+
+                /*transition: height 0.4s cubic-bezier(.59, 0, .31, 1), transform 0.4s cubic-bezier(.59, 0, .31, 1);*/
+
+
+                .expand-content-inner-wrapper {
+                    /*padding: 0px;*/
+
+                    .expand-content-bgimg {
+                        position: fixed;
+                        /*left: 0;*/
+                        /*height: 50vh;*/
+                        /*transition: all 0.5s;*/
+                        /*top: 0;*/
+                        /*transform: translate3d(0, 0, 0) !important;*/
+
+                        .content-img {
+                            /*width: 100%;*/
+                            /*border-radius: 0px;*/
+                        }
+                    }
+                }
+            }
+
+            .expand-content {
+
+
+                &.reset-position {
+                    height: $swipe-height;
+                    top: var(--beforeScrollTop);
+                    transition: all 0.4s;
+
+                    .expand-content-inner-wrapper {
+
+                        /*transition: padding 0.8s;*/
+                        /*padding: 20px;*/
+                    }
+
+
+                }
+            }
+
         }
     }
 

@@ -448,7 +448,7 @@
                     .expand-content-inner-wrapper {
                         .expand-content-bgimg {
                             height: $swipe-height-expand;
-                            box-shadow: 0 15px 30px 0 rgba(0,0,0,0.2);
+                            box-shadow: 0 15px 15px 0 rgba(0,0,0,0.2);
                             left: 0;
 
                             .content-img {

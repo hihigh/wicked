@@ -147,6 +147,12 @@
                 Velocity(
                     about_logo,
                     { marginTop:0},
+                    { easing: 'easeInOutCubic', duration: time }
+                );
+
+                Velocity(
+                    main,
+                    { marginTop:0},
                     { easing: 'easeInOutCubic', duration: time, complete: this.gotoExpandModeComplete }
                 );
 
@@ -232,7 +238,7 @@
 
 
     .fade-enter-active {
-        transition: opacity 0.2s, transform 0.5s cubic-bezier(.03, .49, .28, .98);
+        transition: opacity 0.2s, transform 0.8s cubic-bezier(0, .91, .15, 1);
     }
 
     .fade-leave-active {
@@ -241,7 +247,7 @@
 
     .fade-enter, .fade-leave-to {
         opacity: 0;
-        transform: translate3d(0, 400px, 0);
+        transform: translate3d(0, -400px, 0) scale(0.9);
     }
 
 
@@ -349,7 +355,7 @@
 
             .expand-content-detail {
                 /*display: none;*/
-
+                transform-origin: 50% 0%;
                 .expand-content-detail-inner-wrapper {
                     position: relative;
                     box-sizing: border-box;

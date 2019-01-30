@@ -46,8 +46,8 @@
 
             </div>
 
-            <!--<transition name="fade">    v-show="isExpandContentDetailShow"-->
-                <div class="expand-content-detail"  @click.stop.prevent="onClickExpandContent">
+            <transition name="fade">
+                <div class="expand-content-detail" v-show="isExpandContentDetailShow"  @click.stop.prevent="onClickExpandContent">
                     <div class="expand-content-detail-inner-wrapper">
                         <div class="detail-bg"></div>
                         <div class="detail-wrap">
@@ -69,18 +69,24 @@
                                 unknown printer took a galley of type and scrambled it to make a type specimen book.
                             </p>
                         </div>
-                        Å  </div>
-
-
+                    </div>
                 </div>
-            <!--</transition>-->
+            </transition>
         </div>
 
 
 
         <div class="etc-contents-wrapper">
 
-            <div class="etc-contents-img" style='background-image: url("images/noimg.png")'></div>
+            <div class="etc-contents-img" style='background-image: url("images/noimg_w.png")'></div>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <div class="etc-contents-img" style='background-image: url("images/noimg_w.png")'></div>
             <p>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                 took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
@@ -144,84 +150,89 @@
                 var tgY = this.expand_content.offsetTop;
                 var main = this.$el;
 
-                ele.style.top = tgY-window.scrollY + "px";
 
                 console.log(tgY-window.scrollY)
                 main.classList.add("mode-expand");
 
-                var el = this.$el.querySelector(".expand-content-bgimg");
-                var el_img = this.$el.querySelector(".expand-content-bgimg .content-img");
-                var about = this.$el.querySelector(".about-lab");
+                var bgimg = this.$el.querySelector(".expand-content-bgimg");
+                var bgimg_img = this.$el.querySelector(".expand-content-bgimg .content-img");
 
-                var time = 800;
+                var text = this.$el.querySelector(".expand-content-text");
+                var text_txt = this.$el.querySelector(".expand-content-text .content-text");
+                var about = this.$el.querySelector(".about-lab");
+                var logo = this.$el.querySelector(".about-lab .logo");
+
+                var time = 400;
                 Velocity(
-                    el,
-                    { left:0, translateY: -(tgY-window.scrollY)+'px' },
-                    { easing: 'easeOutExpo', duration: time, complete: function(){
+                    bgimg,
+                    { left:0},
+                    { easing: 'easeInOutCubic', duration: time, complete: function(){
                         console.log("complete", this.style)
                     } }
                 );
 
                 Velocity(
-                    el_img,
-                    { width:100+'%', borderRadius: 0 },
-                    { easing: 'easeOutExpo', duration: time, complete: function(){
+                    bgimg_img,
+                    { width:100+'%', borderRadius: 0, backgroundSize:"130%" },
+                    { easing: 'easeInOutCubic', duration: time, complete: function(){
                             console.log("complete", this.style)
                         } }
                 );
 
+
                 Velocity(
-                    about,
-                    { marginTop:-184+'px'},
-                    { easing: 'easeOutExpo', duration: time, complete: this.gotoExpandModeComplete }
+                    text,
+                    { left:0, height:100+"%", color:"#ff0000"},
+                    { easing: 'easeInOutCubic', duration: time }
+                );
+
+                Velocity(
+                    text_txt,
+                    { width:100+'%', fontSize:"2rem", opacity:1},
+                    { easing: 'easeInOutCubic', duration: time }
                 );
 
 
 
 
-                // this.$el.classList.add("mode-expand");
+                Velocity(
+                    about,
+                    { height:0+'px', paddingTop:0, paddingBottom:0, backgroundColor:'#000000'},
+                    { easing: 'easeInOutCubic', duration: time*1.5}
+                );
+                Velocity(
+                    logo,
+                    { marginTop:0},
+                    { easing: 'easeInOutCubic', duration: time, complete: this.gotoExpandModeComplete }
+                );
+
+
                 this.isExpandMode = true;
+                this.isExpandContentDetailShow = true;
+                this.mx_scrollTo(0, 600);
 
 
-
-
-                return;//
-
-                this.checkExpandContentOffsetTop();
-
-
-
-                // let tgY = this.expand_content.offsetTop;
-
-                this.expand_content.addEventListener("webkitTransitionEnd", this.gotoExpandModeComplete, {once: true});
-                this.expand_wrapper.classList.add("mode-expand");
-                this.$el.classList.add("mode-expand");
-
-                this.expand_content.style.top = tgY + "px";
-                this.expand_content.style.transform = "translate3d(0," + (window.scrollY - tgY) + "px,0)";
             },
 
+
             gotoExpandModeComplete(e) {
+                // this.mx_scrollTo(0, 300);
 
-                console.log("dddd")
+                this.isExpandContentDetailShow = true;
 
-
-                this.mx_scrollTo(0, 0);
+                // this.mx_scrollTo(0, 0);
 
                 this.expand_wrapper.classList.add("mode-expand-end");
                 this.expand_content.style = "";
 
 
 
-                // this.showExpandDetailContent();
+                this.showExpandDetailContent();
 
             },
 
 
             showExpandDetailContent(){
-
-
-
 
                 this.isExpandContentDetailShow = true;
 
@@ -244,10 +255,12 @@
             gotoMainMode() {
                 this.$el.classList.remove("mode-expand");
                 this.isExpandMode = false;
+                this.isExpandContentDetailShow = false;
+                this.mx_scrollTo(0, 300);
                 return;//
 
 
-                this.mx_scrollTo(this.expandContentOffsetTop-this.saveScrollPosition, 300);
+                this.mx_scrollTo(0, 300);
 
                 this.expand_content.addEventListener("webkitTransitionEnd", this.gotoMainModeComplete, {once: true});
                 this.expand_content.classList.add("reset-position");
@@ -291,10 +304,10 @@
 </script>
 
 <style scoped lang="scss">
-    $swipe-height: 40vh;
+    $swipe-height: 30vh;
 
     $swipe-width: 80%;
-    $swipe-gap: 10%;
+    $swipe-gap: 15%;
 
     .fade-enter-active {
         transition: opacity 0.2s, transform 0.5s cubic-bezier(.03, .49, .28, .98);
@@ -314,7 +327,7 @@
         background-color: white;
         color: black;
 
-        overflow: hidden;
+        /*overflow: hidden;*/
 
 
         .title {
@@ -357,16 +370,14 @@
 
                         .content-img {
                             display: inline-block;
-                            /*transition: all 0.5s;*/
-
-                            /*margin: 0 auto;*/
                             width: $swipe-width;
                             margin: 0 5% 0 0%;
                             height: 100%;
-                            background-size: cover;//20rem;
+
+                            background-size: 100%;
                             background-position: 50% 50%;
                             background-repeat: no-repeat;
-                            border-radius: 25px;
+                            border-radius: 5px;
                         }
                     }
 
@@ -376,23 +387,24 @@
                         height: 100%;
 
                         left: 2rem;
-                        transition: left 0.5s;
+                        /*transition: left 0.5s;*/
                         color: white;
                         .content-text {
                             display: inline-block;
                             width: $swipe-width;
                             margin: 0 5% 0 0%;
                             height: 100%;
-
-
-                            /*margin-top: calc(100% - 150px);*/
+                            font-size: 1.5rem;
+                            opacity: 0.5;
+                            font-weight: lighter;
 
                             h3{
-                                font-size: 2rem;
-                                font-weight: lighter;
-                                margin-left: 10%;
-                                margin-top: 70%;
-                                opacity: 0.7;
+                                position: absolute;
+
+                                margin-left: 2rem;
+                                bottom: 2rem;
+                                /*margin-top: 70%;*/
+
                             }
 
 
@@ -415,7 +427,7 @@
 
 
             .expand-content-detail {
-                display: none;
+                /*display: none;*/
 
                 .expand-content-detail-inner-wrapper {
                     position: relative;
@@ -426,7 +438,7 @@
 
                 /*padding-top: calc(var(--offsetTop) * -1 + 70vh);*/
                 width: 100%;
-                z-index: 1;
+                z-index: 0;
 
                 position: relative;
                 color: black;
@@ -477,7 +489,9 @@
             padding: 2rem 2rem 2rem;
             box-sizing: border-box;
             /*transition: all 0.3s;*/
+            height: 25vh;
             .logo {
+                /*transition: all 0.3s;*/
                 margin: 2rem 0;
 
                 .img-logo {
@@ -489,7 +503,7 @@
 
         .etc-contents-wrapper {
             padding: 2rem 2rem 2rem;
-            transition: all 0.3s;
+            transition: all 0.4s;
             /*transform: translate3d(200px,0,0);*/
 
             .etc-contents-img {
@@ -514,16 +528,24 @@
 
         &.mode-expand {
             .about-lab {
+                /*height: 0;*/
                 /*transform: translate3d(0,-150px,0);
                 transform-origin: 50% 200%;
 
                 opacity: 0;*/
+
+                /*padding: 0rem 2rem 0rem;*/
+
+                .logo {
+                    /*margin: 0 0;*/
+                }
             }
 
             .etc-contents-wrapper {
-                transform: translate3d(0,50vh,0);
+                transform: translate3d(0,-30vh,0);
                 transform-origin: 50% -100%;
                 opacity: 0;
+                background-color: black;
             }
 
 
@@ -538,8 +560,11 @@
                 .expand-content-inner-wrapper {
                     /*padding: 0px;*/
 
+
+
                     .expand-content-bgimg {
-                        position: fixed;
+                        box-shadow: 0 15px 30px 0 rgba(0,0,0,0.2);
+                        /*position: fixed;*/
                         /*left: 0;*/
                         /*height: 50vh;*/
                         /*transition: all 0.5s;*/

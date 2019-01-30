@@ -18,9 +18,6 @@
             </transition>
 
 
-            <!--<img :src="@/assets/images/image.png" alt="">-->
-            <!--<img src="@/images/image.png" alt="">-->
-
         </div>
         <transition @before-enter="beforeEnter"
                     @enter="enter"

@@ -18,17 +18,17 @@
                 <div class="expand-content-inner-wrapper">
                     <div class="expand-content-bgimg">
                         <div class="content-img" style='background-image: url("images/noimg.png")'></div>
+                        <!--<div class="content-img" style='background-image: url("images/noimg.png")'></div>
                         <div class="content-img" style='background-image: url("images/noimg.png")'></div>
                         <div class="content-img" style='background-image: url("images/noimg.png")'></div>
-                        <div class="content-img" style='background-image: url("images/noimg.png")'></div>
-                        <div class="content-img" style='background-image: url("images/noimg.png")'></div>
+                        <div class="content-img" style='background-image: url("images/noimg.png")'></div>-->
                     </div>
 
                     <div class="expand-content-text">
                         <div class="content-text">
                             <h3>Rain</h3>
                         </div>
-                        <div class="content-text">
+                        <!--<div class="content-text">
                             <h3>Snow</h3>
                         </div>
                         <div class="content-text">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="content-text">
                             <h3>Design</h3>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <!-- fixed -->
@@ -47,7 +47,7 @@
             </div>
 
             <transition name="fade">
-                <div class="expand-content-detail" v-show="isExpandContentDetailShow"  @click.stop.prevent="onClickExpandContent">
+                <div class="expand-content-detail" v-show="isExpandMode"  @click.stop.prevent="onClickExpandContent">
                     <div class="expand-content-detail-inner-wrapper">
                         <div class="detail-bg"></div>
                         <div class="detail-wrap">
@@ -105,8 +105,7 @@
 
         data() {
             return {
-                isExpandMode: false,
-                isExpandContentDetailShow: false
+                isExpandMode: false
             };
         },
 
@@ -207,14 +206,12 @@
 
             showExpandDetailContent(){
 
-                this.isExpandContentDetailShow = true;
 
                 let content = this.$el.querySelector(".etc-contents-wrapper");
                 content.style.display = "none";
             },
 
             hideExpandDetailContent(){
-                this.isExpandContentDetailShow = false;
 
                 let content = this.$el.querySelector(".etc-contents-wrapper");
                 content.style.display = "block";
@@ -228,10 +225,9 @@
 </script>
 
 <style scoped lang="scss">
-    $swipe-height: 30vh;
-
-    $swipe-width: 80%;
-    $swipe-gap: 15%;
+    $swipe-height: 25vh;
+    $swipe-height-expand: 35vh;
+    $swipe-width: 90%;
 
     $trans-time:0.4s;
     $trans-bezier:cubic-bezier(.37, 0, .34, 1);
@@ -268,40 +264,35 @@
 
         .expand-content-wrapper {
             height: $swipe-height;
-
+            transition: all $trans-time $trans-bezier;
 
             .expand-content {
                 width: 100%;
                 height: $swipe-height;
-                background-color: #eeeeee;
+                /*background-color: #eeeeee;*/
                 position: relative;
                 top: 0;
                 z-index: 1;
-                /*overflow-y: hidden;
-                overflow-x: scroll;
-                -webkit-overflow-scrolling: touch;*/
 
                 .expand-content-inner-wrapper {
-                    white-space: nowrap;
+                    text-align: center;
 
                     .expand-content-bgimg {
                         position: absolute;
                         width: 100%;
                         height: $swipe-height;
 
-                        left: 2rem;
                         transition: all $trans-time $trans-bezier;
 
                         .content-img {
                             display: inline-block;
                             width: $swipe-width;
-                            margin: 0 5% 0 0%;
                             height: 100%;
 
                             background-size: 100%;
                             background-position: 50% 50%;
                             background-repeat: no-repeat;
-                            border-radius: 5px;
+                            border-radius: 20px;
 
                             transition: all $trans-time $trans-bezier;
                         }
@@ -310,15 +301,15 @@
                     .expand-content-text {
                         position: absolute;
                         width: 100%;
-                        height: 100%;
+                        height: $swipe-height;
 
-                        left: 2rem;
+                        /*left: 2rem;*/
                         color: white;
                         transition: all $trans-time $trans-bezier;
                         .content-text {
                             display: inline-block;
                             width: $swipe-width;
-                            margin: 0 5% 0 0%;
+                            /*margin: 0 5% 0 0%;*/
                             height: 100%;
                             font-size: 1.5rem;
                             opacity: 0.5;
@@ -444,39 +435,45 @@
 
         &.mode-expand {
             .etc-contents-wrapper {
-                transform: translate3d(0,-30vh,0);
+                transform: translate3d(0,20vh,0);
                 transform-origin: 50% -100%;
                 opacity: 0;
-                background-color: black;
+                /*background-color: black;*/
             }
 
-            .expand-content {
-                .expand-content-inner-wrapper {
-                    .expand-content-bgimg {
-                        box-shadow: 0 15px 30px 0 rgba(0,0,0,0.2);
-                        left: 0;
+            .expand-content-wrapper{
+                height: $swipe-height-expand;
+                .expand-content {
+                    height: $swipe-height-expand;
+                    .expand-content-inner-wrapper {
+                        .expand-content-bgimg {
+                            height: $swipe-height-expand;
+                            box-shadow: 0 15px 30px 0 rgba(0,0,0,0.2);
+                            left: 0;
 
-                        .content-img {
-                            width: 100%;
-                            border-radius: 0px;
-                            background-size: 130%;
+                            .content-img {
+                                width: 100%;
+                                border-radius: 0px;
+                                background-size: 130%;
+                            }
                         }
-                    }
 
-                    .expand-content-text {
-                        left:0;
-                        height: 100%;
-                        color: rebeccapurple;
+                        .expand-content-text {
+                            left:0;
+                            height: $swipe-height-expand;
+                            /*color: rebeccapurple;*/
 
-                        .content-text {
-                            width: 100%;
-                            font-size: 2rem;
-                            opacity: 1;
+                            .content-text {
+                                width: 100%;
+                                font-size: 2rem;
+                                opacity: 1;
 
+                            }
                         }
                     }
                 }
             }
+
 
         }
     }

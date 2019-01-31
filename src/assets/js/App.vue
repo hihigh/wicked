@@ -23,6 +23,9 @@
         <!-- middle content type -->
         <comp-main-swty v-show="ui_index == 2" :contents-data='this.contentsData'></comp-main-swty>
 
+        <!-- middle content type -->
+        <comp-stiky v-show="ui_index == 3" :contents-data='this.contentsData'></comp-stiky>
+
         <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
         </div>-->
@@ -37,10 +40,12 @@
     import comp_list from './fullContentType/comp-list-contents';
 
     //full middle contents
-    import comp_main from './middelAreaType/comp-main';
+    import comp_main from './middelArea-FullContentType/comp-main';
 
     //full swipe type
-    import comp_main_swty from './middleSwipeType/comp-main_swipeTy';
+    import comp_main_swty from './middleArea-ScrollContentType/comp-main_swipeTy';
+
+    import comp_stiky from './stikyFixed/comp-stikytop'
 
 
 
@@ -55,8 +60,8 @@
 
         data() {
             return {
-                ui_index: 2,
-                ui_arr: ["A", "B", "C"]
+                ui_index: 3,
+                ui_arr: ["A", "B", "C", "D"]
             };
         },
 
@@ -64,7 +69,8 @@
             'comp-list': comp_list,
             'comp-fixed': comp_fixed,
             'comp-main': comp_main,
-            'comp-main-swty': comp_main_swty
+            'comp-main-swty': comp_main_swty,
+            'comp-stiky': comp_stiky
         },
 
         created() {

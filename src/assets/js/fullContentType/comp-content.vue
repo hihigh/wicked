@@ -24,8 +24,8 @@
                     @after-enter="afterEnter"
 
                     @before-Leave="beforeLeave"
-                    @leave="leave"
-                    @after-leave="afterLeave"
+                    @leave="leave"                    @after-leave="afterLeave"
+
                     name="fade">
             <comp-content-detail v-show="isContent" :data="data" :bgimg="bgimg" :index="index"></comp-content-detail>
         </transition>

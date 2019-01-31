@@ -47,7 +47,7 @@
 
 
     //scroll - fixed - type_01
-    import scroll_fixed_type_01 from './scroll-fixed-type_01/scroll_fixed-type_01'
+    import scroll_fixed_type_01 from './scroll_fixed-type_01/scroll_fixed-type_01'
 
 
 

@@ -3,9 +3,8 @@
 
         <comp-content-about></comp-content-about>
 
-        <div class="stiky-wrapper">
-            <comp-scroll-fixed top="100" :scroll-y="scrollY"></comp-scroll-fixed>
-        </div>
+
+        <comp-scroll-fixed top="100" :scroll-y="scrollY"></comp-scroll-fixed>
 
 
 
@@ -50,24 +49,6 @@
     #wrapper {
         /*height: 1200px;*/
         background-color: white;
-    }
-
-    $stiky-height: 40vh;
-
-    .stiky-wrapper {
-        /*position: relative;*/
-        /*z-index: 0;*/
-        height: $stiky-height;
-
-        .stiky-box {
-            height: $stiky-height;
-
-            display: inline-block;
-            width: 100%;
-            /*border: 1px solid blue;*/
-            background-color: aquamarine;
-            /*position: relative;*/
-        }
     }
 
     .etc-contents-wrapper {

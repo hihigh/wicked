@@ -1,6 +1,8 @@
 <template>
-    <div class="stiky-box" :style="myStyle">
-        <div class="bg-image" style='background-image: url("images/thumbnail-1200.jpg")'></div>
+    <div class="stiky-wrapper">
+        <div class="stiky-box" :style="myStyle">
+            <div class="bg-image" style='background-image: url("images/thumbnail-1200_12.jpg")'></div>
+        </div>
     </div>
 
 </template>
@@ -56,13 +58,30 @@
 </script>
 
 <style scoped lang="scss">
-    .bg-image {
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: 50% 0%;
-        /*background-image: url("images/noimg.png");*/
 
+    $stiky-height: 50vh;
+
+
+    .stiky-wrapper {
+        /*position: relative;*/
+        /*z-index: 0;*/
+        height: $stiky-height;
+
+        .stiky-box {
+            height: $stiky-height;
+
+            width: 100%;
+
+            .bg-image {
+                width: 100%;
+                height: 100%;
+                background-size: 50rem;
+                background-position: 50% 0%;
+
+            }
+        }
     }
+
+
 
 </style>

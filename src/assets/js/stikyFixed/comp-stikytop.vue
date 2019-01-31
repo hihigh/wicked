@@ -92,20 +92,25 @@
                     }
                 },
                 mounted() {
-                    this.originalTop = this.$el.getBoundingClientRect().top;
+                    this.originalTop = this.$el.offsetTop;
+                    this.originalHeight = this.$el.getBoundingClientRect().height;
+
+                    console.log(this.originalTop, this.originalHeight, this.$el.offsetTop)
                 },
                 watch: {
                     scrollY(newValue) {
                         console.log(newValue)
                         const rect = this.$el.getBoundingClientRect();
-                        const newTop = this.scrollY + parseInt(this.top) - this.originalTop;
+                        var objHeight = this.originalHeight - (this.scrollY - this.originalTop);
+                        objHeight = objHeight < 70 ? 70 : objHeight
+                        // objHeight < 100 ? 100 : objHeight
 
-                        console.log(rect, this.scrollY,this.top,this.originalTop)
+                        console.log(rect.height)
 
                         if (this.originalTop < this.scrollY) {
                             this.$set(this.myStyle, 'position', 'fixed');
                             this.$set(this.myStyle, 'top', '0');
-                            // this.$set(this.myStyle, 'top', `${newTop}px`);
+                            this.$set(this.myStyle, 'height', `${objHeight}px`);
                         } else {
                             this.$set(this.myStyle, 'position');
                             this.$set(this.myStyle, 'top');
@@ -122,7 +127,7 @@
         /*height: 1200px;*/
     }
 
-    $stiky-height: 20vh;
+    $stiky-height: 30vh;
 
     .stiky-wrapper {
         height: $stiky-height;
@@ -131,7 +136,6 @@
             height: $stiky-height;
 
             display: inline-block;
-            height: 5rem;
             width: 100%;
             /*border: 1px solid blue;*/
             background-color: aquamarine;

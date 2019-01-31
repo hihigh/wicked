@@ -234,7 +234,7 @@
 
 
     .fade-enter-active {
-        transition: opacity 0.2s, transform 0.8s cubic-bezier(0, .91, .15, 1);
+        transition: opacity .8s, transform 0.8s cubic-bezier(0, .91, .15, 1);
     }
 
     .fade-leave-active {

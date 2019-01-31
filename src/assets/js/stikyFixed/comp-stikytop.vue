@@ -83,7 +83,7 @@
 
         components: {
             stickyTop: {
-                template: '<div class="stiky-box" :style="myStyle"></div>',
+                template: '<div class="stiky-box" :style="myStyle">ffasd sad s ds das dffffdfge<br>ffasd sad s ds das dffffdfge<br>ffasd sad s ds das dffffdfge<br>veveverve</div>',
                 props: ['top', 'scrollY'],
                 data() {
                     return {
@@ -117,11 +117,20 @@
 
                             this.$set(this.myStyle, 'position', 'fixed');
                             this.$set(this.myStyle, 'top', '0');
-                            this.$set(this.myStyle, 'height', `${objHeight}px`);
+                            // this.$set(this.myStyle, 'height', `${objHeight}px`);
+
+                            if(this.scrollY > this.originalTop + this.originalHeight/2){
+                                this.$set(this.myStyle, 'height', `${this.originalHeight/2}px`);
+                                this.$set(this.myStyle, 'z-index', 2);
+                            } else {
+
+                                this.$set(this.myStyle, 'height');
+                                this.$set(this.myStyle, 'z-index');
+                            }
+
                         } else {
                             this.$set(this.myStyle, 'position');
                             this.$set(this.myStyle, 'top');
-                            this.$set(this.myStyle, 'height');
                         }
                     }
                 }
@@ -138,6 +147,8 @@
     $stiky-height: 20vh;
 
     .stiky-wrapper {
+        /*position: relative;*/
+        /*z-index: 0;*/
         height: $stiky-height;
 
         .stiky-box {
@@ -169,6 +180,11 @@
 
 
     .etc-contents-wrapper {
+        position: relative;
+        z-index: 1;
+        background-color: dimgrey
+
+
         /*padding: 2rem 2rem 2rem;
         transition: all 0.4s;
 

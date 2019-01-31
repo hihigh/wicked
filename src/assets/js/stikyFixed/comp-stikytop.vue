@@ -133,7 +133,8 @@
             display: inline-block;
             height: 5rem;
             width: 100%;
-            border: 1px solid blue;
+            /*border: 1px solid blue;*/
+            background-color: aquamarine;
             /*position: relative;*/
         }
     }

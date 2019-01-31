@@ -76,7 +76,7 @@
 
         mounted() {
             window.addEventListener('scroll', (event) => {
-                this.scrollY = Math.round(window.scrollY);
+                this.scrollY = window.scrollY;
             });
         },
 
@@ -105,8 +105,6 @@
                         objHeight = objHeight < 70 ? 70 : objHeight
                         // objHeight < 100 ? 100 : objHeight
 
-
-                        var movegap = this.originalTop - this.scrollY
                         console.log(rect.height)
 
                         if (this.originalTop < this.scrollY) {
@@ -119,8 +117,7 @@
 
                             this.$set(this.myStyle, 'position', 'fixed');
                             this.$set(this.myStyle, 'top', '0');
-                            this.$set(this.myStyle, 'transform', `translate3d(0,${movegap}px,0)`);
-                            // this.$set(this.myStyle, 'height', `${objHeight}px`);
+                            this.$set(this.myStyle, 'height', `${objHeight}px`);
                         } else {
                             this.$set(this.myStyle, 'position');
                             this.$set(this.myStyle, 'top');
@@ -138,7 +135,7 @@
         /*height: 1200px;*/
     }
 
-    $stiky-height: 30vh;
+    $stiky-height: 20vh;
 
     .stiky-wrapper {
         height: $stiky-height;
@@ -150,7 +147,6 @@
             width: 100%;
             /*border: 1px solid blue;*/
             background-color: aquamarine;
-            /*background-image: url("../../images/noimg.png");*/
             /*position: relative;*/
         }
     }

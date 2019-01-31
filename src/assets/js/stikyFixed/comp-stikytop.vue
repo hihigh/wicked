@@ -108,9 +108,16 @@
                         console.log(rect.height)
 
                         if (this.originalTop < this.scrollY) {
+
+                            Velocity(
+                                this.$el,
+                                { height:objHeight+'px'},
+                                { easing: 'easeInOutCubic', duration: 1}
+                            );
+
                             this.$set(this.myStyle, 'position', 'fixed');
                             this.$set(this.myStyle, 'top', '0');
-                            this.$set(this.myStyle, 'height', `${objHeight}px`);
+                            // this.$set(this.myStyle, 'height', `${objHeight}px`);
                         } else {
                             this.$set(this.myStyle, 'position');
                             this.$set(this.myStyle, 'top');

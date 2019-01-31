@@ -1,9 +1,66 @@
 <template>
     <div id="wrapper">
-        <div class="spacer"></div>
-        <div class="a-box"></div>
-        <sticky-top top="20" :scroll-y="scrollY"></sticky-top>
-        <div class="a-box"></div>
+
+        <p>
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+            took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+            centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+            was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+            more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+
+        <div class="stiky-wrapper">
+            <sticky-top top="100" :scroll-y="scrollY"></sticky-top>
+        </div>
+
+
+        <div class="etc-contents-wrapper">
+
+            <div class="etc-contents-img" style='background-image: url("images/noimg_w.png")'></div>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
+                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
+                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+
+        </div>
     </div>
 </template>
 
@@ -26,7 +83,7 @@
 
         components: {
             stickyTop: {
-                template: '<div class="a-box" :style="myStyle"></div>',
+                template: '<div class="stiky-box" :style="myStyle"></div>',
                 props: ['top', 'scrollY'],
                 data() {
                     return {
@@ -41,12 +98,17 @@
                     scrollY(newValue) {
                         console.log(newValue)
                         const rect = this.$el.getBoundingClientRect();
-                        const newTop = this.scrollY + +this.top - this.originalTop;
+                        const newTop = this.scrollY + parseInt(this.top) - this.originalTop;
 
-                        if (newTop > 0) {
-                            this.$set(this.myStyle, 'top', `${newTop}px`);
+                        console.log(rect, this.scrollY,this.top,this.originalTop)
+
+                        if (this.originalTop < this.scrollY) {
+                            this.$set(this.myStyle, 'position', 'fixed');
+                            this.$set(this.myStyle, 'top', '0');
+                            // this.$set(this.myStyle, 'top', `${newTop}px`);
                         } else {
-                            this.$delete(this.myStyle, 'top');
+                            this.$set(this.myStyle, 'position');
+                            this.$set(this.myStyle, 'top');
                         }
                     }
                 }
@@ -55,9 +117,25 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     #wrapper {
-        height: 1200px;
+        /*height: 1200px;*/
+    }
+
+    $stiky-height: 20vh;
+
+    .stiky-wrapper {
+        height: $stiky-height;
+
+        .stiky-box {
+            height: $stiky-height;
+
+            display: inline-block;
+            height: 5rem;
+            width: 100%;
+            border: 1px solid blue;
+            /*position: relative;*/
+        }
     }
 
     .spacer {
@@ -70,6 +148,31 @@
         width: 5rem;
         border: 2px solid blue;
         position: relative;
+    }
+
+    .mode-fixed {
+        position: fixed;
+    }
+
+
+    .etc-contents-wrapper {
+        /*padding: 2rem 2rem 2rem;
+        transition: all 0.4s;
+
+        .etc-contents-img {
+            background-size: cover;
+            background-position: 50% 50%;
+            width: 100%;
+            height: 200px;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+
+        img {
+            width: 100%;
+        }*/
     }
 
 </style>

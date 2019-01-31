@@ -105,22 +105,26 @@
                         objHeight = objHeight < 70 ? 70 : objHeight
                         // objHeight < 100 ? 100 : objHeight
 
+
+                        var movegap = this.originalTop - this.scrollY
                         console.log(rect.height)
 
                         if (this.originalTop < this.scrollY) {
 
-                            Velocity(
-                                this.$el,
-                                { height:objHeight+'px'},
-                                { easing: 'easeInOutCubic', duration: 1}
-                            );
+                            // Velocity(
+                            //     this.$el,
+                            //     { height:objHeight+'px'},
+                            //     { easing: 'easeInOutCubic', duration: 1}
+                            // );
 
                             this.$set(this.myStyle, 'position', 'fixed');
                             this.$set(this.myStyle, 'top', '0');
+                            this.$set(this.myStyle, 'transform', `translate3d(0,${movegap}px,0)`);
                             // this.$set(this.myStyle, 'height', `${objHeight}px`);
                         } else {
                             this.$set(this.myStyle, 'position');
                             this.$set(this.myStyle, 'top');
+                            this.$set(this.myStyle, 'height');
                         }
                     }
                 }
@@ -146,6 +150,7 @@
             width: 100%;
             /*border: 1px solid blue;*/
             background-color: aquamarine;
+            /*background-image: url("../../images/noimg.png");*/
             /*position: relative;*/
         }
     }

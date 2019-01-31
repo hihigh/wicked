@@ -24,7 +24,7 @@
         <comp-main-swty v-show="ui_index == 2" :contents-data='this.contentsData'></comp-main-swty>
 
         <!-- middle content type -->
-        <comp-stiky v-show="ui_index == 3" :contents-data='this.contentsData'></comp-stiky>
+        <scroll-fixed-type-01 v-show="ui_index == 3" :contents-data='this.contentsData'></scroll-fixed-type-01>
 
         <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
@@ -37,20 +37,22 @@
 <script>
 
     //full content type
-    import comp_list from './fullContentType/comp-list-contents';
+    import comp_list from './transform-type_01/comp-list-contents';
 
-    //full middle contents
-    import comp_main from './middelArea-FullContentType/comp-main';
+    //middle box -> full kv
+    import comp_main from './transform-type_02/comp-main';
 
-    //full swipe type
-    import comp_main_swty from './middleArea-ScrollContentType/comp-main_swipeTy';
+    //middle box -> scroll content
+    import comp_main_swty from './transform-type_03/comp-main_swipeTy';
 
-    import comp_stiky from './stikyFixed/comp-stikytop'
+
+    //scroll - fixed - type_01
+    import scroll_fixed_type_01 from './scroll-fixed-type_01/scroll_fixed-type_01'
 
 
 
     //test
-    import comp_fixed from './comp-fixed-layer';
+    // import comp_fixed from './comp-fixed-layer';
 
 
 
@@ -67,10 +69,10 @@
 
         components: {
             'comp-list': comp_list,
-            'comp-fixed': comp_fixed,
+            // 'comp-fixed': comp_fixed,
             'comp-main': comp_main,
             'comp-main-swty': comp_main_swty,
-            'comp-stiky': comp_stiky
+            'scroll-fixed-type-01': scroll_fixed_type_01
         },
 
         created() {

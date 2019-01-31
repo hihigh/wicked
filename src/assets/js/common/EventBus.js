@@ -17,3 +17,4 @@ EventBus.SHOW_CONTENT = 'showContent';
 EventBus.SHOW_CONTENT_COMPLETE = 'showContentComplete';
 EventBus.SHOW_LIST = 'showList';
 EventBus.SHOW_LIST_COMPLETE = 'showListComplete';
+EventBus.CHANGE_SCROLL = 'changeScroll';

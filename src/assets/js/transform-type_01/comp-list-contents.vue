@@ -6,7 +6,7 @@
 
 <script>
     import comp_content from './comp-content';
-    import { EventBus } from '../EventBus';
+    import { EventBus } from '../common/EventBus';
 
     export default {
         name: "comp-list-contents",

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import comp_content_detail from './fullContentType/comp-content-detail';
+    import comp_content_detail from './transform-type_01/comp-content-detail';
 
     export default {
         name: "comp-fixed-layer",

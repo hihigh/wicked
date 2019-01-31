@@ -20,7 +20,7 @@
     .about-lab {
         padding: 2rem 2rem 2rem;
         box-sizing: border-box;
-        height: 25vh;
+        height: 200px;
 
         .logo {
             margin: 2rem 0;

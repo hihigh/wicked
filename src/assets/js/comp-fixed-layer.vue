@@ -114,6 +114,9 @@
                 dragState.pageWidth = element.offsetWidth;
                 dragState.pageHeight = element.offsetHeight;
 
+                dragState.moveSpd = 0;
+                dragState.offsetTop = 0;
+
                 console.log('start');
 
             },
@@ -148,6 +151,12 @@
 
                 offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1);
 */
+
+                if (Math.abs(dragState.offsetTop) < 5) {
+                    dragState.moveSpd = 0;
+                    dragState.offsetTop = 0;
+                    return;
+                }
 
                 const element = this.$el.querySelector(".module__item");
 
@@ -213,8 +222,8 @@
         background: #a0a5a8;
         user-select: none;
 
-        /*height: 100vh; !* Use vh as a fallback for browsers that do not support Custom Properties *!
-        height: calc(var(--vh, 1vh) * 100);*/
+        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
 
     }
 

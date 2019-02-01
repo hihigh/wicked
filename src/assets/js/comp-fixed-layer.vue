@@ -156,6 +156,8 @@
                     dragState.moveSpd = 0;
                     dragState.offsetTop = 0;
                     return;
+                } else {
+                    event.preventDefault();
                 }
 
                 const element = this.$el.querySelector(".module__item");

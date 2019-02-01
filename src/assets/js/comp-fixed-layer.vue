@@ -222,13 +222,13 @@
         background: #a0a5a8;
         user-select: none;
 
-        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 100);
+
 
     }
 
     .module {
-
+        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
     }
 
     .module__item {

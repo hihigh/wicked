@@ -200,18 +200,26 @@
 </script>
 
 
-<style scope lang="scss">
+<style lang="scss">
     body {
-        background-color: #333;
-        touch-action: none;
+
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        background: #a0a5a8;
+        user-select: none;
+
+        /*height: 100vh; !* Use vh as a fallback for browsers that do not support Custom Properties *!
+        height: calc(var(--vh, 1vh) * 100);*/
+
     }
 
     .module {
-        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 100);
-        margin: 0 auto;
-        max-width: 100%;
-        overflow: hidden;
+
     }
 
     .module__item {

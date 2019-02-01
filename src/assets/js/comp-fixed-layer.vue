@@ -203,6 +203,7 @@
 <style scope lang="scss">
     body {
         background-color: #333;
+        touch-action: none;
     }
 
     .module {

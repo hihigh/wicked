@@ -23,6 +23,8 @@
             this.originalHeight = this.$el.getBoundingClientRect().height;
             this.fixedHeight = 70;
 
+            console.log(this.originalTop, this.originalHeight)
+
         },
         watch: {
             scrollY(newValue) {

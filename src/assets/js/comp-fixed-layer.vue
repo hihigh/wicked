@@ -121,6 +121,8 @@
                 var dragState = this.dragState;
                 var touch = event.changedTouches ? event.changedTouches[0] : event;
 
+                dragState.moveSpd = dragState.currentTop - touch.pageY;
+
                 dragState.currentLeft = touch.pageX;
                 dragState.currentTop = touch.pageY;
                 dragState.currentTopAbsolute = touch.clientY;
@@ -129,6 +131,9 @@
                 var offsetTop = dragState.currentTopAbsolute - dragState.startTopAbsolute;
                 var distanceX = Math.abs(offsetLeft);
                 var distanceY = Math.abs(offsetTop);
+
+
+
                 if (distanceY < 5 || (distanceY >= 5 && distanceX >= 1.73 * distanceY)) {
                     return;
                 } else {
@@ -138,22 +143,44 @@
                 offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1);
 
                 var element = this.$el.querySelector(".module__item");
-                element.style.webkitTransform = `translate3d(0, ${offsetTop}px, 0)`;
 
-                console.log(distanceY, offsetTop)
+                // Velocity( element, stop)
+
+                Velocity(
+                    element,
+                    { translateY: offsetTop},
+                    { easing: 'easeOutCubic', duration: 0 }
+                );
+
+
+                // element.style.webkitTransform = `translate3d(0, ${offsetTop}px, 0)`;
+
+                console.log(offsetTop)
 
 
             },
 
             dragEndEvent(event) {
                 var dragState = this.dragState;
+                var tg = dragState.currentTopAbsolute - dragState.startTopAbsolute;
+
+                //reset
+                var element = this.$el.querySelector(".module__item");
+                Velocity(
+                    element,
+                    { translateY: tg},
+                    { easing: 'easeOutCubic', duration: 100 }
+                );
+
+                console.log("end dadada", tg, dragState.moveSpd)
+
+
+
                 var offsetLeft = dragState.currentLeft - dragState.startLeft;
 
                 if (Math.abs(offsetLeft) > 20) {
 
                 } else {
-                    //reset
-                    console.log("end dadada", offsetLeft)
 
                     return;
 
@@ -187,7 +214,7 @@
         height: 100%;
         /*align-items: center;*/
         /*justify-content: center;*/
-        /*transition: all 0.1s;*/
+        transition: all 0.1s ease-out;
     }
 
     .module__item:nth-child(odd) {

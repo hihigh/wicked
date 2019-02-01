@@ -15,18 +15,18 @@
 
 
         <!-- full swipe card type-->
-        <comp-list v-show="ui_index == 0" :contents-data='this.contentsData'></comp-list>
+        <comp-list v-if="ui_index == 0" :contents-data='this.contentsData'></comp-list>
 
         <!-- middle content type -->
-        <comp-main v-show="ui_index == 1" :contents-data='this.contentsData'></comp-main>
+        <comp-main v-else-if="ui_index == 1" :contents-data='this.contentsData'></comp-main>
 
         <!-- middle content type -->
-        <comp-main-swty v-show="ui_index == 2" :contents-data='this.contentsData'></comp-main-swty>
+        <comp-main-swty v-else-if="ui_index == 2" :contents-data='this.contentsData'></comp-main-swty>
 
         <!-- middle content type -->
-        <scroll-fixed-type-01 v-show="ui_index == 3" :contents-data='this.contentsData'></scroll-fixed-type-01>
+        <scroll-fixed-type-01 v-else-if="ui_index == 3" :contents-data='this.contentsData'></scroll-fixed-type-01>
 
-        <comp-fixed :contents-data='this.contentsData'></comp-fixed>
+        <comp-fixed  v-else-if="ui_index == 4" :contents-data='this.contentsData'></comp-fixed>
 
     </div>
 
@@ -61,7 +61,7 @@
         data() {
             return {
                 ui_index: 4,
-                ui_arr: ["A", "B", "C", "D"]
+                ui_arr: ["A", "B", "C", "D", "E"]
             };
         },
 

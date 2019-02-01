@@ -212,15 +212,15 @@
 <style lang="scss">
     body {
 
-        position: relative;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
-        margin: 0;
-        background: #a0a5a8;
-        user-select: none;
+        /*position: relative;*/
+        /*left: 0;*/
+        /*width: 100%;*/
+        /*height: 100vh;*/
+        /*max-height: 100vh;*/
+        /*overflow: hidden;*/
+        /*margin: 0;*/
+        /*background: #a0a5a8;*/
+        /*user-select: none;*/
 
 
 
@@ -229,6 +229,7 @@
     .module {
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
         height: calc(var(--vh, 1vh) * 100);
+        overflow: hidden;
     }
 
     .module__item {

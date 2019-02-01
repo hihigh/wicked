@@ -187,7 +187,7 @@
         height: 100%;
         /*align-items: center;*/
         /*justify-content: center;*/
-        transition: all 0.1s;
+        /*transition: all 0.1s;*/
     }
 
     .module__item:nth-child(odd) {

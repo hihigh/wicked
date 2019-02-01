@@ -26,9 +26,7 @@
         <!-- middle content type -->
         <scroll-fixed-type-01 v-show="ui_index == 3" :contents-data='this.contentsData'></scroll-fixed-type-01>
 
-        <!--<div class="overflow-wrapper">
         <comp-fixed :contents-data='this.contentsData'></comp-fixed>
-        </div>-->
 
     </div>
 
@@ -52,7 +50,7 @@
 
 
     //test
-    // import comp_fixed from './comp-fixed-layer';
+    import comp_fixed from './comp-fixed-layer';
 
 
 
@@ -62,14 +60,14 @@
 
         data() {
             return {
-                ui_index: 3,
+                ui_index: 4,
                 ui_arr: ["A", "B", "C", "D"]
             };
         },
 
         components: {
             'comp-list': comp_list,
-            // 'comp-fixed': comp_fixed,
+            'comp-fixed': comp_fixed,
             'comp-main': comp_main,
             'comp-main-swty': comp_main_swty,
             'scroll-fixed-type-01': scroll_fixed_type_01

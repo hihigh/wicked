@@ -20,6 +20,23 @@
                     <li>content blablabla</li>
                     <li>content blablabla</li>
                     <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
+                    <li>content blablabla</li>
 
 
                 </ul>
@@ -53,6 +70,9 @@
             this.dragState = {};
             this.dragState.prevEleTop = 0;
 
+
+
+
         },
 
         props: {
@@ -82,6 +102,8 @@
 
         mounted(){
             this.addEvent();
+            this.scrollContainer = this.$el.querySelector(".module__item");
+            this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
         },
 
         methods: {
@@ -117,14 +139,11 @@
                 dragState.moveSpd = 0;
                 dragState.offsetTop = 0;
 
-                console.log('start');
-
-                var ele = this.$el.querySelector(".module__item");
-                var dvStyle = ele.getAttribute('style');
+                var dvStyle = this.scrollContainer.getAttribute('style');
                 var transZRegex = /\.*translateY\((.*)px\)/i;
                 var zTrans = transZRegex.exec(dvStyle)[1];
 
-                Velocity(ele, "stop");
+                Velocity(this.scrollContainer, "stop");
                 dragState.prevEleTop = parseInt(zTrans);
 
             },
@@ -150,11 +169,17 @@
                     event.preventDefault();
                 }
 
-                const element = this.$el.querySelector(".module__item");
+                let tg = (dragState.prevEleTop || 0) + dragState.offsetTop;
+                const overPow = 0.5;
+                if(tg > 0) {
+                    tg = tg * overPow;
+                } else if(tg < -this.scrollMax){
+                    tg = -this.scrollMax - ((-this.scrollMax - tg) * overPow);
+                }
 
                 Velocity(
-                    element,
-                    { translateY: (dragState.prevEleTop || 0) + dragState.offsetTop},
+                    this.scrollContainer,
+                    { translateY: tg},
                     { easing: 'easeOutCubic', duration: 0 }
                 );
 
@@ -167,19 +192,27 @@
                 var dragState = this.dragState;
                 var tg = dragState.prevEleTop + dragState.offsetTop + (-dragState.moveSpd * 10);
 
-                var time = Math.max(Math.abs(dragState.moveSpd) * 10, 500)
-                var element = this.$el.querySelector(".module__item");
+
+                var time = Math.max(Math.abs(dragState.moveSpd) * 10, 500);
+
+                if(tg > 0) {
+                    tg = 0;
+                    time = time * 0.2;
+                } else if(tg < -this.scrollMax){
+                    tg = -this.scrollMax;
+                    time = time * 0.2;
+                }
+
+
                 Velocity(
-                    element,
+                    this.scrollContainer,
                     { translateY: tg},
                     { easing: 'easeOutCubic', duration: time }
                 );
 
                 dragState.prevEleTop = tg;
 
-                console.log("end dadada", tg)
-
-
+                console.log("end dadada", this.scrollContainer.scrollHeight - this.scrollContainer.innerHeight)
 
                 var offsetLeft = dragState.currentLeft - dragState.startLeft;
 

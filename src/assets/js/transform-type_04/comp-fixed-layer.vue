@@ -234,11 +234,7 @@
                     tg = -this.scrollMax - ((-this.scrollMax - tg) * overPow);
                 }
 
-                Velocity(
-                    this.scrollContainer,
-                    { translateY: tg},
-                    { easing: 'easeOutCubic', duration: 0 }
-                );
+                this.scrollMoveContainer(tg, 0);
 
 
 
@@ -263,11 +259,7 @@
                 }
 
 
-                Velocity(
-                    this.scrollContainer,
-                    { translateY: tg},
-                    { easing: 'easeOutCubic', duration: time }
-                );
+                this.scrollMoveContainer(tg, time);
 
                 dragState.prevEleTop = tg;
 

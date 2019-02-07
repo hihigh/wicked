@@ -14,27 +14,90 @@
 
                 <div class="list-wrapper" v-if="isList">
                     <ul>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
+                        <li>
+                            <div class="list-img" style='background-image: url("images/noimg.png")'>
+                                <!--<img src="images/noimg.png" alt="">-->
+                            </div>
+                            <div class="list-title"><p>Content Title</p></div>
+                        </li>
 
                     </ul>
                 </div>
@@ -243,7 +306,7 @@
 
 
 
-                console.log(dragState.prevEleTop, dragState.offsetTop)
+                // console.log(dragState.prevEleTop, dragState.offsetTop)
 
 
             },
@@ -268,7 +331,7 @@
 
                 dragState.prevEleTop = tg;
 
-                console.log("end dadada")
+                // console.log("end dadada")
 
             },
 
@@ -459,6 +522,8 @@
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
         height: calc(var(--vh, 1vh) * 100);
         overflow: hidden;
+        background-color: white;
+
     }
 
     .module__item {
@@ -470,7 +535,7 @@
     }
 
     .module__item:nth-child(odd) {
-        background-color: silver;
+        /*background-color: silver;*/
         color: #ffffff;
     }
 
@@ -482,25 +547,34 @@
 
     .list-wrapper {
         ul {
+            padding: 2.6rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
 
             li:nth-child(odd) {
-                background-color: #ff3399;
-                color: #ffffff;
+                padding: 0rem 1.3rem 4rem 0rem;
             }
 
             li:nth-child(even) {
-                background-color: #F73859;
-                color: #F1D08A;
+                padding: 0rem 0rem 4rem 1.3rem;
             }
 
             li {
-                text-align: center;
+                color: black;
                 width: 100%;
-                height: 70px;
+                box-sizing: border-box;
 
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                .list-img {
+                    width: 100%;//calc(100% - 1.5rem);
+                    height: 200px;
+                    background-position: 50% 50%;
+                    background-size: cover;
+                }
+                .list-title {
+                    margin-top: 0.9rem;
+                    font-size: 0.9rem;
+                    font-weight: lighter;
+                }
             }
         }
     }

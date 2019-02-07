@@ -6,8 +6,6 @@
         <transition name="fade">
             <div class="trans-box" v-show="isTrans"></div>
         </transition>
-
-
         <div class="module__item">
 
             <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
@@ -143,7 +141,13 @@
             this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
         },
 
+        watch:{
+            isContent(){
+                console.log("changengnen")
+                // this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
+            }
 
+        },
 
         methods: {
             onClickChange(e) {
@@ -198,11 +202,6 @@
 
                 Velocity(this.scrollContainer, "stop");
                 dragState.prevEleTop = parseInt(zTrans);
-
-
-                var pa = this.$el.querySelector(".btn-change");
-                pa.innerHTML = this.scrollContainer.scrollHeight +":"+ window.innerHeight;
-
 
             },
 
@@ -264,7 +263,7 @@
 
                 dragState.prevEleTop = tg;
 
-                console.log("------------------------end")
+                console.log("end dadada")
 
                 var offsetLeft = dragState.currentLeft - dragState.startLeft;
 
@@ -378,7 +377,7 @@
 
             leave_contents: function (el, done) {
                 el.addEventListener("webkitTransitionEnd", done, {once:true});
-                console.log("leave_contents");
+                console.log("leave_contents")
                 done();
             },
             afterLeave_contents: function (el) {
@@ -445,15 +444,15 @@
 
     body {
 
-        position: relative;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
-        margin: 0;
-        background: #a0a5a8;
-        user-select: none;
+        /*position: relative;*/
+        /*left: 0;*/
+        /*width: 100%;*/
+        /*height: 100vh;*/
+        /*max-height: 100vh;*/
+        /*overflow: hidden;*/
+        /*margin: 0;*/
+        /*background: #a0a5a8;*/
+        /*user-select: none;*/
 
 
 

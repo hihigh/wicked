@@ -50,7 +50,7 @@
 
 
     //test
-    import comp_fixed from './comp-fixed-layer';
+    import comp_fixed from './transform-type_04/comp-fixed-layer';
 
 
 

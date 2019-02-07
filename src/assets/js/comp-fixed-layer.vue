@@ -6,6 +6,8 @@
         <transition name="fade">
             <div class="trans-box" v-show="isTrans"></div>
         </transition>
+
+
         <div class="module__item">
 
             <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
@@ -141,6 +143,8 @@
             this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
         },
 
+
+
         methods: {
             onClickChange(e) {
                 if(this.isList){
@@ -173,7 +177,7 @@
                 var element = this.$el;
                 var dragState = this.dragState;
                 var touch = event.changedTouches ? event.changedTouches[0] : event;
-                this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight
+
 
                 dragState.startTime = new Date();
                 dragState.startLeft = touch.pageX;
@@ -194,6 +198,11 @@
 
                 Velocity(this.scrollContainer, "stop");
                 dragState.prevEleTop = parseInt(zTrans);
+
+
+                var pa = this.$el.querySelector(".btn-change");
+                pa.innerHTML = this.scrollContainer.scrollHeight +":"+ window.innerHeight;
+
 
             },
 
@@ -255,7 +264,7 @@
 
                 dragState.prevEleTop = tg;
 
-                console.log("end dadada", this.scrollContainer.scrollHeight - this.scrollContainer.innerHeight)
+                console.log("------------------------end")
 
                 var offsetLeft = dragState.currentLeft - dragState.startLeft;
 
@@ -306,6 +315,7 @@
             afterEnter: function (el) {
                 console.log("afterEnter : ")
                 this.hideTransBox();
+
 
             },
 
@@ -368,7 +378,7 @@
 
             leave_contents: function (el, done) {
                 el.addEventListener("webkitTransitionEnd", done, {once:true});
-                console.log("leave_contents")
+                console.log("leave_contents");
                 done();
             },
             afterLeave_contents: function (el) {
@@ -385,6 +395,25 @@
 
             hideTransBox(){
                 this.isTrans = false;
+
+            },
+
+
+
+            showList(){
+
+            },
+
+
+            hideList(){
+
+            },
+
+            showContents(){
+
+            },
+
+            hideContents(){
 
             }
 

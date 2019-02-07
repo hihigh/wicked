@@ -308,6 +308,7 @@
             afterEnter: function (el) {
                 console.log("afterEnter : ")
                 this.hideTransBox();
+                this.scrollMoveContainer(0, 0);
 
 
             },
@@ -329,7 +330,7 @@
             afterLeave: function (el) {
                 console.log("afterLeave", el);
 
-                this.scrollMoveContainer(0, 0);
+
                 this.isContent = true;
             },
 
@@ -355,6 +356,7 @@
             afterEnter_contents: function (el) {
                 console.log("afterEnter_contents : ")
                 this.hideTransBox();
+                this.scrollMoveContainer(0, 0);
 
             },
 
@@ -376,7 +378,7 @@
             },
             afterLeave_contents: function (el) {
                 console.log("afterLeave_contents", el);
-                this.scrollMoveContainer(0, 0);
+
                 this.isList = true;
             },
 

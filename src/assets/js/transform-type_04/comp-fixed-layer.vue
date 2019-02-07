@@ -137,7 +137,7 @@
 
         mounted(){
             this.addEvent();
-            this.scrollContainer = this.$el.querySelector(".module__item");
+            this.scrollContainer = this.$el;
             this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
         },
 

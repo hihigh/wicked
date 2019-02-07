@@ -197,11 +197,16 @@
 
 
                 var dvStyle = this.scrollContainer.getAttribute('style');
-                var transZRegex = /\.*translateY\((.*)px\)/i;
-                var zTrans = transZRegex.exec(dvStyle)[1];
+                if(dvStyle){
+                    var transZRegex = /\.*translateY\((.*)px\)/i;
+                    var zTrans = transZRegex.exec(dvStyle)[1];
 
-                Velocity(this.scrollContainer, "stop");
-                dragState.prevEleTop = parseInt(zTrans);
+                    Velocity(this.scrollContainer, "stop");
+                    dragState.prevEleTop = parseInt(zTrans);
+                }
+
+
+                this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
 
             },
 
@@ -234,11 +239,7 @@
                     tg = -this.scrollMax - ((-this.scrollMax - tg) * overPow);
                 }
 
-                Velocity(
-                    this.scrollContainer,
-                    { translateY: tg},
-                    { easing: 'easeOutCubic', duration: 0 }
-                );
+                this.scrollMoveContainer(tg, 0);
 
 
 
@@ -256,33 +257,18 @@
 
                 if(tg > 0) {
                     tg = 0;
-                    time = time * 0.2;
+                    time = time * 0.3;
                 } else if(tg < -this.scrollMax){
                     tg = -this.scrollMax;
-                    time = time * 0.2;
+                    time = time * 0.3;
                 }
 
 
-                Velocity(
-                    this.scrollContainer,
-                    { translateY: tg},
-                    { easing: 'easeOutCubic', duration: time }
-                );
+                this.scrollMoveContainer(tg, time);
 
                 dragState.prevEleTop = tg;
 
                 console.log("end dadada")
-
-                var offsetLeft = dragState.currentLeft - dragState.startLeft;
-
-                if (Math.abs(offsetLeft) > 20) {
-
-                } else {
-
-                    return;
-
-                }
-
 
             },
 
@@ -477,7 +463,7 @@
         height: 100%;
         /*align-items: center;*/
         /*justify-content: center;*/
-        transition: all 0.1s ease-out;
+        /*transition: all 0.1s ease-out;*/
     }
 
     .module__item:nth-child(odd) {

@@ -1,7 +1,7 @@
 <template>
     <div class="module">
         <div class="btn-change" @click.stop.prevent="onClickChange">
-            C
+            L
         </div>
         <transition name="fade">
             <div class="trans-box" v-show="isTrans"></div>

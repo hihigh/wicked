@@ -119,6 +119,14 @@
 
                 console.log('start');
 
+                var ele = this.$el.querySelector(".module__item");
+                var dvStyle = ele.getAttribute('style');
+                var transZRegex = /\.*translateY\((.*)px\)/i;
+                var zTrans = transZRegex.exec(dvStyle)[1];
+
+                Velocity(ele, "stop");
+                dragState.prevEleTop = parseInt(zTrans);
+
             },
 
             dragMoveEvent(event) {
@@ -132,25 +140,7 @@
                 dragState.currentTopAbsolute = touch.clientY;
 
                 dragState.offsetTop = dragState.currentTopAbsolute - dragState.startTopAbsolute;
-                // dragState.prevEleTop = (dragState.currentTopAbsolute - dragState.startTopAbsolute) || 0;
 
-
-                /*
-                var offsetLeft = dragState.currentLeft - dragState.startLeft;
-                var offsetTop = dragState.currentTopAbsolute - dragState.startTopAbsolute;
-                var distanceX = Math.abs(offsetLeft);
-                var distanceY = Math.abs(dragState.offsetTop);
-
-
-
-                if (distanceY < 5 || (distanceY >= 5 && distanceX >= 1.73 * distanceY)) {
-                    return;
-                } else {
-                    event.preventDefault();
-                }
-
-                offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1);
-*/
 
                 if (Math.abs(dragState.offsetTop) < 5) {
                     dragState.moveSpd = 0;
@@ -168,7 +158,7 @@
                     { easing: 'easeOutCubic', duration: 0 }
                 );
 
-                console.log(dragState.prevEleTop, touch.pageY, touch.clientY)
+                console.log(dragState.prevEleTop, dragState.offsetTop)
 
 
             },
@@ -177,17 +167,17 @@
                 var dragState = this.dragState;
                 var tg = dragState.prevEleTop + dragState.offsetTop + (-dragState.moveSpd * 10);
 
-                //reset
+                var time = Math.max(Math.abs(dragState.moveSpd) * 10, 500)
                 var element = this.$el.querySelector(".module__item");
                 Velocity(
                     element,
                     { translateY: tg},
-                    { easing: 'easeOutCubic', duration: 200 }
+                    { easing: 'easeOutCubic', duration: time }
                 );
 
                 dragState.prevEleTop = tg;
 
-                console.log("end dadada", tg, dragState.moveSpd)
+                console.log("end dadada", tg)
 
 
 

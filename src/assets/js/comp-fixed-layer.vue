@@ -445,15 +445,15 @@
 
     body {
 
-        /*position: relative;*/
-        /*left: 0;*/
-        /*width: 100%;*/
-        /*height: 100vh;*/
-        /*max-height: 100vh;*/
-        /*overflow: hidden;*/
-        /*margin: 0;*/
-        /*background: #a0a5a8;*/
-        /*user-select: none;*/
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        background: #a0a5a8;
+        user-select: none;
 
 
 

@@ -108,32 +108,8 @@
             >
 
                 <div class="contents-wrapper" v-if="isContent">
-                    <ul>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-                        <li>content blablabla</li>
-
-                    </ul>
+                    <comp-content-detail></comp-content-detail>
+                    <comp-content-detail></comp-content-detail>
                 </div>
             </transition>
 
@@ -143,11 +119,13 @@
 </template>
 
 <script>
+    import comp_content_detail from '../common/comp-content_detail_b';
 
     export default {
         name: "comp-fixed-layer",
 
         components: {
+            "comp-content-detail": comp_content_detail
         },
 
         created() {

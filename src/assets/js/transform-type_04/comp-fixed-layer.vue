@@ -517,7 +517,6 @@
     }
 
     .contents-wrapper {
-        display: none;
         ul {
 
             li:nth-child(odd) {
@@ -555,8 +554,6 @@
         z-index: 1;
         line-height: 50px;
         font-size: 1.5rem;
-
-        display: none;
     }
 
     .trans-box {
@@ -569,8 +566,6 @@
         background-color: black;
         z-index: 2;
         /*opacity: 0.5;*/
-
-        display: none;
 
     }
 

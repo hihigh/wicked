@@ -137,7 +137,7 @@
 
         mounted(){
             this.addEvent();
-            this.scrollContainer = this.$el;
+            this.scrollContainer = this.$el.querySelector(".module__item");
             this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
         },
 
@@ -163,14 +163,14 @@
             },
 
             addEvent() {
-                let element = this.$el.querySelector(".module__item");
+                let element = this.$el;
                 element.addEventListener('touchstart', this.dragStartEvent);
                 element.addEventListener('touchmove', this.dragMoveEvent);
                 element.addEventListener('touchend', this.dragEndEvent);
             },
 
             removeEvent() {
-                let element = this.$el.querySelector(".module__item");
+                let element = this.$el;
                 element.removeEventListener('touchstart', this.dragStartEvent);
                 element.removeEventListener('touchmove', this.dragMoveEvent);
                 element.removeEventListener('touchend', this.dragEndEvent);

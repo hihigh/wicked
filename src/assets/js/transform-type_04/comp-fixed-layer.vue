@@ -278,7 +278,7 @@
             scrollMoveContainer(tgY, time){
 
                 const ti = time;
-
+                Velocity(this.scrollContainer, "stop");
                 Velocity(
                     this.scrollContainer,
                     { translateY: tgY},
@@ -309,6 +309,7 @@
                 console.log("afterEnter : ")
                 this.hideTransBox();
                 this.scrollMoveContainer(0, 0);
+                // this.scrollContainer.style.transform = "translateY(0)"
 
 
             },

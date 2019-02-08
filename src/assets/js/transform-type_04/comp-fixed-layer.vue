@@ -182,13 +182,13 @@
             this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
         },
 
-        watch:{
+        /*watch:{
             isContent(){
                 console.log("changengnen")
                 // this.scrollMax = this.scrollContainer.scrollHeight - window.innerHeight;
             }
 
-        },
+        },*/
 
         methods: {
             onClickChange(e) {
@@ -298,10 +298,10 @@
 
                 if(tg > 0) {
                     tg = 0;
-                    time = time * 0.3;
+                    time = time * 0.6;
                 } else if(tg < -this.scrollMax){
                     tg = -this.scrollMax;
-                    time = time * 0.3;
+                    time = time * 0.6;
                 }
 
 
@@ -336,22 +336,17 @@
             // --------
 
             beforeEnter: function (el) {
-                console.log("beforenter")
-
+                // console.log("beforenter")
+                this.scrollMoveContainer(0, 0);
             },
 
             enter: function (el, done) {
-                el.addEventListener("webkitTransitionEnd", done, {once:true});
-                console.log("enter : ")
-                done();
-
+                // console.log("enter : ")
+                this.hideTransBox();
+                this.showList(done);
             },
             afterEnter: function (el) {
-                console.log("afterEnter : ")
-                this.hideTransBox();
-                this.scrollMoveContainer(0, 0);
-                // this.scrollContainer.style.transform = "translateY(0)"
-
+                console.log("------------ show list complete")
 
             },
 
@@ -360,19 +355,18 @@
             // --------
 
             beforeLeave: function (el) {
-                console.log("beforeLeave")
-                this.showTransBox();
+                // console.log("beforeLeave")
+
             },
 
             leave: function (el, done) {
-                el.addEventListener("webkitTransitionEnd", done, {once:true});
-                console.log("leave")
-                done();
+                // console.log("leave")
+                // done();
+                this.showTransBox();
+                this.hideList(done)
             },
             afterLeave: function (el) {
-                console.log("afterLeave", el);
-
-
+                console.log("------------ hide list complete")
                 this.isContent = true;
             },
 
@@ -386,19 +380,20 @@
             // --------
 
             beforeEnter_contents: function (el) {
-                console.log("beforenter_contents")
+                this.scrollMoveContainer(0, 0);
+                // console.log("beforenter_contents")
             },
 
             enter_contents: function (el, done) {
-                el.addEventListener("webkitTransitionEnd", done, {once:true});
-                console.log("enter_contents : ")
-                done();
+                // console.log("enter_contents : ")
+                this.hideTransBox();
+                this.showContents(done);
 
             },
             afterEnter_contents: function (el) {
-                console.log("afterEnter_contents : ")
-                this.hideTransBox();
-                this.scrollMoveContainer(0, 0);
+                console.log("------------ show contents complete")
+
+
 
             },
 
@@ -407,22 +402,28 @@
             // --------
 
             beforeLeave_contents: function (el) {
-                console.log("beforeLeave_contents")
+                // console.log("beforeLeave_contents")
                 // this.isTrans = true;
-                this.showTransBox();
 
             },
 
             leave_contents: function (el, done) {
-                el.addEventListener("webkitTransitionEnd", done, {once:true});
-                console.log("leave_contents")
-                done();
+                // console.log("leave_contents")
+                this.showTransBox();
+                this.hideContents(done);
+
             },
             afterLeave_contents: function (el) {
-                console.log("afterLeave_contents", el);
-
+                console.log("------------ hide contents complete")
                 this.isList = true;
+
+
             },
+
+
+
+
+
 
 
             showTransBox() {
@@ -437,21 +438,43 @@
 
 
 
-            showList(){
+
+
+
+            showList(done){
+                const element = this.$el.querySelector(".list-wrapper")
+                Velocity(element,
+                    { opacity:1},
+                    { easing: 'easeInOutCubic', duration: 1000, complete: done }
+                )
+            },
+
+
+            hideList(done){
+                const element = this.$el.querySelector(".list-wrapper")
+                Velocity(element,
+                    { opacity:0},
+                    { easing: 'easeInOutCubic', duration: 1000, complete: done }
+                )
+
 
             },
 
 
-            hideList(){
-
+            showContents(done){
+                const element = this.$el.querySelector(".contents-wrapper")
+                Velocity(element,
+                    { opacity:1},
+                    { easing: 'easeInOutCubic', duration: 1000, complete: done }
+                )
             },
 
-            showContents(){
-
-            },
-
-            hideContents(){
-
+            hideContents(done){
+                const element = this.$el.querySelector(".contents-wrapper")
+                Velocity(element,
+                    { opacity:0},
+                    { easing: 'easeInOutCubic', duration: 1000, complete: done }
+                )
             }
 
 
@@ -464,15 +487,21 @@
 
 <style lang="scss">
     .fade-enter-active{
-        transition: opacity 1s, transform 1s cubic-bezier(.37, 0, .34, 1);
+        transition: transform 0.8s cubic-bezier(.82, 0, .20, 1);
     }
 
     .fade-leave-active {
-        transition: opacity 1s, transform 1s cubic-bezier(.37, 0, .34, 1);
+        transition: transform 1.0s cubic-bezier(.82, 0, .20, 1);
     }
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-        transform: translate3d(0,0,0) scale(1.2);
+    .fade-enter {
+        /*opacity: 0;*/
+        transform: translate3d(0,120%,0);
+        transform-origin: 50% 0;
+    }
+
+    .fade-leave-to {
+        /*opacity: 0;*/
+        transform: translate3d(0,-120%,0);
         transform-origin: 50% 0;
     }
 

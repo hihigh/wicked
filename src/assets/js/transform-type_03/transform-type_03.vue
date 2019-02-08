@@ -1,15 +1,7 @@
 <template>
     <div class="main-wrapper">
 
-        <div class="about-lab">
-            <h1 class="logo">
-                <span class="blind">df lab</span>
-                <img src="images/df_lab_logo_fit_b.svg" alt="DF Logo" class="img-logo">
-            </h1>
-            <p class="dec-lab">
-                <span style="visibility: visible;">Creative freedom, a sense of responsibility and passionate</span>
-            </p>
-        </div>
+        <comp-content-about></comp-content-about>
 
 
         <div class="expand-content-wrapper">
@@ -75,19 +67,7 @@
         </div>
 
 
-
-        <div class="etc-contents-wrapper">
-
-            <div class="etc-contents-img" style='background-image: url("images/noimg_w.png")'></div>
-            <p>
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
-                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-
-        </div>
+        <comp-content-detail></comp-content-detail>
 
     </div>
 </template>
@@ -95,11 +75,17 @@
 <script>
 
     import mixin from "../common/common_mixin.vue";
-    // import velocity from Velocity;
+    import comp_about from '../common/comp-content_about_w';
+    import comp_content_detail from '../common/comp-content_detail_w';
 
 
     export default {
         name: "transform-type_03",
+
+        components: {
+            "comp-content-detail": comp_content_detail,
+            "comp-content-about": comp_about
+        },
 
         mixins: [mixin],
 
@@ -182,7 +168,7 @@
 
                 Velocity(
                     about,
-                    { height:25+'vh', paddingTop:2+"rem", paddingBottom:2+"rem", backgroundColor:'#ffffff'},
+                    { height:200+'px', paddingTop:2+"rem", paddingBottom:2+"rem", backgroundColor:'#ffffff'},
                     { easing: 'easeInOutCubic', duration: time*1.5}
                 );
                 Velocity(
@@ -252,14 +238,6 @@
         color: black;
 
         /*overflow: hidden;*/
-
-
-        .title {
-            width: 100%;
-            font-size: 2rem;
-            text-align: center;
-            padding: 60px 0;
-        }
 
 
         .expand-content-wrapper {
@@ -398,18 +376,7 @@
 
 
 
-        .about-lab {
-            padding: 2rem 2rem 2rem;
-            box-sizing: border-box;
-            height: 25vh;
-            .logo {
-                margin: 2rem 0;
 
-                .img-logo {
-                    width: 104px;
-                }
-            }
-        }
 
 
         .etc-contents-wrapper {

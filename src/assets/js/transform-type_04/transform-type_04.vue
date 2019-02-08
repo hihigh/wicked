@@ -592,8 +592,8 @@
                 box-sizing: border-box;
 
                 .list-img {
-                    width: 100%;//calc(100% - 1.5rem);
-                    height: 200px;
+                    width: 100%;
+                    height: 12.5rem;
                     background-position: 50% 50%;
                     background-size: cover;
                 }

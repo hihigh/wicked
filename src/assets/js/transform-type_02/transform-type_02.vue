@@ -1,7 +1,7 @@
 <template>
     <div class="main-wrapper">
 
-        <div class="about-lab">
+        <!--<div class="about-lab">
             <h1 class="logo">
                 <span class="blind">df lab</span>
                 <img src="images/df_lab_logo_fit_w.svg" alt="DF Logo" class="img-logo">
@@ -9,8 +9,8 @@
             <p class="dec-lab">
                 <span style="visibility: visible;">Creative freedom, a sense of responsibility and passionate energies are the driving force behind our creation of innovative experiences. Our success has been recognized by numerous international accolades as well as strong relationship with international clients. We build the future of digital creativity.</span>
             </p>
-        </div>
-
+        </div>-->
+        <comp-content-about></comp-content-about>
 
         <div class="expand-content-wrapper">
             <div class="expand-content" @click.stop.prevent="onClickExpandContent">
@@ -52,29 +52,26 @@
 
 
 
-        <div class="etc-contents-wrapper">
-
-            <div class="etc-contents-img" style='background-image: url("images/noimg.png")'></div>
-            <p>
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                took a galley of type and scrambled it to make a type specimen book.<br>It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><br>It
-                was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-
-        </div>
+        <comp-content-detail></comp-content-detail>
 
     </div>
 </template>
 
 <script>
 
-    import mixin from "../common/common_mixin.vue"
+    import mixin from "../common/common_mixin.vue";
+    import comp_about from '../common/comp-content_about_b';
+    import comp_content_detail from '../common/comp-content_detail_w';
 
 
     export default {
         name: "transform-type_02",
+
+        components: {
+            "comp-content-detail": comp_content_detail,
+            "comp-content-about": comp_about
+        },
+
 
         mixins: [mixin],
 
@@ -357,16 +354,9 @@
 
 
         .about-lab {
-            padding: 2rem 2rem 2rem;
-            box-sizing: border-box;
-            transition: all 0.5s;
-            .logo {
-                margin: 2rem 0;
 
-                .img-logo {
-                    width: 104px;
-                }
-            }
+            transition: all 0.5s;
+
         }
 
 

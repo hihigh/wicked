@@ -1,8 +1,5 @@
 <template>
     <div class="module">
-        <div class="btn-change" @click.stop.prevent="onClickChange">
-            L
-        </div>
         <transition name="fade">
             <div class="trans-box" v-show="isTrans"></div>
         </transition>
@@ -12,7 +9,7 @@
                         @before-Leave="beforeLeave" @leave="leave" @after-leave="afterLeave"
                         >
 
-                <div class="list-wrapper" v-if="isList">
+                <div class="list-wrapper" v-if="isList"  @click.stop.prevent="onClickChange">
                     <ul>
                         <li>
                             <div class="list-img" style='background-image: url("images/noimg.png")'>
@@ -107,7 +104,7 @@
                         @before-Leave="beforeLeave_contents" @leave="leave_contents" @after-leave="afterLeave_contents"
             >
 
-                <div class="contents-wrapper" v-if="isContent">
+                <div class="contents-wrapper" v-if="isContent"  @click.stop.prevent="onClickChange">
                     <div class="contents-kv" style='background-image: url("images/thumbnail-1200_28.jpg")'>
 
                     </div>
@@ -590,7 +587,7 @@
     }
 
     .module__item:nth-child(even) {
-        background-color: #F73859;
+        /*background-color: #F73859;*/
         color: #F1D08A;
     }
 

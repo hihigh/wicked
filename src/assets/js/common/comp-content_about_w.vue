@@ -18,7 +18,7 @@
 
 <style scoped lang="scss">
     .about-lab {
-        padding: 2rem 2rem 2rem;
+        padding: 2rem 2.6rem 0rem;
         box-sizing: border-box;
         height: 200px;
 

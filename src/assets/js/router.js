@@ -4,7 +4,7 @@ import Router from 'vue-router';
 import About from './About';
 import Main from './Main';
 
-import comp_list from './transform-type_01/comp-list-contents';
+import comp_list from './transform-type_01/transform-type_01';
 import comp_content from './transform-type_01/comp-content';
 
 Vue.use(Router);

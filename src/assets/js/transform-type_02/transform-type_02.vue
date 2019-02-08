@@ -74,7 +74,7 @@
 
 
     export default {
-        name: "comp-main",
+        name: "transform-type_02",
 
         mixins: [mixin],
 

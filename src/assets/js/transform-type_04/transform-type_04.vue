@@ -3,6 +3,7 @@
         <transition name="fade">
             <div class="trans-box" v-show="isTrans"></div>
         </transition>
+
         <div class="module__item">
 
             <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
@@ -10,6 +11,7 @@
                         >
 
                 <div class="list-wrapper" v-if="isList"  @click.stop.prevent="onClickChange">
+                    <comp-content-about></comp-content-about>
                     <ul>
                         <li>
                             <div class="list-img" style='background-image: url("images/noimg.png")'>
@@ -120,18 +122,20 @@
 
 <script>
     import comp_content_detail from '../common/comp-content_detail_b';
+    import comp_about from '../common/comp-content_about_w';
 
     export default {
-        name: "comp-fixed-layer",
+        name: "transform-type_04",
 
         components: {
-            "comp-content-detail": comp_content_detail
+            "comp-content-detail": comp_content_detail,
+            "comp-content-about": comp_about
         },
 
         created() {
 
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh_tt04', `${vh}px`);
+            // let vh = window.innerHeight * 0.01;
+            // document.documentElement.style.setProperty('--vh_tt04', `${vh}px`);
 
             // window.addEventListener('resize', () => {
             //     // We execute the same script as before
@@ -279,7 +283,7 @@
                 const overPow = 0.5;
                 if(tg > 0) {
                     tg = tg * overPow;
-                    if(content_kv) tgScale = (content_kv.clientHeight + tg)/this.contentKvHeight;
+                    if(content_kv) tgScale = (this.contentKvHeight + tg)/this.contentKvHeight;
                 } else if(tg < -this.scrollMax){
                     tg = -this.scrollMax - ((-this.scrollMax - tg) * overPow);
                 }
@@ -551,50 +555,26 @@
 
     body {
 
-        /*position: relative;*/
-        /*left: 0;*/
-        /*width: 100%;*/
-        /*height: 100vh;*/
-        /*max-height: 100vh;*/
-        /*overflow: hidden;*/
-        /*margin: 0;*/
-        /*background: #a0a5a8;*/
-        /*user-select: none;*/
-
-
 
     }
 
     .module {
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh_tt04, 1vh) * 100);
+        height: calc(var(--vh, 1vh) * 100);
         overflow: hidden;
         background-color: white;
 
     }
 
     .module__item {
-        /*display: flex;*/
-        height: 100%;
-        /*align-items: center;*/
-        /*justify-content: center;*/
-        /*transition: all 0.1s ease-out;*/
+
     }
 
-    .module__item:nth-child(odd) {
-        /*background-color: silver;*/
-        color: #ffffff;
-    }
-
-    .module__item:nth-child(even) {
-        /*background-color: #F73859;*/
-        color: #F1D08A;
-    }
 
 
     .list-wrapper {
         ul {
-            padding: 2.6rem;
+            padding: 1rem 2.6rem;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
 
@@ -630,7 +610,7 @@
         .contents-kv {
             width: 100%;
             height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-            height: calc(var(--vh_tt04, 1vh) * 100);
+            height: calc(var(--vh, 1vh) * 70);
             background-position: 50% 50%;
             background-size: cover;
             transform-origin: 50% 100%;
@@ -662,19 +642,6 @@
     }
 
 
-    .btn-change {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 50px;
-        height: 50px;
-        background-color: black;
-        text-align: center;
-        color: white;
-        z-index: 1;
-        line-height: 50px;
-        font-size: 1.5rem;
-    }
 
     .trans-box {
         position: fixed;
@@ -682,7 +649,7 @@
         left: 0;
         width: 100%;
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh_tt04, 1vh) * 100);
+        height: calc(var(--vh, 1vh) * 100);
         background-color: black;
         z-index: 2;
         /*opacity: 0.5;*/

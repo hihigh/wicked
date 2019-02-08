@@ -9,7 +9,7 @@
     import { EventBus } from '../common/EventBus';
 
     export default {
-        name: "comp-list-contents",
+        name: "transform-type_01",
 
         components: {
             'comp-content': comp_content

@@ -99,7 +99,7 @@
 
 
     export default {
-        name: "comp-main-swty",
+        name: "transform-type_03",
 
         mixins: [mixin],
 

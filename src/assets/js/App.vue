@@ -15,18 +15,17 @@
 
 
         <!-- full swipe card type-->
-        <comp-list v-if="ui_index == 0" :contents-data='this.contentsData'></comp-list>
+        <transform-type-01 v-if="ui_index == 0" :contents-data='this.contentsData'></transform-type-01>
 
         <!-- middle content type -->
-        <comp-main v-else-if="ui_index == 1" :contents-data='this.contentsData'></comp-main>
+        <transform-type-02 v-else-if="ui_index == 1" :contents-data='this.contentsData'></transform-type-02>
 
         <!-- middle content type -->
-        <comp-main-swty v-else-if="ui_index == 2" :contents-data='this.contentsData'></comp-main-swty>
+        <transform-type-03 v-else-if="ui_index == 2" :contents-data='this.contentsData'></transform-type-03>
 
+        <transform-type-04  v-else-if="ui_index == 3" :contents-data='this.contentsData'></transform-type-04>
         <!-- middle content type -->
-        <scroll-fixed-type-01 v-else-if="ui_index == 3" :contents-data='this.contentsData'></scroll-fixed-type-01>
-
-        <comp-fixed  v-else-if="ui_index == 4" :contents-data='this.contentsData'></comp-fixed>
+        <scroll-fixed-type-01 v-else-if="ui_index == 4" :contents-data='this.contentsData'></scroll-fixed-type-01>
 
     </div>
 
@@ -35,22 +34,20 @@
 <script>
 
     //full content type
-    import comp_list from './transform-type_01/comp-list-contents';
+    import transform_type_01 from './transform-type_01/transform-type_01';
 
     //middle box -> full kv
-    import comp_main from './transform-type_02/comp-main';
+    import transform_type_02 from './transform-type_02/transform-type_02';
 
     //middle box -> scroll content
-    import comp_main_swty from './transform-type_03/comp-main_swipeTy';
+    import transform_type_03 from './transform-type_03/transform-type_03';
 
 
     //scroll - fixed - type_01
     import scroll_fixed_type_01 from './scroll_fixed-type_01/scroll_fixed-type_01'
 
 
-
-    //test
-    import comp_fixed from './transform-type_04/comp-fixed-layer';
+    import transform_type_04 from './transform-type_04/transform-type_04';
 
 
 
@@ -60,21 +57,24 @@
 
         data() {
             return {
-                ui_index: 4,
+                ui_index: 3,
                 ui_arr: ["A", "B", "C", "D", "E"]
             };
         },
 
         components: {
-            'comp-list': comp_list,
-            'comp-fixed': comp_fixed,
-            'comp-main': comp_main,
-            'comp-main-swty': comp_main_swty,
+            'transform-type-01': transform_type_01,
+            'transform-type-02': transform_type_02,
+            'transform-type-03': transform_type_03,
+            'transform-type-04': transform_type_04,
             'scroll-fixed-type-01': scroll_fixed_type_01
         },
 
         created() {
             console.log("app.vue -- created")
+
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
         },
 
         props: {

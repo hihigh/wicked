@@ -146,6 +146,7 @@
 
             this.dragState = {};
             this.dragState.prevEleTop = 0;
+            this.contentKvHeight = 667;
 
 
 
@@ -281,7 +282,7 @@
                 const overPow = 0.5;
                 if(tg > 0) {
                     tg = tg * overPow;
-                    if(content_kv) tgScale = (content_kv.clientHeight + tg)/667;
+                    if(content_kv) tgScale = (content_kv.clientHeight + tg)/this.contentKvHeight;
                 } else if(tg < -this.scrollMax){
                     tg = -this.scrollMax - ((-this.scrollMax - tg) * overPow);
                 }
@@ -493,6 +494,9 @@
                     { opacity:1},
                     { easing: 'easeInOutCubic', duration: 1000, complete: done }
                 )
+
+                var content_kv = this.$el.querySelector(".contents-kv");
+                if(content_kv) this.contentKvHeight = content_kv.clientHeight;
             },
 
             hideContents(done){

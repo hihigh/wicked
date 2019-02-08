@@ -213,7 +213,7 @@
 <style scoped lang="scss">
     $swipe-height: 25vh;
     $swipe-height-expand: 35vh;
-    $swipe-width: 90%;
+    $swipe-width: calc(100% - 4rem);
 
     $trans-time:0.4s;
     $trans-bezier:cubic-bezier(.37, 0, .34, 1);

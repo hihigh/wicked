@@ -318,12 +318,15 @@
                     time = time * 0.6;
 
                     var content_kv = this.$el.querySelector(".contents-kv");
-                    Velocity(content_kv, "stop");
-                    Velocity(
-                        content_kv,
-                        { scale: 1},
-                        { easing: 'easeOutCubic', duration: time }
-                    );
+                    if(content_kv){
+                        Velocity(content_kv, "stop");
+                        Velocity(
+                            content_kv,
+                            { scale: 1},
+                            { easing: 'easeOutCubic', duration: time }
+                        );
+                    }
+
 
 
                 } else if(tg < -this.scrollMax){
@@ -394,6 +397,7 @@
             },
             afterLeave: function (el) {
                 console.log("------------ hide list complete")
+
                 this.isContent = true;
             },
 
@@ -471,28 +475,35 @@
             showList(done){
                 const element = this.$el.querySelector(".list-wrapper")
                 Velocity(element,
-                    { opacity:1},
-                    { easing: 'easeInOutCubic', duration: 1000, complete: done }
+                    { opacity:1, translateY:200+"px"},
+                    { easing: 'easeOutCubic', duration: 0}
+                )
+                Velocity(element,
+                    { opacity:1, translateY:0+"px"},
+                    { easing: 'easeOutCubic', duration: 1500, complete: done }
                 )
             },
 
 
             hideList(done){
-                const element = this.$el.querySelector(".list-wrapper")
+                const element = this.$el.querySelector(".list-wrapper");
+
                 Velocity(element,
-                    { opacity:0},
+                    { opacity:0, translateY:-200+"px"},
                     { easing: 'easeInOutCubic', duration: 1000, complete: done }
                 )
-
-
             },
 
 
             showContents(done){
                 const element = this.$el.querySelector(".contents-wrapper")
                 Velocity(element,
-                    { opacity:1},
-                    { easing: 'easeInOutCubic', duration: 1000, complete: done }
+                    { translateY:200+"px"},
+                    { easing: 'easeOutCubic', duration: 0}
+                )
+                Velocity(element,
+                    { translateY:0+"px"},
+                    { easing: 'easeOutCubic', duration: 1500, complete: done }
                 )
 
                 var content_kv = this.$el.querySelector(".contents-kv");
@@ -502,7 +513,7 @@
             hideContents(done){
                 const element = this.$el.querySelector(".contents-wrapper")
                 Velocity(element,
-                    { opacity:0},
+                    { opacity:0, translateY:-200+"px"},
                     { easing: 'easeInOutCubic', duration: 1000, complete: done }
                 )
             }
@@ -517,21 +528,23 @@
 
 <style lang="scss">
     .fade-enter-active{
-        transition: transform 0.8s cubic-bezier(.82, 0, .20, 1);
+        transition: transform 1s cubic-bezier(.50, 0, .14, 1);
     }
 
     .fade-leave-active {
-        transition: transform 0.8s cubic-bezier(.74, 0, .59, 1);
+        transition: opacity 1s, transform 0.8s cubic-bezier(.50, 0, .14, 1);
+
+        //cubic-bezier(0, .40, .28, 1), cubic-bezier(.74, 0, 1, .51)
     }
     .fade-enter {
         /*opacity: 0;*/
-        transform: translate3d(0,120%,0);
+        transform: translate3d(0,100%,0);
         transform-origin: 50% 0;
     }
 
     .fade-leave-to {
         /*opacity: 0;*/
-        transform: translate3d(0,-120%,0);
+        transform: translate3d(0,-100%,0);
         transform-origin: 50% 0;
     }
 

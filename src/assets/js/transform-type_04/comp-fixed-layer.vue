@@ -108,6 +108,9 @@
             >
 
                 <div class="contents-wrapper" v-if="isContent">
+                    <div class="contents-kv" style='background-image: url("images/thumbnail-1200_28.jpg")'>
+
+                    </div>
                     <comp-content-detail></comp-content-detail>
                     <comp-content-detail></comp-content-detail>
                 </div>
@@ -131,7 +134,7 @@
         created() {
 
             let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            document.documentElement.style.setProperty('--vh_tt04', `${vh}px`);
 
             // window.addEventListener('resize', () => {
             //     // We execute the same script as before
@@ -272,16 +275,29 @@
                     event.preventDefault();
                 }
 
+                var content_kv = this.$el.querySelector(".contents-kv");
                 let tg = (dragState.prevEleTop || 0) + dragState.offsetTop;
+                let tgScale = 1;
                 const overPow = 0.5;
                 if(tg > 0) {
                     tg = tg * overPow;
+                    if(content_kv) tgScale = (content_kv.clientHeight + tg)/667;
                 } else if(tg < -this.scrollMax){
                     tg = -this.scrollMax - ((-this.scrollMax - tg) * overPow);
                 }
 
                 this.scrollMoveContainer(tg, 0);
 
+
+
+                if(content_kv){
+                    Velocity(content_kv, "stop");
+                    Velocity(
+                        content_kv,
+                        { scale: tgScale},
+                        { easing: 'easeOutCubic', duration: 0 }
+                    );
+                }
 
 
                 // console.log(dragState.prevEleTop, dragState.offsetTop)
@@ -299,6 +315,16 @@
                 if(tg > 0) {
                     tg = 0;
                     time = time * 0.6;
+
+                    var content_kv = this.$el.querySelector(".contents-kv");
+                    Velocity(content_kv, "stop");
+                    Velocity(
+                        content_kv,
+                        { scale: 1},
+                        { easing: 'easeOutCubic', duration: time }
+                    );
+
+
                 } else if(tg < -this.scrollMax){
                     tg = -this.scrollMax;
                     time = time * 0.6;
@@ -491,7 +517,7 @@
     }
 
     .fade-leave-active {
-        transition: transform 1.0s cubic-bezier(.82, 0, .20, 1);
+        transition: transform 0.8s cubic-bezier(.74, 0, .59, 1);
     }
     .fade-enter {
         /*opacity: 0;*/
@@ -527,7 +553,7 @@
 
     .module {
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 100);
+        height: calc(var(--vh_tt04, 1vh) * 100);
         overflow: hidden;
         background-color: white;
 
@@ -587,6 +613,16 @@
     }
 
     .contents-wrapper {
+        .contents-kv {
+            width: 100%;
+            height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+            height: calc(var(--vh_tt04, 1vh) * 100);
+            background-position: 50% 50%;
+            background-size: cover;
+            transform-origin: 50% 100%;
+
+        }
+
         ul {
 
             li:nth-child(odd) {
@@ -632,12 +668,14 @@
         left: 0;
         width: 100%;
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-        height: calc(var(--vh, 1vh) * 100);
+        height: calc(var(--vh_tt04, 1vh) * 100);
         background-color: black;
         z-index: 2;
         /*opacity: 0.5;*/
 
     }
+
+
 
 </style>
 

@@ -123,6 +123,7 @@
 <script>
     import comp_content_detail from '../common/comp-content_detail_b';
     import comp_about from '../common/comp-content_about_w';
+    import loremipsum from '../common/lorem-ipsum';
 
     export default {
         name: "transform-type_04",
@@ -133,7 +134,8 @@
         },
 
         created() {
-
+            var ipsum = new LoremIpsum();
+            console.log(ipsum.sentence(1));
             // let vh = window.innerHeight * 0.01;
             // document.documentElement.style.setProperty('--vh_tt04', `${vh}px`);
 
@@ -197,6 +199,8 @@
 
         methods: {
             onClickChange(e) {
+                if(this.isTrans) return;
+
                 if(this.isList){
                     this.isList = !this.isList;
                 } else {
@@ -291,7 +295,6 @@
                 this.scrollMoveContainer(tg, 0);
 
 
-
                 if(content_kv){
                     Velocity(content_kv, "stop");
                     Velocity(
@@ -300,10 +303,6 @@
                         { easing: 'easeOutCubic', duration: 0 }
                     );
                 }
-
-
-                // console.log(dragState.prevEleTop, dragState.offsetTop)
-
 
             },
 

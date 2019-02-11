@@ -27,22 +27,27 @@
                     @leave="leave"                    @after-leave="afterLeave"
 
                     name="fade">
-            <comp-content-detail v-show="isContent" :data="data" :bgimg="bgimg" :index="index"></comp-content-detail>
-        </transition>
+            <comp-contents v-show="isContent" :data="data" :bgimg="bgimg" :index="index"></comp-contents>
+
+
+        ß</transition>
     </li>
 </template>
 
 <script>
 
     import { EventBus } from '../common/EventBus';
-    import comp_content_detail from './comp-content-detail';
+    import comp_contents from './comp-contents';
+    import mixin from "../common/common_mixin.vue";
     import _ from 'lodash'
 
     export default {
         name: "Content",
 
+        mixins: [mixin],
+
         components: {
-            'comp-content-detail': comp_content_detail
+            'comp-contents': comp_contents
         },
 
         created() {
@@ -152,7 +157,7 @@
 
                 this.stageVh = Math.max(window.innerHeight * 0.01, this.stageVh);
                 console.log(window.innerHeight * 0.01, this.stageVh)
-                document.documentElement.style.setProperty('--vh', `${this.stageVh}px`);
+                // document.documentElement.style.setProperty('--vh', `${this.stageVh}px`);
 
             },
 
@@ -209,7 +214,7 @@
     }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
     .fade-enter-active{
         transition: opacity 0.7s, transform 0.7s cubic-bezier(.37, 0, .34, 1);
@@ -238,6 +243,7 @@
         vertical-align: top;
 
         transition: all 0.3s;
+        background-color: #dddddd;
 
 
         .inner-wrapper {
@@ -284,40 +290,29 @@
             width: 100vw;
             height: 100%;
             top:0;
-            /*background-color: #F73859;*/
 
             .bg-image {
-                /*display: none;*/
-                /*position: absolute;*/
-                /*top: 50%;
-                left:50%;
-                transform: translate3d(-50%,-50%,0);
-                width: calc(100% - 60px);
-                height: 50vh;*/
 
-                width: 100%;
-                height: 100%;
+                width: 70%;
+                height: 60%;
 
                 position: absolute;
-                top: 0%;
-                left:0%;
-                /*transform: translate3d(-50%,-50%,0);*/
+                top: 50%;
+                left:50%;
+                transform: translate3d(-50%,-50%,0);
 
-                background-color: #cbd5de;
-
+                box-shadow: 8px 8px 10px 0 rgba(0,0,0,0.1);
 
                 transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
 
                 .img-area {
                     width: 100%;
                     height: 100%;
-                    /*background-size: cover;*/
-                    /*background-position: center;*/
 
-                    background-size: 80rem;
+                    background-size: 30rem;
                     background-position: center center;
                     background-repeat: no-repeat;
-                    background-color: #000000;
+                    /*background-color: #000000;*/
                     transition: all 0.5s cubic-bezier(.59, 0, .31, 1);
                 }
 
@@ -359,26 +354,6 @@
 
 
 
-    .content-detail-wrapper {
-
-        white-space: normal;
-        text-align: left;
-        line-height: 1.5rem;
-        font-size: 0.8rem;
-        z-index: 1;
-        position: relative;
-        /*background-color: #f9fafd;*/
-        transition: all 0.3s;
-        .content-detail {
-            width: calc(100% - 60px);
-            margin: -40vh auto 0%;
-
-        }
-
-        img {
-            width: 100%;
-        }
-    }
 
 
 

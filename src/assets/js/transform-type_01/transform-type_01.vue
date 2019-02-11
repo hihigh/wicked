@@ -1,18 +1,18 @@
 <template>
     <div class="list-contents-wrapper">
-        <comp-content v-for="(content, index) in contentsData" :key="index" :data="content" :bgimg="content.bgimage" :index="index"></comp-content>
+        <comp-list v-for="(content, index) in contentsData" :key="index" :data="content" :bgimg="content.bgimage" :index="index"></comp-list>
     </div>
 </template>
 
 <script>
-    import comp_content from './comp-content';
+    import comp_list from './comp-list';
     import { EventBus } from '../common/EventBus';
 
     export default {
         name: "transform-type_01",
 
         components: {
-            'comp-content': comp_content
+            'comp-list': comp_list
         },
 
         data() {
@@ -236,6 +236,7 @@
 <style scoped>
     .list-contents-wrapper {
         white-space: nowrap;
+        /*background-color: #ffffff;*/
 
         /*overflow-x: hidden;*/
     }

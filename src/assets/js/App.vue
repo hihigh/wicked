@@ -49,7 +49,7 @@
 
     import transform_type_04 from './transform-type_04/transform-type_04';
 
-
+    import Velocity from 'velocity-animate'
 
 
     export default {
@@ -57,7 +57,7 @@
 
         data() {
             return {
-                ui_index: 3,
+                ui_index: 0,
                 ui_arr: ["A", "B", "C", "D", "E"]
             };
         },

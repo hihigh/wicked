@@ -52,7 +52,7 @@
 
         created() {
 
-            console.log("================", this.bgimg)
+            // console.log("================", this.bgimg)
 
             EventBus.$on(EventBus.SHOW_CONTENT, this.changeContentMode);
             EventBus.$on(EventBus.SHOW_CONTENT_COMPLETE, this.changeContentModeComplete);
@@ -156,7 +156,7 @@
             checkVh(){
 
                 this.stageVh = Math.max(window.innerHeight * 0.01, this.stageVh);
-                console.log(window.innerHeight * 0.01, this.stageVh)
+                // console.log(window.innerHeight * 0.01, this.stageVh)
                 // document.documentElement.style.setProperty('--vh', `${this.stageVh}px`);
 
             },

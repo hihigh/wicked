@@ -1,16 +1,19 @@
 <template>
-    <div class="stiky-wrapper">
+    <div class="stiky-wrapper" @click.stop.prevent="onClickFixed">
         <div class="stiky-box" :style="myStyle">
-            <div class="bg-image" style='background-image: url("images/thumbnail-1200_12.jpg")'></div>
+            <p class="title">Snow</p>
+            <div class="bg-image" style='background-image: url("images/thumbnail-1200_28.jpg")'></div>
         </div>
     </div>
 
 </template>
 
 <script>
+    import mixin from "../common/common_mixin.vue";
+
     export default {
         name: "comp-scroll-fixed",
-
+        mixins: [mixin],
         props: ['top', 'scrollY'],
         data() {
             return {
@@ -23,7 +26,7 @@
             this.originalHeight = this.$el.getBoundingClientRect().height;
             this.fixedHeight = 70;
 
-            console.log(this.originalTop, this.originalHeight)
+            // console.log(this.originalTop, this.originalHeight)
 
         },
         watch: {
@@ -34,6 +37,8 @@
                 const fixedSize = this.originalHeight - this.fixedHeight;
 
                 if (this.originalTop < this.scrollY) {
+
+                    this.$el.classList.add("fixed-position")
 
                     this.$set(this.myStyle, 'position', 'fixed');
                     this.$set(this.myStyle, 'top', '0');
@@ -48,12 +53,22 @@
 
                     var overPer = (this.scrollY - this.originalTop)/fixedSize;
 
-                    console.log(overPer)
+                    console.log(this.originalTop , this.scrollY, this.originalTop + fixedSize)
 
                 } else {
+
+                    this.$el.classList.remove("fixed-position")
+
                     this.$set(this.myStyle, 'position');
                     this.$set(this.myStyle, 'top');
                 }
+            }
+        },
+
+        methods: {
+            onClickFixed() {
+                const tg = this.originalTop + (this.originalHeight - this.fixedHeight);
+                this.mx_scrollTo(tg, 500)
             }
         }
     }
@@ -65,14 +80,20 @@
 
 
     .stiky-wrapper {
-        /*position: relative;*/
-        /*z-index: 0;*/
         height: $stiky-height;
 
         .stiky-box {
             height: $stiky-height;
-
             width: 100%;
+
+            .title {
+                position: absolute;
+                color: white;
+                font-size: 2rem;
+                font-weight: lighter;
+                margin: 2.6rem;
+                transition:margin 0.3s
+            }
 
             .bg-image {
                 width: 100%;
@@ -80,6 +101,12 @@
                 background-size: 50rem;
                 background-position: 50% 0%;
 
+            }
+        }
+
+        &.fixed-position {
+            .title {
+                margin: 1.4rem 2rem;
             }
         }
     }

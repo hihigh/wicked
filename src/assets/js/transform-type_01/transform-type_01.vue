@@ -109,7 +109,7 @@
                 dragState.pageHeight = element.offsetHeight;
 
                 this.dragging = true;
-                console.log('start', this.dragState);
+                // console.log('start', this.dragState);
 
             },
 
@@ -169,7 +169,7 @@
                     towards = offsetLeft < 0 ? 'next' : 'prev';
                 } else {
                     //reset
-                    console.log("end dadada", offsetLeft)
+                    // console.log("end dadada", offsetLeft)
                     if(Math.abs(offsetLeft) > 2) {
                         this.controlSwipe(this.index);
 
